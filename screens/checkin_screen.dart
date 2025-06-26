@@ -35,6 +35,21 @@ class _CheckInScreenState extends State<CheckInScreen> {
 
   Future<void> loadProgress() async {
     final prefs = await SharedPreferences.getInstance();
+
+    // --- Streak reset logic ---
+    final lastCheckInStr = prefs.getString('phase${widget.phase}LastCheckIn');
+    if (lastCheckInStr != null) {
+      final lastCheckIn = DateTime.parse(lastCheckInStr);
+      final now = DateTime.now();
+      final lastDate = DateTime(lastCheckIn.year, lastCheckIn.month, lastCheckIn.day);
+      final todayDate = DateTime(now.year, now.month, now.day);
+      if (todayDate.difference(lastDate).inDays > 1) {
+        // Missed a full calendar day, reset streak
+        await prefs.setInt('phase${widget.phase}Streak', 0);
+      }
+    }
+    // --- End streak reset logic ---
+
     setState(() {
       streak = prefs.getInt('phase${widget.phase}Streak') ?? 0;
       day = prefs.getInt('phase${widget.phase}Day') ?? 0;
@@ -52,6 +67,9 @@ class _CheckInScreenState extends State<CheckInScreen> {
       streak++;
       await prefs.setInt('phase${widget.phase}Streak', streak);
       await prefs.setInt('phase${widget.phase}Day', day + 1);
+      // Save last check-in date
+      final today = DateTime.now();
+      await prefs.setString('phase${widget.phase}LastCheckIn', today.toIso8601String());
     } else {
       streak = 0;
       await prefs.setInt('phase${widget.phase}Streak', 0);

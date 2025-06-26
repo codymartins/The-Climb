@@ -29,38 +29,45 @@ class _JournalHistoryScreenState extends State<JournalHistoryScreen> {
     });
   }
 
+  Map<int, List<Map<String, dynamic>>> groupEntriesByPhase(List<Map<String, dynamic>> entries) {
+    final Map<int, List<Map<String, dynamic>>> grouped = {};
+    for (final entry in entries) {
+      final phase = entry['phase'] as int;
+      grouped.putIfAbsent(phase, () => []).add(entry);
+    }
+    return grouped;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final grouped = groupEntriesByPhase(journalEntries);
+
     return Scaffold(
       appBar: AppBar(title: const Text("Journal History")),
-      body: ListView.builder(
-        itemCount: journalEntries.length,
-        itemBuilder: (context, index) {
-          final entry = journalEntries[index];
-          final date = DateTime.parse(entry['date']).toLocal();
-          final response = entry['response'];
-          final phase = entry['phase'];
+      body: ListView(
+        children: grouped.entries.map((phaseGroup) {
+          final phase = phaseGroup.key;
+          final entries = phaseGroup.value;
 
-          return Card(
-            margin: const EdgeInsets.all(8),
-            child: ExpansionTile(
-              title: Text("Phase $phase • ${date.toString().split(' ').first}"),
-              children: [
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  color: Colors.grey.shade100,
-                  child: Text(
+          return ExpansionTile(
+            title: Text("Phase $phase"),
+            children: entries.map((entry) {
+              final date = DateTime.parse(entry['date']).toLocal();
+              final response = entry['response'];
+              return Card(
+                margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                child: ListTile(
+                  title: Text(date.toString().split(' ').first),
+                  subtitle: Text(
                     response != null && response.toString().trim().isNotEmpty
                         ? response.toString()
                         : "No journal entry recorded.",
-                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
-              ],
-            ),
+              );
+            }).toList(),
           );
-        },
+        }).toList(),
       ),
     );
   }

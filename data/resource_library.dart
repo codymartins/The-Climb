@@ -63,7 +63,7 @@ const resourceLibrary = {
       'url' : 'https://www.amazon.com/Comfort-Crisis-Embrace-Discomfort-Resilience/dp/0593139136',
     },
     {
-      'title': 'Atomic Habits ',
+      'title': 'Atomic Habits',
       'type': 'Book',
       'url' : 'https://www.amazon.com/Atomic-Habits-James-Clear/dp/0735211299',
     },
@@ -72,5 +72,79 @@ const resourceLibrary = {
       'type': 'Speech',
       'url' : 'https://www.youtube.com/watch?v=sBAqF00gBGk',
     },
-  ]
+  ],
+  3:[//Phase 3
+    {
+      'title': 'The Obstacle is the Way',
+      'type': 'Book',
+      'url': 'https://www.amazon.com/Obstacle-Way-Timeless-Triumph-Over/dp/1591846358',
+    },
+    {
+      'title': 'The Art of Manliness',
+      'type': 'Podcast', 
+      'url': 'https://www.artofmanliness.com/podcast/',
+    },
+    {
+      'title':'Finding Something to Live and Die for',
+      'type': 'Video',
+      'url': 'https://www.youtube.com/watch?v=6b8a1d9f3e4',
+    },
+    {
+      'title' : 'Stillness is the Key',
+      'type': 'Book',
+      'url': 'https://www.amazon.com/Stillness-Key-Ryan-Holiday/dp/0525538581',
+    },
+    {
+      'title': 'The Daily Stoic',
+      'type': 'Podcast',
+      'url': 'https://dailystoic.com/podcast/',
+    },
+    {
+      'title': 'The Subtle Art of Not Giving a F*ck',
+      'type': 'Book',
+      'url': 'https://www.amazon.com/Subtle-Art-Not-Giving-Counterintuitive/dp/0062457713',
+    },
+    {
+      'title': 'The Power of Now',
+      'type': 'Book',
+      'url': 'https://www.amazon.com/Power-Now-Guide-Spiritual-Enlightenment/dp/1577314808',
+    },
+  ],
+  4: [//Phase 4
+    {
+      'title': 'The Hero with a Thousand Faces',
+      'type': 'Book',
+      'url': 'https://www.amazon.com/Hero-Thousand-Faces-Joseph-Campbell/dp/1577315936',
+    },
+    {
+      'title': 'The Tim Ferriss Show',
+      'type': 'Podcast',
+      'url': 'https://tim.blog/podcast/',
+    },
+    {
+      'title': 'The Power of Vulnerability',
+      'type': 'Video',
+      'url': 'https://www.ted.com/talks/brene_brown_the_power_of_vulnerability',
+    },
+    {
+      'title': 'Man’s Search for Meaning',
+      'type': 'Book',
+      'url': 'https://www.amazon.com/Mans-Search-Meaning-Viktor-Frankl/dp/080701429X',
+    },
+    {
+      'title': 'The Art of Happiness',
+      'type': 'Book',
+      'url': 'https://www.amazon.com/Art-Happiness-10th-Anniversary/dp/1594488893',
+    },
+    {
+      'title': 'The Alchemist',
+      'type': 'Book',
+      'url': 'https://www.amazon.com/Alchemist-Paulo-Coelho/dp/0062315005',
+    },
+    {
+      'title': 'The Gifts of Imperfection',
+      'type': 'Book',
+      'url': 'https://www.amazon.com/Gifts-Imperfection-Guide-Self-Acceptance-Wholehearted/dp/159285849X',
+    },
+  ],
 };

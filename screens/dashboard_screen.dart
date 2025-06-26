@@ -75,7 +75,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             context,
             MaterialPageRoute(
               builder: (context) => PhasePreviewScreen(
-                phase: phaseNumber,
+                phaseNumber: phaseNumber,
                 unlocked: unlocked,
               ),
             ),
