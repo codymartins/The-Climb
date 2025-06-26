@@ -200,7 +200,7 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
               style: TextStyle(color: Colors.grey[700]),
             ),
           ),
-          ...categories.map(_buildCategoryTile).toList(),
+          ...categories.map(_buildCategoryTile),
         ],
       ),
     );
