@@ -46,3 +46,5 @@ app.*.map.json
 
 # Ignore my hard-coded asset paths in pubspec_connor.yaml:
 *pubspec_connor.yaml
+
+*pubspec.yaml
