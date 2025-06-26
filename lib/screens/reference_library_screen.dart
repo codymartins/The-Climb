@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../data/resource_library.dart';
+import '../../data/resource_library.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ReferenceLibraryScreen extends StatefulWidget {
@@ -9,6 +9,7 @@ class ReferenceLibraryScreen extends StatefulWidget {
   @override
   State<ReferenceLibraryScreen> createState() => _ReferenceLibraryScreenState();
 }
+
 int currentPhase = 1;
 
 class _ReferenceLibraryScreenState extends State<ReferenceLibraryScreen> {
@@ -40,7 +41,9 @@ class _ReferenceLibraryScreenState extends State<ReferenceLibraryScreen> {
       }
     });
     await prefs.setStringList(
-        'phase${currentPhase}MediaList', completedTitles.toList());
+      'phase${currentPhase}MediaList',
+      completedTitles.toList(),
+    );
     await prefs.setInt('phase${currentPhase}Media', completedTitles.length);
   }
 
