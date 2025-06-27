@@ -290,12 +290,13 @@ class PhasePreviewScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            if (unlocked)
+            if (unlocked) ...[
               ElevatedButton(
                 onPressed: () => _startPhase(context),
                 child: const Text("Start This Phase"),
               ),
-            const SizedBox(height: 12),
+              const SizedBox(height: 12),
+            ],
             OutlinedButton(
               onPressed: () => Navigator.pop(context),
               child: const Text("Back"),

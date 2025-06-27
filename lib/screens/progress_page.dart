@@ -14,7 +14,7 @@ class ProgressPage extends StatelessWidget {
       2: const Offset(62, 471),
       3: const Offset(280, 427),
       4: const Offset(106, 313),
-      5: const Offset(170, 183),
+      5: const Offset(256, 218),
     };
 
     // Separate hiker positions for each phase (adjust these as needed)
@@ -22,8 +22,8 @@ class ProgressPage extends StatelessWidget {
       1: const Offset(232, 580),
       2: const Offset(130, 456),
       3: const Offset(217, 429),
-      4: const Offset(190, 330),
-      5: const Offset(205, 210),
+      4: const Offset(170, 313),
+      5: const Offset(180, 190),
     };
 
     return Scaffold(
@@ -67,8 +67,7 @@ class ProgressPage extends StatelessWidget {
               left: pos.dx,
               top: pos.dy,
               child: GestureDetector(
-                onTap: unlocked
-                    ? () {
+                onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -78,8 +77,7 @@ class ProgressPage extends StatelessWidget {
                             ),
                           ),
                         );
-                      }
-                    : null,
+                      },
                 child: Column(
                   children: [
                     Icon(
