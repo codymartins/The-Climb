@@ -75,6 +75,23 @@ class _ReferenceLibraryScreenState extends State<ReferenceLibraryScreen> {
             final isDone = completedTitles.contains(item['title']);
             return GestureDetector(
               onTap: () => openLink(item['url']!),
+              onLongPress: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text(item['title'] ?? ''),
+                    content: Text(
+                      item['description'] ?? 'No description available.',
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text('Close'),
+                      ),
+                    ],
+                  ),
+                );
+              },
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
@@ -87,13 +104,18 @@ class _ReferenceLibraryScreenState extends State<ReferenceLibraryScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        item['title'] ?? '',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.blue,
-                          decoration: TextDecoration.underline,
+                      Flexible(
+                        child: Text(
+                          item['title'] ?? '',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: true,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.blue,
+                            decoration: TextDecoration.underline,
+                          ),
                         ),
                       ),
                       Text(
