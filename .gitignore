@@ -43,8 +43,3 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-
-# Ignore my hard-coded asset paths in pubspec_connor.yaml:
-*pubspec_connor.yaml
-
-*pubspec.yaml
