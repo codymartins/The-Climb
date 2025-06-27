@@ -60,32 +60,90 @@ class _ReferenceLibraryScreenState extends State<ReferenceLibraryScreen> {
 
     return Scaffold(
       appBar: AppBar(title: const Text("Reference Library")),
-      body: ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          final item = items[index];
-          final isDone = completedTitles.contains(item['title']);
-          return ListTile(
-            title: GestureDetector(
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12,
+            childAspectRatio: 1.2,
+          ),
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            final item = items[index];
+            final isDone = completedTitles.contains(item['title']);
+            return GestureDetector(
               onTap: () => openLink(item['url']!),
-              child: Text(
-                item['title'] ?? '',
-                style: const TextStyle(
-                  color: Colors.blue,
-                  decoration: TextDecoration.underline,
+              onLongPress: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text(item['title'] ?? ''),
+                    content: Text(
+                      item['description'] ?? 'No description available.',
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text('Close'),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                elevation: 4,
+                color: isDone ? Colors.green[50] : Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          item['title'] ?? '',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: true,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.blue,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        item['type'] ?? '',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.black54,
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: IconButton(
+                          icon: Icon(
+                            isDone
+                                ? Icons.check_circle
+                                : Icons.check_circle_outline,
+                            color: isDone ? Colors.green : Colors.grey,
+                          ),
+                          onPressed: () => toggleCompleted(item['title']!),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            subtitle: Text(item['type'] ?? ''),
-            trailing: IconButton(
-              icon: Icon(
-                isDone ? Icons.check_circle : Icons.check_circle_outline,
-                color: isDone ? Colors.green : Colors.grey,
-              ),
-              onPressed: () => toggleCompleted(item['title']!),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
