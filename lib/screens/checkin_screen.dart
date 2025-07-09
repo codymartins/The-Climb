@@ -13,18 +13,26 @@ class CheckInScreen extends StatefulWidget {
 }
 
 class _CheckInScreenState extends State<CheckInScreen> {
-  bool habit1 = false;
-  bool habit2 = false;
-  bool habit3 = false;
   int streak = 0;
   int day = 0;
-  final TextEditingController journalTextController = TextEditingController();
 
-  List<Map<String, dynamic>> get currentPhaseCheckIns =>
-      checkInContentByPhase[widget.phase] ?? [];
+  // Store responses by type
+  Map<String, dynamic> responses = {};
 
-  Map<String, dynamic> get todayCheckIn =>
-      currentPhaseCheckIns[day % currentPhaseCheckIns.length];
+  Map<String, List<Map<String, dynamic>>> get phaseData =>
+      checkInContentByPhase[widget.phase] ?? {};
+
+  // Get today's item for each type
+  Map<String, dynamic> getTodayItem(String type) {
+    final list = phaseData[type] ?? [];
+    if (list.isEmpty) return {};
+    if (type == 'longform') {
+      // Show every 3rd day (day 2, 5, 8, ...)
+      if (day % 3 != 2) return {};
+      return list[(day ~/ 3) % list.length];
+    }
+    return list[day % list.length];
+  }
 
   @override
   void initState() {
@@ -59,58 +67,185 @@ class _CheckInScreenState extends State<CheckInScreen> {
     });
   }
 
-  @override
-  void dispose() {
-    journalTextController.dispose(); // 🔁 Required cleanup
-    super.dispose();
-  }
-
   Future<void> submitCheckIn() async {
     final prefs = await SharedPreferences.getInstance();
 
-    if (habit1 && habit2 && habit3) {
+    final types = ['challenge', 'action', 'reflection'];
+    if (day % 3 == 2) types.add('longform');
+
+    // Only save written responses (text, longText, number)
+    final List<Map<String, dynamic>> answeredItems = [];
+    for (final type in types) {
+      final item = getTodayItem(type);
+      if (item.isEmpty) continue;
+      final val = responses[type];
+      final inputType = item['inputType'];
+      // Only save if it's a written response
+      if ((inputType == 'text' || inputType == 'longText' || inputType == 'number') &&
+          val != null && val.toString().trim().isNotEmpty) {
+        answeredItems.add({
+          'type': type,
+          'prompt': item['text'],
+          'response': val,
+          'inputType': inputType,
+          'description': item['description'],
+        });
+      }
+    }
+
+    // Save to journal
+    final currentPhase = prefs.getInt('currentPhase') ?? widget.phase;
+    final today = DateTime.now().toIso8601String();
+
+    final journalEntry = {
+      'date': today,
+      'phase': currentPhase,
+      'items': answeredItems,
+    };
+
+    final existingEntries = prefs.getStringList('journalEntries') ?? [];
+    existingEntries.add(jsonEncode(journalEntry));
+    await prefs.setStringList('journalEntries', existingEntries);
+
+    // Update streak and day as before...
+    if (answeredItems.length == types.where((t) {
+      final item = getTodayItem(t);
+      final inputType = item['inputType'];
+      return inputType == 'text' || inputType == 'longText' || inputType == 'number';
+    }).length) {
       streak++;
       await prefs.setInt('phase${widget.phase}Streak', streak);
       await prefs.setInt('phase${widget.phase}Day', day + 1);
-      // Save last check-in date
-      final today = DateTime.now();
       await prefs.setString(
         'phase${widget.phase}LastCheckIn',
-        today.toIso8601String(),
+        today,
       );
     } else {
       streak = 0;
       await prefs.setInt('phase${widget.phase}Streak', 0);
     }
 
-    final currentPhase = prefs.getInt('currentPhase') ?? 1;
-    final today = DateTime.now().toIso8601String();
-
-    final journalEntry = {
-      'date': today,
-      'phase': currentPhase,
-      'response': journalTextController.text, // ← whatever field you're using
-    };
-
-    final existingEntries = prefs.getStringList('journalEntries') ?? [];
-    existingEntries.add(jsonEncode(journalEntry));
-
-    await prefs.setStringList('journalEntries', existingEntries);
-
-    // Optional: Save journal entry
-    String entry = journalTextController.text.trim();
-    if (entry.isNotEmpty) {
-      List<String> entries =
-          prefs.getStringList('phase${widget.phase}Journal') ?? [];
-      entries.add(entry);
-      await prefs.setStringList('phase${widget.phase}Journal', entries);
-    }
-
     Navigator.pop(context);
+  }
+
+  void showInputModal(String type, Map<String, dynamic> item) {
+    final controller = TextEditingController(text: responses[type]?.toString() ?? '');
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        Widget input;
+        switch (item['inputType']) {
+          case 'checkbox':
+            input = StatefulBuilder(
+              builder: (context, setModalState) => CheckboxListTile(
+                title: Text(item['text']),
+                value: responses[type] ?? false,
+                onChanged: (val) {
+                  setModalState(() => responses[type] = val);
+                  setState(() => responses[type] = val);
+                },
+              ),
+            );
+            break;
+          case 'number':
+            input = TextField(
+              controller: controller,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText: item['text'],
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (val) => responses[type] = val,
+            );
+            break;
+          case 'longText':
+            input = TextField(
+              controller: controller,
+              maxLines: 8,
+              decoration: InputDecoration(
+                labelText: item['text'],
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (val) => responses[type] = val,
+            );
+            break;
+          case 'text':
+          default:
+            input = TextField(
+              controller: controller,
+              decoration: InputDecoration(
+                labelText: item['text'],
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (val) => responses[type] = val,
+            );
+        }
+        return Padding(
+          padding: EdgeInsets.only(
+            left: 20,
+            right: 20,
+            top: 24,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 24,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                item['text'] ?? '',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              if (item['description'] != null)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text(
+                    item['description'],
+                    style: TextStyle(color: Colors.grey[700]),
+                  ),
+                ),
+              const SizedBox(height: 12),
+              input,
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  setState(() {});
+                },
+                child: const Text("Save"),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget buildCheckInButton(String type, Map<String, dynamic> item, Color color, IconData icon) {
+    final answered = responses[type] != null &&
+        ((item['inputType'] == 'checkbox' && responses[type] == true) ||
+         (item['inputType'] != 'checkbox' && responses[type].toString().isNotEmpty));
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: ListTile(
+        leading: Icon(icon, color: color),
+        title: Text(type[0].toUpperCase() + type.substring(1)),
+        subtitle: answered
+            ? const Text("Completed", style: TextStyle(color: Colors.green))
+            : null,
+        trailing: Icon(Icons.arrow_forward_ios, size: 18),
+        onTap: () => showInputModal(type, item),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    final challenge = getTodayItem('challenge');
+    final action = getTodayItem('action');
+    final reflection = getTodayItem('reflection');
+    final showLongform = day % 3 == 2;
+    final longform = showLongform ? getTodayItem('longform') : null;
+
     return Scaffold(
       appBar: AppBar(title: const Text("Today's Check-In")),
       body: Padding(
@@ -122,35 +257,11 @@ class _CheckInScreenState extends State<CheckInScreen> {
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 16),
-            Text(
-              todayCheckIn['prompt'],
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 20),
-            CheckboxListTile(
-              title: Text(todayCheckIn['habit1']),
-              value: habit1,
-              onChanged: (val) => setState(() => habit1 = val!),
-            ),
-            CheckboxListTile(
-              title: Text(todayCheckIn['habit2']),
-              value: habit2,
-              onChanged: (val) => setState(() => habit2 = val!),
-            ),
-            CheckboxListTile(
-              title: Text(todayCheckIn['habit3']),
-              value: habit3,
-              onChanged: (val) => setState(() => habit3 = val!),
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              controller: journalTextController,
-              maxLines: 4,
-              decoration: InputDecoration(
-                hintText: todayCheckIn['prompt'],
-                border: OutlineInputBorder(),
-              ),
-            ),
+            buildCheckInButton('challenge', challenge, Colors.blue, Icons.flag),
+            buildCheckInButton('action', action, Colors.orange, Icons.check_circle),
+            buildCheckInButton('reflection', reflection, Colors.purple, Icons.self_improvement),
+            if (showLongform && longform != null && longform.isNotEmpty)
+              buildCheckInButton('longform', longform, Colors.teal, Icons.edit_note),
             const SizedBox(height: 24),
             Text(
               "Current Streak: $streak / 14",

@@ -1,96 +1,287 @@
-final Map<int, List<Map<String, String>>> checkInContentByPhase = {
-  1: [
-    {
-        'prompt': 'What am I tolerating in myself that I know I shouldn’t?',
-        'habit1': 'Organize one area of your space to reflect your future self.',
-        'habit2': 'Replace 30 minutes of screen time with reading.',
-        'habit3': 'Write out or review your vision statement.'
-    },
-    {
-        'prompt': 'Where have I given up control of my life?',
-        'habit1': 'Organize one area of your space to reflect your future self.',
-        'habit2': 'Replace 30 minutes of screen time with reading.',
-        'habit3': 'Write out or review your vision statement.'
-    },
-    {
-        'prompt': 'What qualities would the best version of me possess?',
-        'habit1': 'Organize one area of your space to reflect your future self.',
-        'habit2': 'Replace 30 minutes of screen time with reading.',
-        'habit3': 'Write out or review your vision statement.'
-    },
-    {
-        'prompt': 'Write out a vivid paragraph describing the man you would become if you fully woke up to your potential.',
-        'habit1': 'Organize one area of your space to reflect your future self.',
-        'habit2': 'Replace 30 minutes of screen time with reading.',
-        'habit3': 'Write out or review your vision statement.'
-    },
-    {
-        'prompt': 'What small action today will make me proud when I go to bed?',
-        'habit1': 'Organize one area of your space to reflect your future self.',
-        'habit2': 'Replace 30 minutes of screen time with reading.',
-        'habit3': 'Write out or review your vision statement.'
-    },
-  ],
-  2: [
-    {
-        'prompt': 'Did I execute my disciplines today?',
-        'habit1': 'Organize one area of your space to reflect your future self.',
-        'habit2': 'Replace 30 minutes of screen time with reading.',
-        'habit3': 'Write out or review your vision statement.'
-    },
-    {
-        'prompt': 'Exercising patience, resilience, and internal accountability',
-        'habit1': 'Organize one area of your space to reflect your future self.',
-        'habit2': 'Replace 30 minutes of screen time with reading.',
-        'habit3': 'Write out or review your vision statement.'
-    },
-    {
-        'prompt': 'Without structure, potential collapses into wasted dreams.',
-        'habit1': 'Organize one area of your space to reflect your future self.',
-        'habit2': 'Replace 30 minutes of screen time with reading.',
-        'habit3': 'Write out or review your vision statement.'
-    },
-  ],
-  3: [
-    {
-        'prompt': 'Write a list of minor failures or setbacks you survived.',
-        'habit1': 'Organize one area of your space to reflect your future self.',
-        'habit2': 'Replace 30 minutes of screen time with reading.',
-        'habit3': 'Write out or review your vision statement.'
-    },
-    {
-        'prompt': 'Reflect weekly on the beauty of the journey, the moments of small growth.',
-        'habit1': 'Organize one area of your space to reflect your future self.',
-        'habit2': 'Replace 30 minutes of screen time with reading.',
-        'habit3': 'Write out or review your vision statement.'
-    },
-  ],
-  4: [
-    {
-        'prompt': 'Was I aligned with my principles today?',
-        'habit1': 'Organize one area of your space to reflect your future self.',
-        'habit2': 'Replace 30 minutes of screen time with reading.',
-        'habit3': 'Write out or review your vision statement.'
-    },
-    {
-        'prompt': 'I am responsible for who I am. No one else shapes my essence.',
-        'habit1': 'Organize one area of your space to reflect your future self.',
-        'habit2': 'Replace 30 minutes of screen time with reading.',
-        'habit3': 'Write out or review your vision statement.'
-    },
-  ],
-  5: [
-    {
-        'prompt': 'Find small daily ways to lighten others’ loads',
-        'habit1': 'Organize one area of your space to reflect your future self.',
-        'habit2': 'Replace 30 minutes of screen time with reading.',
-        'habit3': 'Write out or review your vision statement.'
-    },
-    {
-        'prompt': 'Who benefited from my strength this week?',
-        'habit1': 'Organize one area of your space to reflect your future self.',
-        'habit2': 'Replace 30 minutes of screen time with reading.',
-        'habit3': 'Write out or review your vision statement.'
-    },
-  ],
+final Map<int, Map<String, List<Map<String, dynamic>>>> checkInContentByPhase = {
+  1: {
+    'challenge': [
+      {
+        'text': 'Do a 10-minute media audit. Identify at least 3 influences that drain your potential. Unfollow, mute, or unsubscribe.',
+        'inputType': 'checkbox',
+        'description': 'Scroll through your social feeds and remove negative influences.'
+      },
+      {
+        'text': 'Write a letter to your future self about who you hope to be and the values you hope guide your future.',
+        'inputType': 'longText',
+        'description': 'Not about your goals — but about who you hope to be. What values do you hope guide your future?'
+      },
+      {
+        'text': 'Spend 20 minutes outside with no phone or headphones. Note what comes up.',
+        'inputType': 'checkbox',
+        'description': 'Just observe your thoughts and surroundings. Bonus: Do it in a new location (somewhere unfamiliar).'
+      },
+      {
+        'text': 'Interview someone you respect. Ask: What wakes you up in the morning? What have you had to overcome to stay on track with your purpose?',
+        'inputType': 'text',
+        'description': 'Interview can be by text or in person.'
+      },
+      {
+        'text': 'Identify a repeated habit you do without thinking. Why do you do it? What would your life look like if you replaced it?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'List 5 people who influence you the most. Are they helping or harming your growth?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'Go through your camera roll. Find the last photo where you felt truly proud of yourself. Reflect: What were you doing differently then?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'Practice “conscious awareness” for one hour. Reflect on what that felt like.',
+        'inputType': 'text',
+      },
+      {
+        'text': 'List your top 5 current inputs (content, music, people, routines). Would someone living on purpose choose the same inputs?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'Sit in silence for 15 minutes before bed. Write down 1 thing that surprised you.',
+        'inputType': 'text',
+      },
+      {
+        'text': 'Create a 1-sentence purpose statement: "My purpose is to ___ so that ___."',
+        'inputType': 'text',
+        'description': 'Even if it’s imperfect. Revisit it in a few days and revise.'
+      },
+      {
+        'text': 'Ask yourself “Why?” 5 times about something you did today.',
+        'inputType': 'text',
+        'description': 'Example: I watched YouTube for an hour. Why? I was bored. Why was I bored?...'
+      },
+      {
+        'text': 'Have one conversation today where you’re completely honest.',
+        'inputType': 'checkbox',
+        'description': 'No posturing. No pretending. Just raw, honest talk with someone.'
+      },
+      {
+        'text': 'Take a "Self-Control Snapshot": Set a timer for every 2 hours today. When it goes off, ask: "Was I intentional or reactive during the last block of time?"',
+        'inputType': 'text',
+      },
+      {
+        'text': 'Design an “ideal day” schedule. Compare it to today. What’s misaligned?',
+        'inputType': 'text',
+        'description': 'Not your dream life — your best realistic self-discipline day.'
+      },
+      {
+        'text': '“What am I tolerating?” challenge: Write down 3 things you’re tolerating but know you shouldn’t be. Choose one to change today.',
+        'inputType': 'text',
+      },
+      {
+        'text': 'Track how many times you instinctively grab your phone. At the end of the day, ask: What was I avoiding each time?',
+        'inputType': 'number',
+      },
+      {
+        'text': 'Eliminate 1 “numbing” behavior for 24 hours. Replace it with any act of growth.',
+        'inputType': 'text',
+      },
+      {
+        'text': 'Ask 1 trusted person: “What’s one strength you see in me I don’t fully use?” Reflect on why it might be true.',
+        'inputType': 'text',
+      },
+      {
+        'text': 'Create a “wake-up mantra”: Pick 5 words or one sentence that calls you to awareness. Write it and read it out loud every morning this week.',
+        'inputType': 'text',
+      },
+    ],
+    'action': [
+      {
+        'text': 'Delete 3 apps or digital distractions you habitually open.',
+        'inputType': 'text',
+        'description': 'Example: TikTok, Twitter, YouTube, Reddit. Log which ones and how much time they typically consumed.'
+      },
+      {
+        'text': 'Write your personal “No List”: Identify 3 habits or influences that don’t serve your future self.',
+        'inputType': 'text',
+        'description': 'Write: “I say no to ___ because I want to become ___.”'
+      },
+      {
+        'text': 'Wake up 30 minutes earlier than normal tomorrow.',
+        'inputType': 'text',
+        'description': 'Use the extra time for stillness, journaling, stretching, or reading something meaningful. Reflect on how it impacted your mindset.'
+      },
+      {
+        'text': 'Introduce one friction-based habit. Log your choice.',
+        'inputType': 'text',
+        'description': 'Choose a positive behavior and place it in your way. Example: Put a book on your pillow, running shoes by your bed, etc.'
+      },
+      {
+        'text': 'Complete a 24-hour dopamine reset. Note what withdrawals you feel.',
+        'inputType': 'text',
+        'description': 'No junk food, no mindless scrolling, no entertainment. Just: walk, write, read, think, move.'
+      },
+      {
+        'text': 'Track every minute of your free time today. At the end of the day, categorize it: Building vs Consuming.',
+        'inputType': 'text',
+        'description': 'Was your time aligned with your potential?'
+      },
+      {
+        'text': 'Choose one thing to do slowly and with full presence. Log the experience.',
+        'inputType': 'text',
+        'description': 'Ideas: drink coffee, walk, make your bed, talk to someone. Set a timer and take 10 uninterrupted minutes.'
+      },
+      {
+        'text': 'Go 1 full day without headphones or background noise.',
+        'inputType': 'text',
+        'description': 'No music, no podcasts. Just your own thoughts. Reflect: What showed up when the noise went away?'
+      },
+      {
+        'text': 'Create a “No Complaints” rule for one day.',
+        'inputType': 'text',
+        'description': 'Every time you feel the urge to complain, write down the solution instead. At the end of the day, note which complaint was hardest to convert.'
+      },
+      {
+        'text': 'Introduce a morning anchor. Log if you completed it.',
+        'inputType': 'checkbox',
+        'description': 'Pick one grounding habit to do every morning this week: cold shower, make your bed, write one line of intention, 2-minute breathwork.'
+      },
+      {
+        'text': 'Initiate a hard conversation you’ve been avoiding.',
+        'inputType': 'text',
+        'description': 'Text or speak with honesty and vulnerability. Even a single sentence counts if it’s real. Log how you felt before and after.'
+      },
+      {
+        'text': 'Look in a mirror for 3 uninterrupted minutes.',
+        'inputType': 'text',
+        'description': 'No phone. No flexing. No judgment. Just observation. What thoughts come up? Who do you see?'
+      },
+      {
+        'text': 'Create a single environment upgrade.',
+        'inputType': 'text',
+        'description': 'Examples: Remove clutter from your desk, create a phone-free zone, replace a toxic playlist with an uplifting one. Log the before/after of the environment and your mindset.'
+      },
+      {
+        'text': 'Write a 1-line obituary for yourself.',
+        'inputType': 'text',
+        'description': 'What would it say if you died today? Now write the one you want to earn. Sit with the gap.'
+      },
+      {
+        'text': 'Initiate “hard work on purpose” for 30 minutes.',
+        'inputType': 'text',
+        'description': 'Pick one task you\'ve been putting off that feels slightly painful. No distractions. Just you vs. resistance. Log how long you lasted and what got done.'
+      },
+      {
+        'text': 'Identify 3 unconscious routines and break one.',
+        'inputType': 'text',
+        'description': 'Examples: Taking the same route to class/work, opening IG when bored, laying in bed after waking. Choose one to interrupt and log what you did instead.'
+      },
+      {
+        'text': 'Plan tomorrow with intention.',
+        'inputType': 'text',
+        'description': 'Tonight, schedule your time in blocks and include 1 “high-agency” hour. That hour = no consumption, no distraction — only movement toward your higher self.'
+      },
+      {
+        'text': 'Perform one anonymous act of strength or kindness.',
+        'inputType': 'text',
+        'description': 'No reward. No recognition. Just a secret moment of discipline, compassion, or courage. Write about how it made you feel.'
+      },
+      {
+        'text': 'Record a video of yourself speaking truth.',
+        'inputType': 'text',
+        'description': 'Prompt: “Here’s one thing I know I’ve been avoiding...” Don’t post it. Just record it. Then reflect on what it felt like to speak it aloud.'
+      },
+      {
+        'text': 'Write a list of “False Successes”.',
+        'inputType': 'text',
+        'description': 'What have you done lately that looked like progress but wasn’t? Inspirational content binges, talking about goals without acting, productive procrastination. Confront the truth, and decide what real action would look like.'
+      },
+    ],
+    'reflection': [
+      {
+        'text': 'Who are you influenced by? Do they live with purpose?',
+        'inputType': 'text',
+        'description': 'Think about the people and media that shape your mindset.'
+      },
+      {
+        'text': 'Is your life yours? Name ways you control it—and ways you don’t.',
+        'inputType': 'text',
+      },
+      {
+        'text': 'Are you becoming someone you’d admire?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'What part of yourself are you most afraid to look at honestly?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'Can you define your purpose—or at least where you find meaning?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'Where do your actions feel most purpose-driven?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'Have you stopped aiming at anything?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'What are your actual goals right now—for your character, body, mind, relationships?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'If your younger self followed you for a day, what would he think?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'What does a successful person look like to you? What do you admire in them?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'Who shaped your identity the most—and did you choose them?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'What are you tolerating in yourself that you know you shouldn’t?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'How much of your day is spent on things you won’t remember next week?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'Are you building—or just consuming?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'If nothing changed about your life—habits, mindset, effort—where would you be in 5 years?',
+        'inputType': 'text',
+      },
+      {
+        'text': 'What do you think about when you\'re completely undistracted? If you don’t know—why?',
+        'inputType': 'text',
+      },
+    ],
+    'longform': [
+      {
+        'text': 'Have you stopped aiming at anything? Take 20 minutes to respond freely, emotionally, and without filtering.',
+        'inputType': 'longText',
+        'description': 'Let your thoughts flow without judgment.'
+      },
+      {
+        'text': 'If your younger self followed you around, would he be proud? Take 20 minutes to respond freely, emotionally, and without filtering.',
+        'inputType': 'longText',
+      },
+      {
+        'text': 'If nothing changed—what version of you would exist in 5 years? Take 20 minutes to respond freely, emotionally, and without filtering.',
+        'inputType': 'longText',
+      },
+      {
+        'text': 'How much of your life is built intentionally? How much is just happening to you? Take 20 minutes to respond freely, emotionally, and without filtering.',
+        'inputType': 'longText',
+      },
+      {
+        'text': 'Vision Casting Exercise: Write out a vivid paragraph describing the man you would become if you fully woke up to your potential. Focus on who he is, not what he has.',
+        'inputType': 'longText',
+      },
+    ],
+  },
+  // ...other phases
 };

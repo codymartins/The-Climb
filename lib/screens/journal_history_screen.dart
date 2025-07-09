@@ -84,15 +84,36 @@ class _JournalHistoryScreenState extends State<JournalHistoryScreen> {
                           itemBuilder: (context, idx) {
                             final entry = entries[idx];
                             final date = DateTime.parse(entry['date']).toLocal();
-                            final response = entry['response'];
+                            final items = entry['items'] as List<dynamic>? ?? [];
                             return Card(
-                              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                              child: ListTile(
-                                title: Text(DateFormat('EEEE, MMM d').format(date)),
-                                subtitle: Text(
-                                  response != null && response.toString().trim().isNotEmpty
-                                      ? response.toString()
-                                      : "No journal entry recorded.",
+                              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      DateFormat('EEEE, MMM d').format(date),
+                                      style: const TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    ...items.map((item) => Padding(
+                                      padding: const EdgeInsets.only(bottom: 8.0),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            item['prompt'] ?? '',
+                                            style: const TextStyle(fontWeight: FontWeight.w600),
+                                          ),
+                                          Text(
+                                            item['response']?.toString() ?? '',
+                                            style: const TextStyle(color: Colors.black87),
+                                          ),
+                                        ],
+                                      ),
+                                    )),
+                                  ],
                                 ),
                               ),
                             );
