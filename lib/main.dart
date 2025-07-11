@@ -14,12 +14,12 @@ class StartTheClimbApp extends StatelessWidget {
       title: 'Start The Climb',
       theme: ThemeData(
         brightness: Brightness.light,
-        scaffoldBackgroundColor: const Color(0xFFF9F9F9), // soft background
-        primaryColor: const Color(0xFF1F2D5C), // deep navy blue
+        scaffoldBackgroundColor: const Color.fromARGB(255, 109, 109, 109), // soft background
+        primaryColor: const Color.fromARGB(255, 42, 46, 51), // deep navy blue
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF1F2D5C),
-          primary: const Color(0xFF1F2D5C),
-          secondary: const Color(0xFFF4B400), // accent yellow
+          seedColor: const Color.fromARGB(255, 42, 46, 51),
+          primary: const Color.fromARGB(255, 42, 46, 51),
+          secondary: const Color.fromARGB(255, 42, 46, 51), // accent yellow
         ),
         textTheme: const TextTheme(
           headlineMedium: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
@@ -28,13 +28,13 @@ class StartTheClimbApp extends StatelessWidget {
           bodyMedium: TextStyle(fontSize: 14),
         ),
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF1F2D5C),
+          backgroundColor: Color.fromARGB(255, 42, 46, 51),
           foregroundColor: Colors.white,
           elevation: 0,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFF1F2D5C),
+            backgroundColor: Color.fromARGB(255, 42, 46, 51),
             foregroundColor: Colors.white,
             textStyle: const TextStyle(fontWeight: FontWeight.bold),
             padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),

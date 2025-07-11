@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dashboard_screen.dart';
+// import 'dashboard_screen.dart';
 import 'reference_library_screen.dart';
 import 'journal_history_screen.dart';
 import 'progress_page.dart';
@@ -34,10 +34,10 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   List<Widget> pages() => [
-    const DashboardScreen(),
+    ProgressPage(currentPhase: currentPhase),
+    // const DashboardScreen(),
     const ReferenceLibraryScreen(),
     const JournalHistoryScreen(),
-    ProgressPage(currentPhase: currentPhase), // Pass the updated value here
     const ViceTrackerPage(),
   ];
 
@@ -56,9 +56,13 @@ class _MainScreenState extends State<MainScreen> {
         selectedItemColor: const Color(0xFF1F2D5C),
         unselectedItemColor: Colors.grey,
         items: const [
+        //   BottomNavigationBarItem(
+        //     icon: Icon(Icons.dashboard),
+        //     label: 'Dashboard',
+        //   ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard),
-            label: 'Dashboard',
+            icon: Icon(Icons.terrain), 
+            label: 'Progress Page',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.menu_book),
@@ -67,10 +71,6 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.edit_note), // 📝 or 📓 icon
             label: 'Journal History',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.terrain), 
-            label: 'Progress Page',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.warning_amber_rounded), 

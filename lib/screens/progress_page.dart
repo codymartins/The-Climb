@@ -94,7 +94,7 @@ class _ProgressPageState extends State<ProgressPage> {
                           value: streak / 14,
                           minHeight: 8,
                           backgroundColor: Colors.grey[300],
-                          color: Colors.green,
+                          color: Color.fromARGB(255, 42, 46, 51),
                         ),
                         SizedBox(height: 2),
                         Text(
@@ -119,7 +119,7 @@ class _ProgressPageState extends State<ProgressPage> {
                           value: mediaCount / 7,
                           minHeight: 8,
                           backgroundColor: Colors.grey[300],
-                          color: Colors.blue,
+                          color: Color.fromARGB(255, 42, 46, 51),
                         ),
                         SizedBox(height: 2),
                         Text(
