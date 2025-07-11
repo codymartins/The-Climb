@@ -70,6 +70,7 @@ flutter:
     - assets\mountain_bg.png
     - assets\cloud.json
     - assets\your_weaving_path.png
+    - assets\closed_book.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 

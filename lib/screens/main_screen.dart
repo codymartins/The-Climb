@@ -53,7 +53,7 @@ class _MainScreenState extends State<MainScreen> {
           }
           setState(() => _currentIndex = index);
         },
-        selectedItemColor: const Color(0xFF1F2D5C),
+        selectedItemColor: const Color.fromARGB(255, 42, 46, 51),
         unselectedItemColor: Colors.grey,
         items: const [
         //   BottomNavigationBarItem(

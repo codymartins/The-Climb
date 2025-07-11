@@ -93,7 +93,7 @@ class _ProgressPageState extends State<ProgressPage> {
                         LinearProgressIndicator(
                           value: streak / 14,
                           minHeight: 8,
-                          backgroundColor: Colors.grey[300],
+                          backgroundColor: Color.fromARGB(255, 250, 248, 248),
                           color: Color.fromARGB(255, 42, 46, 51),
                         ),
                         SizedBox(height: 2),
@@ -118,7 +118,7 @@ class _ProgressPageState extends State<ProgressPage> {
                         LinearProgressIndicator(
                           value: mediaCount / 7,
                           minHeight: 8,
-                          backgroundColor: Colors.grey[300],
+                          backgroundColor: const Color.fromARGB(255, 250, 248, 248),
                           color: Color.fromARGB(255, 42, 46, 51),
                         ),
                         SizedBox(height: 2),
@@ -140,7 +140,7 @@ class _ProgressPageState extends State<ProgressPage> {
               top: hikerPositions[widget.currentPhase]!.dy,
               child: Column(
                 children: const [
-                  Icon(Icons.hiking, color: Colors.blueGrey, size: 48),
+                  Icon(Icons.hiking_sharp, color: Colors.blueGrey, size: 48),
                 ],
               ),
             ),
@@ -168,13 +168,13 @@ class _ProgressPageState extends State<ProgressPage> {
                   children: [
                     Icon(
                       unlocked ? Icons.lock_open : Icons.lock,
-                      color: unlocked ? Colors.green : Colors.blueGrey,
+                      color: unlocked ? const Color.fromARGB(255, 95, 150, 58) : Color.fromARGB(255, 71, 77, 85),
                       size: 40,
                     ),
                     Text(
                       "Phase $phase",
                       style: TextStyle(
-                        color: unlocked ? Colors.green : Colors.grey,
+                        color: unlocked ? Color.fromARGB(255, 95, 150, 58) : Color.fromARGB(255, 71, 77, 85),
                         fontWeight: FontWeight.bold,
                       ),
                     ),

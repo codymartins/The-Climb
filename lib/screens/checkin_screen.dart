@@ -257,11 +257,11 @@ class _CheckInScreenState extends State<CheckInScreen> {
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 16),
-            buildCheckInButton('challenge', challenge, Colors.blue, Icons.flag),
-            buildCheckInButton('action', action, Colors.orange, Icons.check_circle),
-            buildCheckInButton('reflection', reflection, Colors.purple, Icons.self_improvement),
+            buildCheckInButton('challenge', challenge, const Color.fromARGB(255, 79, 98, 113), Icons.flag),
+            buildCheckInButton('action', action, const Color.fromARGB(255, 116, 149, 85), Icons.check_circle),
+            buildCheckInButton('reflection', reflection, const Color.fromARGB(255, 134, 102, 183), Icons.self_improvement),
             if (showLongform && longform != null && longform.isNotEmpty)
-              buildCheckInButton('longform', longform, Colors.teal, Icons.edit_note),
+              buildCheckInButton('longform', longform, const Color.fromARGB(255, 95, 155, 149), Icons.edit_note),
             const SizedBox(height: 24),
             Text(
               "Current Streak: $streak / 14",
