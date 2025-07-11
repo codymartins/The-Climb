@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'dashboard_screen.dart';
 import 'reference_library_screen.dart';
 import 'journal_history_screen.dart';
 import 'progress_page.dart';
@@ -62,7 +61,7 @@ class _MainScreenState extends State<MainScreen> {
         //   ),
           BottomNavigationBarItem(
             icon: Icon(Icons.terrain), 
-            label: 'Progress Page',
+            label: 'Dashboard',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.menu_book),

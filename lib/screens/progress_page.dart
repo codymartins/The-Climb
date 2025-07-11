@@ -140,7 +140,7 @@ class _ProgressPageState extends State<ProgressPage> {
               top: hikerPositions[widget.currentPhase]!.dy,
               child: Column(
                 children: const [
-                  Icon(Icons.hiking_sharp, color: Colors.blueGrey, size: 48),
+                  Icon(Icons.hiking_sharp, color: Color.fromARGB(255, 64, 81, 90), size: 48),
                 ],
               ),
             ),

@@ -216,6 +216,7 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
             child: Text(
               "Face what holds you back. Track your vices honestly, spot patterns, and reinforce your growth.",
               style: TextStyle(color: Colors.white),
+
             ),
           ),
           ...categories.map(_buildCategoryTile),

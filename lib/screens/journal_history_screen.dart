@@ -44,7 +44,7 @@ class _JournalHistoryScreenState extends State<JournalHistoryScreen> {
     },
     child: Image.asset(
       'assets/closed_book.png',
-      height: screenHeight * 1.0, // About 30% of screen height
+      height: screenHeight * 1.8, // About 30% of screen height
       fit: BoxFit.contain,
     ),
   ),
