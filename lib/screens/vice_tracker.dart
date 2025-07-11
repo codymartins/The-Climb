@@ -189,7 +189,7 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("💀 Vice Tracker"),
+        title: const Text("Accountability Tracker"),
       ),
       body: ListView(
         children: [
@@ -197,7 +197,7 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
             padding: const EdgeInsets.all(16.0),
             child: Text(
               "Face what holds you back. Track your vices honestly, spot patterns, and reinforce your growth.",
-              style: TextStyle(color: Colors.grey[700]),
+              style: TextStyle(color: const Color.fromARGB(255, 254, 253, 253)),
             ),
           ),
           ...categories.map(_buildCategoryTile),
