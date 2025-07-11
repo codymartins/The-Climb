@@ -3,6 +3,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/resource_library.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+final Map<String, IconData> typeIcons = {
+  'Book': Icons.menu_book,
+  'Podcast': Icons.podcasts,
+  'Video': Icons.ondemand_video,
+  'Article': Icons.article,
+  'Speech': Icons.record_voice_over,
+};
+
 class ReferenceLibraryScreen extends StatefulWidget {
   const ReferenceLibraryScreen({super.key});
 
@@ -118,12 +126,22 @@ class _ReferenceLibraryScreenState extends State<ReferenceLibraryScreen> {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 8),
                       Text(
                         item['type'] ?? '',
                         style: const TextStyle(
                           fontSize: 14,
                           color: Colors.black54,
                         ),
+                      ),
+                      const SizedBox(height: 4),
+                      Row(
+                        children: [
+                          Icon(
+                            typeIcons[item['type']] ?? Icons.help_outline,
+                            color: Colors.blue,
+                          ),
+                        ],
                       ),
                       Align(
                         alignment: Alignment.bottomRight,

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 class ViceCategory {
   final String name;
+  final IconData icon;
   int streak;
   List<Map<String, dynamic>> history;
-
   ViceCategory({
     required this.name,
+    required this.icon,
     this.streak = 0,
     List<Map<String, dynamic>>? history,
   }) : history = history ?? [];
@@ -21,11 +22,11 @@ class ViceTrackerPage extends StatefulWidget {
 
 class _ViceTrackerPageState extends State<ViceTrackerPage> {
   final List<ViceCategory> categories = [
-    ViceCategory(name: "Distraction"),
-    ViceCategory(name: "Indulgence"),
-    ViceCategory(name: "Avoidance"),
-    ViceCategory(name: "Anger"),
-    ViceCategory(name: "Other"),
+    ViceCategory(name: "Distraction", icon: Icons.phone_android),
+    ViceCategory(name: "Indulgence", icon: Icons.fastfood),
+    ViceCategory(name: "Avoidance", icon: Icons.block),
+    ViceCategory(name: "Anger", icon: Icons.mood_bad),
+    ViceCategory(name: "Other", icon: Icons.help),
   ];
 
   void _checkIn(ViceCategory category, bool clean) async {
@@ -69,17 +70,14 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
           );
         },
       );
-      if (detail == null || detail.isEmpty) return; // User cancelled or didn't enter anything
+      if (detail == null || detail.isEmpty)
+        return; // User cancelled or didn't enter anything
     }
 
     setState(() {
       if (clean) {
         category.streak += 1;
-        category.history.add({
-          'date': todayStr,
-          'clean': true,
-          'detail': '',
-        });
+        category.history.add({'date': todayStr, 'clean': true, 'detail': ''});
       } else {
         category.streak = 0;
         category.history.add({
@@ -94,22 +92,34 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
   Widget _buildCategoryTile(ViceCategory category) {
     final today = DateTime.now();
     final todayStr = "${today.year}-${today.month}-${today.day}";
-    final todayEntry = category.history.where((h) => h['date'] == todayStr).toList();
+    final todayEntry = category.history
+        .where((h) => h['date'] == todayStr)
+        .toList();
 
     return Card(
       elevation: 6,
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       child: ExpansionTile(
-        title: Text(category.name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        title: Row(
+          children: [
+            Icon(category.icon, size: 32, color: Colors.blue),
+            const SizedBox(width: 12),
+            Text(
+              category.name,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Row(
               children: [
-                Text("🔥 Streak: ${category.streak} days", style: const TextStyle(fontWeight: FontWeight.w600)),
+                Text(
+                  "🔥 Streak: ${category.streak} days",
+                  style: const TextStyle(fontWeight: FontWeight.w600),
+                ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: LinearProgressIndicator(
@@ -128,20 +138,27 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Today's Check-In:", style: TextStyle(fontWeight: FontWeight.w600)),
+                  const Text(
+                    "Today's Check-In:",
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
                   Row(
                     children: [
                       ElevatedButton.icon(
                         icon: const Icon(Icons.check, color: Colors.white),
                         label: const Text("Stayed Clean"),
-                        style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
+                        ),
                         onPressed: () => _checkIn(category, true),
                       ),
                       const SizedBox(width: 10),
                       ElevatedButton.icon(
                         icon: const Icon(Icons.close, color: Colors.white),
                         label: const Text("Slipped Up"),
-                        style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                        ),
                         onPressed: () => _checkIn(category, false),
                       ),
                     ],
@@ -166,7 +183,10 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: ExpansionTile(
-                title: const Text("History", style: TextStyle(fontWeight: FontWeight.w600)),
+                title: const Text(
+                  "History",
+                  style: TextStyle(fontWeight: FontWeight.w600),
+                ),
                 children: category.history.reversed.map((entry) {
                   return ListTile(
                     title: Text(entry['date']),
@@ -188,16 +208,15 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Accountability Tracker"),
-      ),
+      appBar: AppBar(title: const Text("💀 Vice Tracker")),
       body: ListView(
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
               "Face what holds you back. Track your vices honestly, spot patterns, and reinforce your growth.",
-              style: TextStyle(color: const Color.fromARGB(255, 254, 253, 253)),
+              style: TextStyle(color: Colors.white),
+
             ),
           ),
           ...categories.map(_buildCategoryTile),
