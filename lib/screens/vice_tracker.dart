@@ -277,7 +277,7 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("💀 Vice Tracker")),
+      appBar: AppBar(title: const Text("Stay Accountable")),
       body: ListView(
         children: [
           Padding(
@@ -292,13 +292,23 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
         
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: ElevatedButton.icon(
-              onPressed: _showCategoryPicker,
-              icon: const Icon(Icons.psychology),
-              label: const Text("Need Some Advice?"),
-              style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(50)),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: GestureDetector(
+                  onTap: _showCategoryPicker,
+                  child: CircleAvatar(
+                    radius: 64,
+                    backgroundColor: Colors.white,
+                    backgroundImage: const AssetImage('assets/marcus_bust.png'),
+                  ),
+                ),
+              ),
             ),
+
           ),
+          
         ],
       ),
     );
