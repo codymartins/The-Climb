@@ -13,6 +13,44 @@ class JournalHistoryScreen extends StatefulWidget {
 class _JournalHistoryScreenState extends State<JournalHistoryScreen> {
   List<Map<String, dynamic>> journalEntries = [];
 
+    Map<String, dynamic> calculateJournalStats(List<Map<String, dynamic>> entries) {
+      final stopWords = {
+        'the', 'and', 'to', 'of', 'in', 'a', 'is', 'it', 'for', 'on',
+        'with', 'at', 'by', 'an', 'be', 'this', 'that', 'i', 'you', 'but', 'my', 'was', 'he', 'she', 'they', 'we', 'me', 'him', 'her', 'them',
+      };
+
+      int totalWordCount = 0;
+      final Map<String, int> wordFrequency = {};
+
+      for (final entry in entries) {
+        final items = entry['items'] as List<dynamic>? ?? [];
+
+        for (final item in items) {
+          final response = (item['response'] ?? '').toString().toLowerCase();
+          final words = response.replaceAll(RegExp(r'[^\w\s]'), '').split(RegExp(r'\s+'));
+
+          totalWordCount += words.length;
+
+          for (var word in words) {
+            if (word.isNotEmpty && !stopWords.contains(word)) {
+              wordFrequency.update(word, (count) => count + 1, ifAbsent: () => 1);
+            }
+          }
+        }
+      }
+
+      final mostUsedWord = wordFrequency.entries.isEmpty
+          ? 'None'
+          : wordFrequency.entries.reduce((a, b) => a.value > b.value ? a : b).key;
+
+      return {
+        'totalEntries': entries.length,
+        'averageWords': entries.isEmpty ? 0 : (totalWordCount / entries.length).round(),
+        'mostUsedWord': mostUsedWord
+      };
+    }
+
+
   @override
   void initState() {
     super.initState();
@@ -27,31 +65,79 @@ class _JournalHistoryScreenState extends State<JournalHistoryScreen> {
       journalEntries = parsed.reversed.toList(); // show most recent first
     });
   }
+  @override
+    Widget build(BuildContext context) {
+      final screenHeight = MediaQuery.of(context).size.height;
+      final stats = calculateJournalStats(journalEntries);
 
- @override
-  Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    
-    return Scaffold(
-      appBar: AppBar(title: const Text("Read How You've Grown")),
-        body: Center(
-  child: GestureDetector(
-    onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => OpenJournalView(journalEntries: journalEntries)),
+      return Scaffold(
+        appBar: AppBar(title: const Text("Read How You've Grown")),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Card(
+                elevation: 4,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("Journal Stats", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 8),
+                      Text("Total Entries: ${stats['totalEntries']}"),
+                      Text("Average Words per Entry: ${stats['averageWords']}"),
+                      Text("Most Used Word: ${stats['mostUsedWord']}"),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Center(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => OpenJournalView(journalEntries: journalEntries)),
+                    );
+                  },
+                  child: Image.asset(
+                    'assets/closed_book.png',
+                    height: screenHeight * 0.7,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       );
-    },
-    child: Image.asset(
-      'assets/closed_book.png',
-      height: screenHeight * 1.8, // About 30% of screen height
-      fit: BoxFit.contain,
-    ),
-  ),
-),
-    );
+    }
+
+//  @override
+//   Widget build(BuildContext context) {
+//     final screenHeight = MediaQuery.of(context).size.height;
+    
+//     return Scaffold(
+//       appBar: AppBar(title: const Text("Read How You've Grown")),
+//         body: Center(
+//   child: GestureDetector(
+//     onTap: () {
+//       Navigator.push(
+//         context,
+//         MaterialPageRoute(builder: (_) => OpenJournalView(journalEntries: journalEntries)),
+//       );
+//     },
+//     child: Image.asset(
+//       'assets/closed_book.png',
+//       height: screenHeight * 1.8, // About 30% of screen height
+//       fit: BoxFit.contain,
+//     ),
+//   ),
+    
   }
-}
+
 
 class OpenJournalView extends StatelessWidget {
   final List<Map<String, dynamic>> journalEntries;

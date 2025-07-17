@@ -29,6 +29,75 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
     ViceCategory(name: "Other", icon: Icons.help),
   ];
 
+  Map<String, List<Map<String, String>>> shuffledAdvice = {};
+  Map<String, int> currentAdviceIndex = {};
+
+    void _showCategoryPicker() async {
+    final selected = await showDialog<String>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("What are you struggling with?"),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: adviceLibrary.keys.map((category) {
+                return ListTile(
+                  title: Text(category),
+                  onTap: () => Navigator.pop(context, category),
+                );
+              }).toList(),
+            ),
+          ),
+        );
+      },
+    );
+
+    if (selected != null) {
+      _showNextShuffledAdvice(context, selected);
+    }
+  }
+    void _showNextShuffledAdvice(BuildContext context, String category) {
+    final original = adviceLibrary[category];
+
+    if (original == null || original.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("No advice found for this category.")),
+      );
+      return;
+    }
+
+    if (!shuffledAdvice.containsKey(category)) {
+      final shuffled = List<Map<String, String>>.from(original)..shuffle();
+      shuffledAdvice[category] = shuffled;
+      currentAdviceIndex[category] = 0;
+    }
+
+    final idx = currentAdviceIndex[category]!;
+    final quote = shuffledAdvice[category]![idx];
+    currentAdviceIndex[category] = (idx + 1) % shuffledAdvice[category]!.length;
+
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text('"${quote['quote']}"'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("- ${quote['author']}", style: const TextStyle(fontStyle: FontStyle.italic)),
+            const SizedBox(height: 12),
+            Text(quote['explanation'] ?? ''),
+          ],
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: const Text("Close")),
+        ],
+      ),
+    );
+  }
+
+
   void _checkIn(ViceCategory category, bool clean) async {
     final today = DateTime.now();
     final todayStr = "${today.year}-${today.month}-${today.day}";
@@ -220,8 +289,41 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
             ),
           ),
           ...categories.map(_buildCategoryTile),
+        
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ElevatedButton.icon(
+              onPressed: _showCategoryPicker,
+              icon: const Icon(Icons.psychology),
+              label: const Text("Need Some Advice?"),
+              style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(50)),
+            ),
+          ),
         ],
       ),
     );
   }
 }
+
+final Map<String, List<Map<String, String>>> adviceLibrary = {
+  "Distraction": [
+    {
+      'quote': "You must not allow yourself to dwell for a single moment on any kind of weakness.",
+      'author': "Epictetus",
+      'explanation': "When distraction pulls you, respond by focusing on one small deliberate action."
+    },
+    {
+      'quote': "It is not that we have a short time to live, but that we waste much of it.",
+      'author': "Seneca",
+      'explanation': "Use your time intentionally. Every moment spent distracted is a moment lost forever."
+    },
+  ],
+  "Indulgence": [
+    {
+      'quote': "Self-control is strength. Right thought is mastery.",
+      'author': "James Allen",
+      'explanation': "Recognize urges as passing. Master yourself rather than becoming a slave to desire."
+    },
+  ],
+  // Add other categories...
+};
