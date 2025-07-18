@@ -172,7 +172,7 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
       child: ExpansionTile(
         title: Row(
           children: [
-            Icon(category.icon, size: 32, color: Colors.blue),
+            Icon(category.icon, size: 32, color: const Color.fromARGB(255, 155, 160, 165)),
             const SizedBox(width: 12),
             Text(
               category.name,
@@ -288,29 +288,35 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
 
             ),
           ),
-          ...categories.map(_buildCategoryTile),
-        
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: GestureDetector(
-                  onTap: _showCategoryPicker,
-                  child: CircleAvatar(
-                    radius: 64,
-                    backgroundColor: Colors.white,
-                    backgroundImage: const AssetImage('assets/marcus_bust.png'),
-                  ),
-                ),
+          ...categories.map(_buildCategoryTile),    
+
+                   Align(
+        alignment: Alignment.bottomCenter,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: ElevatedButton.icon(
+            onPressed: _showCategoryPicker,
+            icon: CircleAvatar(
+              radius: 24, // Larger bust icon
+              backgroundImage: const AssetImage('assets/marcus_bust.png'),
+              backgroundColor: Colors.transparent
+            ),
+            label: const Text(
+              "Ask a Pro",
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            ),
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size(220, 64), // Larger button
+              backgroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
               ),
             ),
-
           ),
-          
+        ),
+      ),     
         ],
-      ),
+      ),     
     );
   }
 }
@@ -327,12 +333,153 @@ final Map<String, List<Map<String, String>>> adviceLibrary = {
       'author': "Seneca",
       'explanation': "Use your time intentionally. Every moment spent distracted is a moment lost forever."
     },
+    {
+      'quote': "You have power over your mind—not outside events. Realize this, and you will find strength.",
+      'author': "Marcus Aurelius",
+      'explanation': "You control your focus. External noise only distracts if you let it."
+    },
+    {
+      'quote': "The impediment to action advances action. What stands in the way becomes the way.",
+      'author': "Marcus Aurelius",
+      'explanation': "Use distractions as opportunities to practice discipline. Turn obstacles into stepping stones."
+    },
+    {
+      'quote': "Beware the barrenness of a busy life.",
+      'author': "Socrates",
+      'explanation': "Being active doesn’t mean you’re moving forward. Prioritize what matters."
+    },
+    {
+      'quote': "The things you think about determine the quality of your mind.",
+      'author': "Marcus Aurelius",
+      'explanation': "Guard your thoughts. Focus on what builds you up, not what pulls you down."
+    },
+    {
+      'quote': "Waste no more time arguing about what a good person should be. Be one.",
+      'author': "Marcus Aurelius",
+      'explanation': "Stop debating distractions. Just take action towards your goals."
+    }
   ],
   "Indulgence": [
     {
       'quote': "Self-control is strength. Right thought is mastery.",
       'author': "James Allen",
       'explanation': "Recognize urges as passing. Master yourself rather than becoming a slave to desire."
+    },
+    {
+      'quote': "The greatest wealth is to live content with little.",
+      'author': "Plato",    
+      'explanation': "True fulfillment comes from within, not from external pleasures. Seek simplicity."
+    },
+    {
+      'quote': "Pleasure is the bait of sin.",
+      'author': "Seneca",
+      'explanation': "Indulgence may seem sweet, but it leads to deeper cravings. Resist the bait."
+    }, 
+    {
+      'quote': "The best revenge is to be unlike him who performed the injury.",
+      'author': "Marcus Aurelius",
+      'explanation': "Don’t let indulgence define you. Rise above it and cultivate your own virtue."
+    },
+    {
+      'quote': "Do not spoil what you have by desiring what you have not.",
+      'author': "Epicurus",
+      'explanation': "Gratitude for what you have is the antidote to endless craving."
+    },
+    {
+      'quote': "The mind is everything. What you think, you become.",
+      'author': "Buddha",
+      'explanation': "Focus on building a strong mind. Indulgence weakens your resolve."
+    },
+    {
+      'quote': "He who conquers himself is the mightiest warrior.",
+      'author': "Confucius",
+      'explanation': "Victory over indulgence is the greatest triumph of all."
+    },
+    {
+      'quote': "No man is free who is not master of himself.",
+      'author': "Epictetus",
+      'explanation': "Freedom comes from self-discipline. Don’t let indulgence chain you."
+    }
+  ],
+  "Avoidance": [
+    {
+      'quote': "The only way to deal with fear is to face it head on.",
+      'author': "Seneca",
+      'explanation': "Avoidance only strengthens fear. Confront what you dread."
+    },
+    {
+      'quote': "What stands in the way becomes the way.",
+      'author': "Marcus Aurelius",
+      'explanation': "Obstacles are opportunities for growth. Embrace them."
+    },
+    {
+      'quote': "Do not be afraid to give up the good to go for the great.",
+      'author': "John D. Rockefeller",
+      'explanation': "Avoiding discomfort keeps you from achieving greatness."
+    },
+    {
+      'quote': "The greatest weapon against stress is our ability to choose one thought over another.",
+      'author': "William James",
+      'explanation': "You control your response. Don’t let avoidance dictate your choices."
+    },
+    {
+      'quote': "Courage is not the absence of fear, but the triumph over it.",
+      'author': "Nelson Mandela",
+      'explanation': "Facing avoidance takes courage, but it leads to true freedom."
+    },
+    {
+      'quote': "The only thing we have to fear is fear itself.",
+      'author': "Franklin D. Roosevelt",
+      'explanation': "Fear is an illusion. Don’t let it paralyze you."
+    },
+  ],
+  "Anger": [
+    {
+      'quote': "Holding onto anger is like drinking poison and expecting the other person to die.",
+      'author': "Buddha",
+      'explanation': "Anger harms you more than anyone else. Let it go."
+    },
+    {
+      'quote': "The best revenge is to be unlike him who performed the injury.",
+      'author': "Marcus Aurelius",
+      'explanation': "Rise above anger. Don’t let it define your actions."
+    },
+    {
+      'quote': "Anger is a brief madness.",
+      'author': "Horace",
+      'explanation': "Recognize anger for what it is—a fleeting emotion that clouds judgment."
+    },
+    {
+      'quote': "Do not let the sun go down while you are still angry.",
+      'author': "Ephesians 4:26",
+      'explanation': "Resolve conflicts quickly. Don’t let anger fester."
+    },
+    {
+      'quote': "To be angry is to revenge the faults of others on ourselves.",
+      'author': "Alexander Pope",
+      'explanation': "Anger only harms you. Choose peace instead."
+    },
+    {
+      'quote': "He who angers you conquers you.",
+      'author': "Elizabeth Kenny",
+      'explanation': "Don’t give others power over your emotions. Stay in control."
+    },
+  ],
+  "Other": [
+    {
+      'quote': "The unexamined life is not worth living.",
+      'author': "Socrates",
+      'explanation': "Reflect on your actions. Growth comes from self-awareness."
+    },
+    {
+      'quote': "Knowing yourself is the beginning of all wisdom.",
+      'author': "Aristotle",
+      'explanation': "Understand your vices to overcome them."
+    },
+    {
+      'quote': "What we fear doing most is usually what we most need to do.",
+      'author': "Tim Ferriss",
+      'explanation': "Face your fears head-on. They often hold the key to growth."
     },
   ],
   // Add other categories...

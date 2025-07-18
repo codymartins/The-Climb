@@ -86,7 +86,7 @@ class _ProgressPageState extends State<ProgressPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Phase",
+                          "Phase Streak",
                           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87, fontSize: 13),
                         ),
                         SizedBox(height: 2),
