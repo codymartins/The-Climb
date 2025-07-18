@@ -139,8 +139,9 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
           );
         },
       );
-      if (detail == null || detail.isEmpty)
+      if (detail == null || detail.isEmpty) {
         return; // User cancelled or didn't enter anything
+      }
     }
 
     setState(() {

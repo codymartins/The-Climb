@@ -299,95 +299,6 @@
 
 
 const interactiveSummaries = {
-  'ego_enemy_phase1': {
-    'title': 'Ego Is the Enemy',
-    'author': 'Ryan Holiday',
-    'timeEstimate': '12–15 minutes',
-    'sections': [
-      {
-        'title': 'What Ego Actually Is',
-        'content': 'Many people confuse confidence with ego...',
-        'reflectionPrompt': 'Think of a moment recently when your ego may have influenced a decision. How did it affect the outcome?',
-        'quiz': [
-          {
-            'question': 'Ego is best described as:',
-            'options': [
-              'Healthy confidence',
-              'Self-importance that clouds growth',
-              'Motivation to win',
-              'Humility'
-            ],
-            'correctIndex': 1,
-          },
-          {
-            'question': 'What is a common sign of ego in decision-making?',
-            'options': [
-              'Seeking feedback',
-              'Ignoring criticism',
-              'Collaborating with others',
-              'Admitting mistakes'
-            ],
-            'correctIndex': 1,
-          },
-        ],
-      },
-      {
-        'title': 'How Ego Hinders Learning',
-        'content': 'Ego often prevents us from learning because we refuse to admit we don’t know something...',
-        'reflectionPrompt': 'Recall a time when you struggled to learn something new. Was ego a factor?',
-        'quiz': [
-          {
-            'question': 'Why does ego hinder learning?',
-            'options': [
-              'It encourages open-mindedness',
-              'It makes us defensive',
-              'It promotes curiosity',
-              'It fosters teamwork'
-            ],
-            'correctIndex': 1,
-          },
-          {
-            'question': 'What’s a key step to overcome ego in learning?',
-            'options': [
-              'Avoid challenges',
-              'Embrace vulnerability',
-              'Focus on winning',
-              'Hide weaknesses'
-            ],
-            'correctIndex': 1,
-          },
-        ],
-      },
-      {
-        'title': 'Overcoming Ego',
-        'content': 'To overcome ego, practice humility and seek continuous improvement...',
-        'reflectionPrompt': 'What’s one action you can take this week to practice humility?',
-        'quiz': [
-          {
-            'question': 'What is a practical way to reduce ego?',
-            'options': [
-              'Boast about achievements',
-              'Listen actively to others',
-              'Compete aggressively',
-              'Avoid feedback'
-            ],
-            'correctIndex': 1,
-          },
-          {
-            'question': 'Humility helps us by:',
-            'options': [
-              'Isolating us from others',
-              'Fostering growth and connection',
-              'Promoting arrogance',
-              'Hiding our strengths'
-            ],
-            'correctIndex': 1,
-          },
-        ],
-      },
-    ],
-    'finalReflectionPrompt': 'What is the single most important sentence or idea you’re taking away from this?',
-  },
   'ego_is_the_enemy': {
     'title': 'Ego Is the Enemy',
     'author': 'Ryan Holiday',
@@ -395,41 +306,76 @@ const interactiveSummaries = {
     'sections': [
       {
         'title': 'Section 1: Introduction',
-        'content': 'Ego is the enemy of what you want and of what you have.',
+        'content': 'Ego is the enemy of what you want and of what you have. Ego is the voice that tells you that you have done enough, that you can stop working. In Ego Is the Enemy, Ryan Holiday teaches us that it is in humility, self-awareness, and a willingness to learn that we find true success. In this section, we will explore the concept of ego and how it can hinder our progress.',
         'reflectionPrompt': 'How has ego interfered with your goals recently?',
-        'quiz': [
-          {
-            'question': 'What is the main theme of this section?',
-            'options': ['Ego helps you succeed', 'Ego is the enemy', 'Ego is irrelevant'],
-            'correctIndex': 1,
-          },
-        ],
       },
       {
-        'title': 'Section 2: Humility',
-        'content': 'Humility is the antidote to ego.',
-        'reflectionPrompt': 'Describe a time you practiced humility.',
+        'title': 'Section 2: What Ego Actually Is',
+        'content': 'Ego isn’t confidence—it’s self-importance that blinds you. Many people confuse confidence with ego. Confidence is earned through work. Ego is self-importance without substance. Ego leads to ignoring feedback, skipping hard work, and believing you’re already finished growing. In order to actually improve, you have to understand the distinction between confidence and ego. Confidence is the belief that you have done enough. It is the understanding of your capabilities and your limits, and it tells you how you are strong and where you can improve. Ego is insecurity. It is what a weak man shows others, to convince them that he is strong. Sacrifice your ego. Earn your confidence.',
+        'reflectionPrompt': 'Think of a moment recently where you acted like you “already knew” or didn’t need to improve. What triggered that feeling?',
         'quiz': [
           {
-            'question': 'What is the antidote to ego?',
-            'options': ['Pride', 'Humility', 'Ambition'],
-            'correctIndex': 1,
+            'question': 'How can I be confident instead of egotistical?',
+            'options': ['Know my strengths', 'Ignore Criticism', 'Deny when I am wrong', 'Avoid challenges'],
+            'correctIndex': 0,
           },
-        ],
-      },
-      {
-        'title': 'Section 3: Learning',
-        'content': 'Continuous learning keeps ego in check.',
-        'reflectionPrompt': 'What is one thing you want to learn next?',
-        'quiz': [
           {
-            'question': 'What keeps ego in check?',
-            'options': ['Learning', 'Success', 'Recognition'],
+            'question': 'What is the difference between confidence and ego?',
+            'options': ['Confidence is earned', 'Ego is self-importance', 'Both A and B', 'None of the above'],
+            'correctIndex': 2,
+          },
+          {
+            'question': 'What is the first step to overcoming ego?',
+            'options': ['Accept feedback', 'Ignore others', 'Deny mistakes', 'Avoid challenges'],
             'correctIndex': 0,
           },
         ],
       },
+      {
+        'title': 'Section 3: Be a Student, Not a Master',
+        'content': 'You are always either improving or declining. Ego tells you you’re done learning. If you want real discipline and progress, you need to remain teachable no matter how much you think you already know. The most successful people are those who are willing to be a novice. In order to be great at anything, you must first be bad at it. The sooner you accept your inabilities, the sooner you will overcome them.',
+        'reflectionPrompt': 'Have you ever failed to improve because you did not want to admit you needed improvement? If so, do you regret it?',
+        'quiz': [
+          {
+            'question': 'Why does Ryan Holiday say humility is important?',
+            'options': ['It impresses people', 'It keeps you quiet', 'It keeps you learning', 'It makes you look weak'],
+            'correctIndex': 2,
+          },
+          {
+            'question': 'What is the danger of ego in the learning process?',
+            'options': ['It fosters resilience', 'It encourages open-mindedness', 'It creates blind spots', 'It enhances self-awareness'],
+            'correctIndex': 2,
+          },
+          {
+            'question': 'How can you cultivate humility in your life?',
+            'options':['Be willing to learn', 'Be impatient', 'stay comfortable', 'ignore mentors' ],
+            'correctIndex': 0,
+          }
+        ],
+      },
+      {
+        'title': 'Section 4: Talking vs. Doing',
+        'content': 'Talking about goals is easier than actually doing the work. Ego loves to broadcast plans instead of focusing on silent action. The quiet worker makes more progress than the loud planner. You don’t need credit—you need results.',
+        'reflectionPrompt': 'How do you feel when you tell people about your goals before you achieve them? Do you feel more motivated or less?',
+        'quiz': [
+          {
+            'question': 'What is the danger of talking about your goals?',
+            'options': ['It motivates you', 'It distracts you from action', 'It helps you plan', 'It builds confidence'],
+            'correctIndex': 1,
+          },
+          {
+            'question': 'What should you focus on instead of talking?',
+            'options': ['Planning', 'Action', 'Networking', 'Social media'],
+            'correctIndex': 1,
+          },
+          {
+            'question': 'How can you avoid the trap of talking too much about your goals?',
+            'options':['Set clear deadlines', 'Share with everyone', 'Avoid accountability', 'Ignore feedback'],
+            'correctIndex': 0,
+          }
+        ],
+      }
     ],
-    'finalReflectionPrompt': 'How will you apply these lessons in your life?',
+    'finalReflectionPrompt': 'Write down in one sentence: “My biggest ego trap right now is _______________.”',
   },
 };
