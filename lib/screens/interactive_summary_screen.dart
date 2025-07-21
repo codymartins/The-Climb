@@ -18,6 +18,7 @@ class _InteractiveSummaryScreenState extends State<InteractiveSummaryScreen> {
   String finalReflectionResponse = '';
   bool isLoading = true;
   List<TextEditingController> reflectionControllers = [];
+  TextEditingController finalReflectionController = TextEditingController();
 
   @override
   void initState() {
@@ -44,6 +45,11 @@ class _InteractiveSummaryScreenState extends State<InteractiveSummaryScreen> {
         (k, v) => MapEntry(int.parse(k), v as String),
       );
       finalReflectionResponse = data["finalReflection"] ?? '';
+      // Update controllers with loaded text
+      for (int i = 0; i < reflectionControllers.length; i++) {
+        reflectionControllers[i].text = reflectionResponses[i] ?? '';
+      }
+      finalReflectionController.text = finalReflectionResponse;
     }
     setState(() {
       isLoading = false;
@@ -195,7 +201,15 @@ class _InteractiveSummaryScreenState extends State<InteractiveSummaryScreen> {
                               duration: const Duration(milliseconds: 300),
                               curve: Curves.easeInOut,
                             );
+                          } else if (finalReflectionPrompt != null && pageIndex == sections.length - 1) {
+                            // Go to final reflection page
+                            _pageController.nextPage(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                            );
                           } else {
+                            // If already on final reflection, submit
+                            markPacketComplete();
                             Navigator.pop(context);
                           }
                         },
@@ -222,7 +236,7 @@ class _InteractiveSummaryScreenState extends State<InteractiveSummaryScreen> {
                       border: OutlineInputBorder(),
                     ),
                     maxLines: 3,
-                    controller: TextEditingController(text: finalReflectionResponse),
+                    controller: finalReflectionController,
                     onChanged: (value) {
                       finalReflectionResponse = value;
                       _saveAllResponses();
@@ -256,6 +270,7 @@ class _InteractiveSummaryScreenState extends State<InteractiveSummaryScreen> {
     for (var controller in reflectionControllers) {
       controller.dispose();
     }
+    finalReflectionController.dispose(); // Dispose this too
     super.dispose();
   }
 }

@@ -13,14 +13,29 @@ class ProgressPage extends StatefulWidget {
   State<ProgressPage> createState() => _ProgressPageState();
 }
 
-class _ProgressPageState extends State<ProgressPage> {
+class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver {
   int streak = 0;
   int mediaCount = 0;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this); // Listen for lifecycle changes
     loadProgress();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this); // Clean up
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      // Reload progress when returning to the page
+      loadProgress();
+    }
   }
 
   Future<void> loadProgress() async {
@@ -86,7 +101,7 @@ class _ProgressPageState extends State<ProgressPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Phase Streak",
+                          "Check-In Streak",
                           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87, fontSize: 13),
                         ),
                         SizedBox(height: 2),
@@ -198,7 +213,10 @@ class _ProgressPageState extends State<ProgressPage> {
                       MaterialPageRoute(
                         builder: (context) => CheckInScreen(phase: widget.currentPhase),
                       ),
-                    );
+                    ).then((_) {
+                      // Reload progress when returning from check-in
+                      loadProgress();
+                    });
                   },
                   child: const Text("Go to Today's Check-In"),
                 ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 import '../../data/resource_library.dart';
 import 'interactive_summary_screen.dart';
 
@@ -33,7 +32,9 @@ class ReferenceLibraryScreen extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) => InteractiveSummaryScreen(summaryId: entry.key),
                       ),
-                    );
+                    ).then((_) {
+                      (context as Element).markNeedsBuild(); // Forces rebuild
+                    });
                   },
                 );
               },
@@ -47,20 +48,6 @@ class ReferenceLibraryScreen extends StatelessWidget {
 
 Future<bool> isPacketComplete(String summaryId) async {
   final prefs = await SharedPreferences.getInstance();
-  final raw = prefs.getString('${summaryId}_responses');
-  if (raw == null) return false;
-  final data = jsonDecode(raw);
-  final quizAnswers = data['quizAnswers'] as Map;
-  final summary = interactiveSummaries[summaryId];
-  if (summary == null) return false;
-  final sections = summary['sections'] as List<dynamic>? ?? [];
-  for (int i = 0; i < sections.length; i++) {
-    final quiz = (sections[i]['quiz'] as List<dynamic>? ?? []);
-    for (int j = 0; j < quiz.length; j++) {
-      final correctIndex = quiz[j]['correctIndex'];
-      final userAnswer = quizAnswers['$i']?['$j'];
-      if (userAnswer == null || userAnswer != correctIndex) return false;
-    }
-  }
-  return true;
+  final completedPackets = prefs.getStringList('completedPackets') ?? [];
+  return completedPackets.contains(summaryId);
 }

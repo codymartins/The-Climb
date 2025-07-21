@@ -374,8 +374,9 @@ const interactiveSummaries = {
             'correctIndex': 0,
           }
         ],
-      }
+      },
     ],
     'finalReflectionPrompt': 'Write down in one sentence: “My biggest ego trap right now is _______________.”',
   },
+  
 };
