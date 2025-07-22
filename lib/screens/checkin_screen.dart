@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:confetti/confetti.dart';
 import '../../data/checkin_data.dart';
 import 'dart:convert';
 
 class CheckInScreen extends StatefulWidget {
   final int phase;
+  final String period; // 'AM' or 'PM'
 
-  const CheckInScreen({super.key, required this.phase});
+  const CheckInScreen({super.key, required this.phase, required this.period});
 
   @override
   State<CheckInScreen> createState() => _CheckInScreenState();
@@ -22,16 +24,18 @@ class _CheckInScreenState extends State<CheckInScreen> {
   Map<String, List<Map<String, dynamic>>> get phaseData =>
       checkInContentByPhase[widget.phase] ?? {};
 
-  // Get today's item for each type
+  // Filter items by period
   Map<String, dynamic> getTodayItem(String type) {
     final list = phaseData[type] ?? [];
     if (list.isEmpty) return {};
+    final filtered = list.where((item) => item['period'] == widget.period).toList();
+    if (filtered.isEmpty) return {};
     if (type == 'longform') {
       // Show every 3rd day (day 2, 5, 8, ...)
       if (day % 3 != 2) return {};
-      return list[(day ~/ 3) % list.length];
+      return filtered[(day ~/ 3) % filtered.length];
     }
-    return list[day % list.length];
+    return filtered[day % filtered.length];
   }
 
   @override
@@ -100,6 +104,7 @@ class _CheckInScreenState extends State<CheckInScreen> {
     final journalEntry = {
       'date': today,
       'phase': currentPhase,
+      'period': widget.period,
       'items': answeredItems,
     };
 
@@ -107,25 +112,105 @@ class _CheckInScreenState extends State<CheckInScreen> {
     existingEntries.add(jsonEncode(journalEntry));
     await prefs.setStringList('journalEntries', existingEntries);
 
-    // Update streak and day as before...
-    if (answeredItems.length == types.where((t) {
-      final item = getTodayItem(t);
-      final inputType = item['inputType'];
-      return inputType == 'text' || inputType == 'longText' || inputType == 'number';
-    }).length) {
+    // Save AM/PM completion for streak logic
+    await prefs.setBool('phase${widget.phase}Day${day}_${widget.period}', true);
+
+    // Check if both AM and PM are done for today
+    final amDone = prefs.getBool('phase${widget.phase}Day${day}_AM') ?? false;
+    final pmDone = prefs.getBool('phase${widget.phase}Day${day}_PM') ?? false;
+    if (amDone && pmDone) {
       streak++;
       await prefs.setInt('phase${widget.phase}Streak', streak);
       await prefs.setInt('phase${widget.phase}Day', day + 1);
-      await prefs.setString(
-        'phase${widget.phase}LastCheckIn',
-        today,
-      );
-    } else {
-      streak = 0;
-      await prefs.setInt('phase${widget.phase}Streak', 0);
+      await prefs.setString('phase${widget.phase}LastCheckIn', today);
     }
 
-    Navigator.pop(context);
+    // Show animation dialog
+    await showMotivationDialog();
+
+    // Wait a moment, then pop both the dialog and the check-in screen
+    await Future.delayed(const Duration(milliseconds: 500));
+    if (Navigator.of(context).canPop()) Navigator.of(context).pop(); // Close dialog if still open
+    if (Navigator.canPop(context)) Navigator.pop(context); // Pop check-in screen
+  }
+
+  final List<String> quotes = [
+    "Keep climbing. Your future self is cheering for you.",
+    "Small steps every day lead to big change.",
+    "Discipline is destiny.",
+    "You are stronger than you think.",
+    "Consistency beats intensity.",
+    "Every check-in is a win.",
+    "Progress, not perfection.",
+    "Embrace the climb, not just the summit.",
+    "The journey is the reward.",
+    "Your effort today shapes your tomorrow.",
+    "Every day is a new chance to grow.",
+    "Believe in the process.",
+    "Discipline is the bridge between goals and accomplishment.",
+    "Success is the sum of small efforts repeated day in and day out.",
+    "You are building a better you, one day at a time.",
+    "Your climb is unique. Embrace it.",
+    "Every step counts, no matter how small.",
+  ];
+
+  Future<void> showMotivationDialog() async {
+    final controller = ConfettiController(duration: const Duration(seconds: 2));
+    controller.play();
+
+    // Pick a random quote
+    final quote = (quotes..shuffle()).first;
+
+    // Show the dialog
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            ConfettiWidget(
+              confettiController: controller,
+              blastDirectionality: BlastDirectionality.explosive,
+              shouldLoop: false,
+              colors: const [Colors.green, Colors.blue, Colors.purple, Colors.orange, Colors.pink],
+            ),
+            Container(
+              width: 320,
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 160, 160, 160),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.fitness_center, color: Color.fromARGB(255, 15, 15, 15), size: 72),
+                  const SizedBox(height: 16),
+                  Text(
+                    quote,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 22, 22, 22),
+                      decoration: TextDecoration.none,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    // Wait for 2 seconds, then close dialog and check-in screen
+    await Future.delayed(const Duration(milliseconds: 2000));
+    if (Navigator.of(context).canPop()) Navigator.of(context).pop(); // Close dialog
+    if (Navigator.canPop(context)) Navigator.pop(context); // Pop check-in screen
+
+    controller.dispose();
   }
 
   void showInputModal(String type, Map<String, dynamic> item) {
@@ -234,8 +319,9 @@ class _CheckInScreenState extends State<CheckInScreen> {
             : null,
         trailing: Icon(Icons.arrow_forward_ios, size: 18),
         onTap: () => showInputModal(type, item),
-      ),
-    );
+      )
+      );
+
   }
 
   @override

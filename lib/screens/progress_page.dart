@@ -198,27 +198,42 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
               ),
             );
           }),
-          // Streak and Check-in button at the bottom center
+          // Streak and Check-in buttons at the bottom center
           Positioned(
             left: 0,
             right: 0,
             bottom: 32,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CheckInScreen(phase: widget.currentPhase),
+                        builder: (context) => CheckInScreen(phase: widget.currentPhase, period: 'AM'),
                       ),
                     ).then((_) {
                       // Reload progress when returning from check-in
                       loadProgress();
                     });
                   },
-                  child: const Text("Go to Today's Check-In"),
+                  child: const Text("AM Check-In"),
+                ),
+                const SizedBox(width: 16),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CheckInScreen(phase: widget.currentPhase, period: 'PM'),
+                      ),
+                    ).then((_) {
+                      // Reload progress when returning from check-in
+                      loadProgress();
+                    });
+                  },
+                  child: const Text("PM Check-In"),
                 ),
               ],
             ),
