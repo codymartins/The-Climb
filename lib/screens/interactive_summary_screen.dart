@@ -81,6 +81,58 @@ class _InteractiveSummaryScreenState extends State<InteractiveSummaryScreen> {
     }
   }
 
+  Future<void> saveReflectionsToJournal() async {
+    final prefs = await SharedPreferences.getInstance();
+    final currentPhase = prefs.getInt('currentPhase') ?? 1;
+    final now = DateTime.now().toIso8601String();
+
+    // Prepare entries for each reflection
+    List<Map<String, dynamic>> newEntries = [];
+
+    final summary = interactiveSummaries[widget.summaryId];
+    final String summaryTitle = summary?['title'] as String? ?? 'Packet';
+
+    final List<dynamic> sections = summary?['sections'] as List<dynamic>? ?? [];
+    for (int i = 0; i < sections.length; i++) {
+      final section = sections[i] as Map<String, dynamic>;
+      final String? reflectionPrompt = section['reflectionPrompt'] as String?;
+      final String response = reflectionResponses[i] ?? '';
+      if (reflectionPrompt != null && response.trim().isNotEmpty) {
+        newEntries.add({
+          'date': now,
+          'phase': currentPhase,
+          'label': summaryTitle,
+          'items': [
+            {
+              'prompt': reflectionPrompt,
+              'response': response,
+            }
+          ],
+        });
+      }
+    }
+    // Final reflection
+    final String? finalReflectionPrompt = summary?['finalReflectionPrompt'] as String?;
+    if (finalReflectionPrompt != null && finalReflectionResponse.trim().isNotEmpty) {
+      newEntries.add({
+        'date': now,
+        'phase': currentPhase,
+        'label': summaryTitle,
+        'items': [
+          {
+            'prompt': finalReflectionPrompt,
+            'response': finalReflectionResponse,
+          }
+        ],
+      });
+    }
+
+    // Save to journalEntries
+    final raw = prefs.getStringList('journalEntries') ?? [];
+    final updated = List<String>.from(raw)..addAll(newEntries.map((e) => jsonEncode(e)));
+    await prefs.setStringList('journalEntries', updated);
+  }
+
   @override
   Widget build(BuildContext context) {
     final summary = interactiveSummaries[widget.summaryId];
@@ -104,161 +156,229 @@ class _InteractiveSummaryScreenState extends State<InteractiveSummaryScreen> {
       );
     }
 
+    int totalPages = sections.length + (finalReflectionPrompt != null ? 1 : 0);
+
     return Scaffold(
       appBar: AppBar(title: Text(title)),
-      body: PageView.builder(
-        controller: _pageController,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: sections.length + (finalReflectionPrompt != null ? 1 : 0),
-        itemBuilder: (context, pageIndex) {
-          if (pageIndex < sections.length) {
-            final section = sections[pageIndex] as Map<String, dynamic>;
-            final String sectionTitle = section['title'] as String? ?? 'Untitled Section';
-            final String sectionContent = section['content'] as String? ?? '';
-            final String? reflectionPrompt = section['reflectionPrompt'] as String?;
-            final List<dynamic> quiz = section['quiz'] as List<dynamic>? ?? [];
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: StatefulBuilder(
+          builder: (context, setState) {
 
-            return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SingleChildScrollView( // <-- Add this wrapper
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(sectionTitle, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 8),
-                    Text('Author: $author'),
-                    Text('Time Estimate: $timeEstimate'),
-                    const SizedBox(height: 8),
-                    Text(sectionContent),
-                    const SizedBox(height: 16),
-                    if (reflectionPrompt != null) ...[
-                      Text('Reflection Prompt', style: Theme.of(context).textTheme.titleMedium),
-                      Text(reflectionPrompt),
-                      TextField(
-                        decoration: const InputDecoration(
-                          labelText: 'Your Response',
-                          border: OutlineInputBorder(),
-                        ),
-                        maxLines: 3,
-                        textAlign: TextAlign.left,
-                        textDirection: TextDirection.ltr,
-                        controller: reflectionControllers[pageIndex],
-                        onChanged: (value) {
-                          reflectionResponses[pageIndex] = value;
-                          _saveAllResponses();
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                    ],
-                    if (quiz.isNotEmpty) ...[
-                      Text('Quiz', style: Theme.of(context).textTheme.titleMedium),
-                      ...quiz.asMap().entries.map((quizEntry) {
-                        final quizItem = quizEntry.value as Map<String, dynamic>;
-                        final String question = quizItem['question'] as String? ?? 'Question';
-                        final List<dynamic> options = quizItem['options'] as List<dynamic>? ?? [];
-                        final int correctIndex = quizItem['correctIndex'] as int? ?? 0;
+            return Column(
+              children: [
+                Expanded(
+                  child: PageView.builder(
+                    controller: _pageController,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: totalPages,
+                    itemBuilder: (context, pageIndex) {
+                      if (pageIndex < sections.length) {
+                        final section = sections[pageIndex] as Map<String, dynamic>;
+                        final String sectionTitle = section['title'] as String? ?? 'Untitled Section';
+                        final String sectionContent = section['content'] as String? ?? '';
+                        final String? reflectionPrompt = section['reflectionPrompt'] as String?;
+                        final List<dynamic> quiz = section['quiz'] as List<dynamic>? ?? [];
 
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(question),
-                            ...options.asMap().entries.map((optionEntry) {
-                              final int optionIndex = optionEntry.key;
-                              final String option = optionEntry.value as String? ?? '';
-                              return RadioListTile<int>(
-                                title: Text(option),
-                                value: optionIndex,
-                                groupValue: selectedQuizAnswers[pageIndex]?[quizEntry.key],
-                                onChanged: (value) {
-                                  setState(() {
-                                    selectedQuizAnswers[pageIndex] ??= {};
-                                    selectedQuizAnswers[pageIndex]![quizEntry.key] = value;
-                                    _saveAllResponses();
-                                  });
-                                  if (value == correctIndex) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(value == correctIndex ? 'Correct!' : 'Try again!'),
-                                        duration: const Duration(milliseconds: 700), // <-- Shorter duration
-                                      ),
-                                    );
-                                  } 
-                                },
-                              );
-                            }),
-                            const SizedBox(height: 8),
-                          ],
+                        return SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Introduction Card
+                              Card(
+                                elevation: 3,
+                                margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(sectionTitle, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
+                                      const SizedBox(height: 8),
+                                      Text('Author: $author'),
+                                      Text('Time Estimate: $timeEstimate'),
+                                      const SizedBox(height: 8),
+                                      Text(sectionContent),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              // Reflection Prompt Card
+                              if (reflectionPrompt != null)
+                                Card(
+                                  elevation: 3,
+                                  margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                                  color: Theme.of(context).cardColor,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text('Reflection Prompt', style: Theme.of(context).textTheme.titleMedium),
+                                        const SizedBox(height: 8),
+                                        Text(reflectionPrompt),
+                                        const SizedBox(height: 8),
+                                        TextField(
+                                          decoration: const InputDecoration(
+                                            labelText: 'Your Response',
+                                            border: OutlineInputBorder(),
+                                          ),
+                                          maxLines: 3,
+                                          controller: reflectionControllers[pageIndex],
+                                          onChanged: (value) {
+                                            reflectionResponses[pageIndex] = value;
+                                            _saveAllResponses();
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              // Quiz Card
+                              if (quiz.isNotEmpty)
+                                Card(
+                                  elevation: 3,
+                                  margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                                  color: Theme.of(context).cardColor,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text('Quiz', style: Theme.of(context).textTheme.titleMedium),
+                                        ...quiz.asMap().entries.map((quizEntry) {
+                                          final quizItem = quizEntry.value as Map<String, dynamic>;
+                                          final String question = quizItem['question'] as String? ?? 'Question';
+                                          final List<dynamic> options = quizItem['options'] as List<dynamic>? ?? [];
+                                          final int correctIndex = quizItem['correctIndex'] as int? ?? 0;
+
+                                          return Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(question),
+                                              ...options.asMap().entries.map((optionEntry) {
+                                                final int optionIndex = optionEntry.key;
+                                                final String option = optionEntry.value as String? ?? '';
+                                                return RadioListTile<int>(
+                                                  title: Text(option),
+                                                  value: optionIndex,
+                                                  groupValue: selectedQuizAnswers[pageIndex]?[quizEntry.key],
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      selectedQuizAnswers[pageIndex] ??= {};
+                                                      selectedQuizAnswers[pageIndex]![quizEntry.key] = value;
+                                                      _saveAllResponses();
+                                                    });
+                                                    if (value == correctIndex) {
+                                                      ScaffoldMessenger.of(context).showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(value == correctIndex ? 'Correct!' : 'Try again!'),
+                                                          duration: const Duration(milliseconds: 700),
+                                                        ),
+                                                      );
+                                                    }
+                                                  },
+                                                );
+                                              }),
+                                              const SizedBox(height: 8),
+                                            ],
+                                          );
+                                        }),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
                         );
-                      }),
-                    ],
-                    SizedBox(height: 24),
-                    Align(
-                      alignment: Alignment.center,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (pageIndex < sections.length - 1) {
-                            _pageController.nextPage(
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeInOut,
-                            );
-                          } else if (finalReflectionPrompt != null && pageIndex == sections.length - 1) {
-                            // Go to final reflection page
-                            _pageController.nextPage(
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeInOut,
-                            );
-                          } else {
-                            // If already on final reflection, submit
-                            markPacketComplete();
-                            Navigator.pop(context);
-                          }
-                        },
-                        child: Text(pageIndex < sections.length - 1 ? 'Next' : 'Submit'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          } else {
-            // Final reflection page
-            return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Final Reflection', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 8),
-                  Text(finalReflectionPrompt!),
-                  TextField(
-                    decoration: const InputDecoration(
-                      labelText: 'Your Response',
-                      border: OutlineInputBorder(),
-                    ),
-                    maxLines: 3,
-                    controller: finalReflectionController,
-                    onChanged: (value) {
-                      finalReflectionResponse = value;
-                      _saveAllResponses();
-                      setState(() {});
+                      } else {
+                        // Final Reflection Page
+                        return Card(
+                          elevation: 3,
+                          margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(24.0),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Final Reflection', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
+                                  const SizedBox(height: 8),
+                                  Text(finalReflectionPrompt ?? ''),
+                                  TextField(
+                                    decoration: const InputDecoration(
+                                      labelText: 'Your Response',
+                                      border: OutlineInputBorder(),
+                                    ),
+                                    maxLines: 3,
+                                    controller: finalReflectionController,
+                                    onChanged: (value) {
+                                      finalReflectionResponse = value;
+                                      _saveAllResponses();
+                                      setState(() {});
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }
                     },
                   ),
-                  SizedBox(height: 24),
-                  Align(
-                    alignment: Alignment.center,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        markPacketComplete();
-                        Navigator.pop(context);
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Builder(
+                      builder: (context) {
+                        int currentPage = _pageController.hasClients ? _pageController.page?.round() ?? 0 : 0;
+                        if (currentPage < totalPages - 1) {
+                          return ElevatedButton(
+                            onPressed: () {
+                              _pageController.nextPage(
+                                duration: const Duration(milliseconds: 400),
+                                curve: Curves.easeInOut,
+                              );
+                            },
+                            
+                            child: const Text('Next'),
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            ),
+                          );
+                        } else {
+                          // On the final page, show Submit Packet button
+                          return ElevatedButton(
+                            onPressed: () async {
+                              await markPacketComplete();
+                              await saveReflectionsToJournal(); // Save reflections to journal
+                              if (!mounted) return;
+                              Navigator.pop(context);
+                            },
+                            child: const Text('Submit Packet'),
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            ),
+                          );
+                        }
                       },
-                      child: const Text('Submit'),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             );
-          }
-        },
+          },
+        ),
       ),
     );
   }

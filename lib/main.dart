@@ -15,11 +15,11 @@ class StartTheClimbApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         scaffoldBackgroundColor: const Color.fromARGB(255, 160, 160, 160), // soft background
-        primaryColor: const Color.fromARGB(255, 42, 46, 51), // deep navy blue
+        primaryColor: const Color.fromARGB(255, 42, 46, 51), 
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(255, 42, 46, 51),
           primary: const Color.fromARGB(255, 42, 46, 51),
-          secondary: const Color.fromARGB(255, 42, 46, 51), // accent yellow
+          secondary: const Color.fromARGB(255, 42, 46, 51), 
         ),
         textTheme: const TextTheme(
           headlineMedium: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),

@@ -67,7 +67,6 @@ class _JournalHistoryScreenState extends State<JournalHistoryScreen> {
   }
   @override
     Widget build(BuildContext context) {
-      final screenHeight = MediaQuery.of(context).size.height;
       final stats = calculateJournalStats(journalEntries);
       final sentences = getAllSentences(journalEntries);
 
@@ -304,6 +303,15 @@ class PhaseJournalCard extends StatelessWidget {
                                 children: [
                                   Text(DateFormat('EEEE, MMM d').format(date),
                                       style: const TextStyle(fontWeight: FontWeight.bold)),
+                                  if (entry['label'] != null)
+                                    Text(
+                                      entry['label'],
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.blueGrey,
+                                        fontSize: 14,
+                                      ),
+                                    ),
                                   ...items.map((item) => Padding(
                                         padding: const EdgeInsets.only(top: 6.0),
                                         child: Column(

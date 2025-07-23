@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ViceCategory {
   final String name;
@@ -54,6 +56,7 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
     );
 
     if (selected != null) {
+      if (!mounted) return;
       _showNextShuffledAdvice(context, selected);
     }
   }
@@ -157,6 +160,7 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
         });
       }
     });
+    await saveCategories(); // <-- Add this line
   }
 
   Widget _buildCategoryTile(ViceCategory category) {
@@ -173,7 +177,7 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
       child: ExpansionTile(
         title: Row(
           children: [
-            Icon(category.icon, size: 32, color: const Color.fromARGB(255, 155, 160, 165)),
+            Icon(category.icon, size: 32, color: const Color.fromARGB(255, 135, 212, 248)),
             const SizedBox(width: 12),
             Text(
               category.name,
@@ -275,6 +279,34 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
     );
   }
 
+  Future<void> saveCategories() async {
+  final prefs = await SharedPreferences.getInstance();
+  for (final category in categories) {
+    await prefs.setInt('${category.name}_streak', category.streak);
+    await prefs.setStringList(
+      '${category.name}_history',
+      category.history.map((h) => jsonEncode(h)).toList(),
+    );
+  }
+}
+
+Future<void> loadCategories() async {
+  final prefs = await SharedPreferences.getInstance();
+  setState(() {
+    for (final category in categories) {
+      category.streak = prefs.getInt('${category.name}_streak') ?? 0;
+      final historyRaw = prefs.getStringList('${category.name}_history') ?? [];
+      category.history = historyRaw.map((h) => jsonDecode(h) as Map<String, dynamic>).toList();
+    }
+  });
+}
+
+  @override
+  void initState() {
+    super.initState();
+    loadCategories();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -283,10 +315,28 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text(
-              "Face what holds you back. Track your vices honestly, spot patterns, and reinforce your growth.",
-              style: TextStyle(color: Colors.white),
-
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 800),
+              curve: Curves.easeInOut,
+              margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              padding: const EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                color: Colors.blueGrey[900],
+                borderRadius: BorderRadius.circular(18),
+                boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 8)],
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.wb_sunny, color: const Color.fromARGB(255, 252, 206, 91), size: 32),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Text(
+                      "Each afternoon, check in with yourself. Did you do the right things? If not, reflect on your choices and build your resolve for tomorrow.",
+                      style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           ...categories.map(_buildCategoryTile),    
@@ -308,7 +358,7 @@ class _ViceTrackerPageState extends State<ViceTrackerPage> {
             ),
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(220, 64), // Larger button
-              backgroundColor: Colors.white,
+              backgroundColor: Theme.of(context).cardColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50),
               ),

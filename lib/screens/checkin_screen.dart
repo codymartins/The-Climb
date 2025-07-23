@@ -130,6 +130,7 @@ class _CheckInScreenState extends State<CheckInScreen> {
 
     // Wait a moment, then pop both the dialog and the check-in screen
     await Future.delayed(const Duration(milliseconds: 500));
+    if (!mounted) return;
     if (Navigator.of(context).canPop()) Navigator.of(context).pop(); // Close dialog if still open
     if (Navigator.canPop(context)) Navigator.pop(context); // Pop check-in screen
   }
@@ -207,6 +208,7 @@ class _CheckInScreenState extends State<CheckInScreen> {
 
     // Wait for 2 seconds, then close dialog and check-in screen
     await Future.delayed(const Duration(milliseconds: 2000));
+    if (!mounted) return;
     if (Navigator.of(context).canPop()) Navigator.of(context).pop(); // Close dialog
     if (Navigator.canPop(context)) Navigator.pop(context); // Pop check-in screen
 
