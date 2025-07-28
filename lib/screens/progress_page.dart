@@ -44,6 +44,42 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
       streak = prefs.getInt('phase${widget.currentPhase}Streak') ?? 0;
       mediaCount = prefs.getInt('phase${widget.currentPhase}Media') ?? 0;
     });
+    await checkAndAdvancePhase();
+
+    // Show congrats dialog only if justAdvancedPhase is true
+    final justAdvanced = prefs.getBool('justAdvancedPhase') ?? false;
+    if (justAdvanced && mounted) {
+      await showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text("Congratulations!"),
+          content: Text("You've completed Phase ${widget.currentPhase - 1}!\nWelcome to Phase ${widget.currentPhase}."),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        ),
+      );
+      await prefs.setBool('justAdvancedPhase', false);
+    }
+  }
+
+  Future<void> checkAndAdvancePhase() async {
+    final prefs = await SharedPreferences.getInstance();
+    // Only advance if both streak and media are complete and not already at max phase
+    if (streak >= 14 && mediaCount >= 7 && widget.currentPhase < 5) {
+      final newPhase = widget.currentPhase + 1;
+      await prefs.setInt('currentPhase', newPhase);
+      await prefs.setInt('phase${newPhase}Streak', 0);
+      await prefs.setInt('phase${newPhase}Media', 0);
+      await prefs.setBool('justAdvancedPhase', true); // <-- Set the flag
+      if (!mounted) return;
+      setState(() {}); // Update UI
+    }
   }
 
   @override
@@ -213,9 +249,9 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
                       MaterialPageRoute(
                         builder: (context) => CheckInScreen(phase: widget.currentPhase, period: 'AM'),
                       ),
-                    ).then((_) {
-                      // Reload progress when returning from check-in
-                      loadProgress();
+                    ).then((_) async {
+                      await loadProgress();
+                      await checkAndAdvancePhase();
                     });
                   },
                   child: const Text("AM Check-In"),

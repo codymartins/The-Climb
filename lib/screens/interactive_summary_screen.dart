@@ -346,13 +346,13 @@ class _InteractiveSummaryScreenState extends State<InteractiveSummaryScreen> {
                                 curve: Curves.easeInOut,
                               );
                             },
-                            
-                            child: const Text('Next'),
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(vertical: 16),
                               textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                             ),
+                            
+                            child: const Text('Next'),
                           );
                         } else {
                           // On the final page, show Submit Packet button
@@ -363,12 +363,12 @@ class _InteractiveSummaryScreenState extends State<InteractiveSummaryScreen> {
                               if (!mounted) return;
                               Navigator.pop(context);
                             },
-                            child: const Text('Submit Packet'),
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(vertical: 16),
                               textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                             ),
+                            child: const Text('Submit Packet'),
                           );
                         }
                       },
