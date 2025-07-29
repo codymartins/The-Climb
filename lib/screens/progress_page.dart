@@ -16,69 +16,57 @@ class ProgressPage extends StatefulWidget {
 class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver {
   int streak = 0;
   int mediaCount = 0;
+  int currentPhase = 1;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this); // Listen for lifecycle changes
-    loadProgress();
+    WidgetsBinding.instance.addObserver(this);
+    _loadAllProgress();
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this); // Clean up
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      // Reload progress when returning to the page
-      loadProgress();
+      _loadAllProgress();
     }
   }
 
-  Future<void> loadProgress() async {
+  Future<void> _loadAllProgress() async {
     final prefs = await SharedPreferences.getInstance();
+    final phase = prefs.getInt('currentPhase') ?? widget.currentPhase;
     setState(() {
-      streak = prefs.getInt('phase${widget.currentPhase}Streak') ?? 0;
-      mediaCount = prefs.getInt('phase${widget.currentPhase}Media') ?? 0;
+      currentPhase = phase;
+      streak = prefs.getInt('phase${currentPhase}Streak') ?? 0;
+      mediaCount = prefs.getInt('phase${currentPhase}Media') ?? 0;
     });
-    await checkAndAdvancePhase();
-
-    // Show congrats dialog only if justAdvancedPhase is true
-    final justAdvanced = prefs.getBool('justAdvancedPhase') ?? false;
-    if (justAdvanced && mounted) {
-      await showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text("Congratulations!"),
-          content: Text("You've completed Phase ${widget.currentPhase - 1}!\nWelcome to Phase ${widget.currentPhase}."),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text("OK"),
-            ),
-          ],
-        ),
-      );
-      await prefs.setBool('justAdvancedPhase', false);
-    }
+    await _checkAndAdvancePhase();
   }
 
-  Future<void> checkAndAdvancePhase() async {
+  Future<void> _checkAndAdvancePhase() async {
     final prefs = await SharedPreferences.getInstance();
-    // Only advance if both streak and media are complete and not already at max phase
-    if (streak >= 14 && mediaCount >= 7 && widget.currentPhase < 5) {
-      final newPhase = widget.currentPhase + 1;
+    if (streak >= 14 && mediaCount >= 7 && currentPhase < 5) {
+      final newPhase = currentPhase + 1;
       await prefs.setInt('currentPhase', newPhase);
       await prefs.setInt('phase${newPhase}Streak', 0);
       await prefs.setInt('phase${newPhase}Media', 0);
-      await prefs.setBool('justAdvancedPhase', true); // <-- Set the flag
-      if (!mounted) return;
-      setState(() {}); // Update UI
+      setState(() {
+        currentPhase = newPhase;
+        streak = 0;
+        mediaCount = 0;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Advanced to Phase $newPhase!"),
+          duration: Duration(seconds: 2),
+        ),
+      );
     }
   }
 
@@ -185,10 +173,10 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
             ),
           ),
           // Hiker
-          if (hikerPositions.containsKey(widget.currentPhase))
+          if (hikerPositions.containsKey(currentPhase))
             Positioned(
-              left: hikerPositions[widget.currentPhase]!.dx,
-              top: hikerPositions[widget.currentPhase]!.dy,
+              left: hikerPositions[currentPhase]!.dx,
+              top: hikerPositions[currentPhase]!.dy,
               child: Column(
                 children: const [
                   Icon(Icons.hiking_sharp, color: Color.fromARGB(255, 64, 81, 90), size: 48),
@@ -199,7 +187,7 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
           ...phasePositions.entries.map((entry) {
             final phase = entry.key;
             final pos = entry.value;
-            final unlocked = widget.currentPhase >= phase;
+            final unlocked = currentPhase >= phase;
             return Positioned(
               left: pos.dx,
               top: pos.dy,
@@ -247,11 +235,11 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CheckInScreen(phase: widget.currentPhase, period: 'AM'),
+                        builder: (context) => CheckInScreen(phase: currentPhase, period: 'AM'),
                       ),
                     ).then((_) async {
-                      await loadProgress();
-                      await checkAndAdvancePhase();
+                      await _loadAllProgress();
+                      await _checkAndAdvancePhase();
                     });
                   },
                   child: const Text("AM Check-In"),
@@ -262,11 +250,11 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CheckInScreen(phase: widget.currentPhase, period: 'PM'),
+                        builder: (context) => CheckInScreen(phase: currentPhase, period: 'PM'),
                       ),
                     ).then((_) {
                       // Reload progress when returning from check-in
-                      loadProgress();
+                      _loadAllProgress();
                     });
                   },
                   child: const Text("PM Check-In"),
@@ -275,6 +263,15 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.fast_forward),
+        onPressed: () async {
+          final prefs = await SharedPreferences.getInstance();
+          // Change to any phase you want to test, e.g. phase 2
+          await prefs.setInt('currentPhase', 2);
+          setState(() {});
+        },
       ),
     );
   }

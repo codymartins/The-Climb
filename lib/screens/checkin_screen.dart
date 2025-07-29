@@ -366,3 +366,4 @@ class _CheckInScreenState extends State<CheckInScreen> {
     );
   }
 }
+

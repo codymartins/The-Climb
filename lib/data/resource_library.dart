@@ -4,6 +4,7 @@ const interactiveSummaries = {
       'title': 'Ego Is the Enemy',
       'author': 'Ryan Holiday',
       'timeEstimate': '30 min',
+      'link': 'https://www.amazon.com/Ego-Enemy-Ryan-Holiday/dp/1591847818',
       'sections': [
         {
           'title': 'Section 1: Introduction',
@@ -83,6 +84,7 @@ const interactiveSummaries = {
     'title': 'Atomic Habits',
     'author': 'James Clear',
     'timeEstimate': '35 min',
+    'link': 'https://jamesclear.com/atomic-habits',
     'sections': [
       {
         'title': 'Section 1: The Power of Small Habits',
@@ -162,6 +164,7 @@ const interactiveSummaries = {
     'title': 'The Obstacle Is the Way',
     'author': 'Ryan Holiday',
     'timeEstimate': '30 min',
+    'link': 'https://www.amazon.com/Obstacle-Way-Timeless-Turning-Triumph/dp/1591846358',
     'sections': [
       {
         'title': 'Section 1: Perception is Everything',
@@ -241,6 +244,7 @@ const interactiveSummaries = {
     'title': 'The War of Art',
     'author': 'Steven Pressfield',
     'timeEstimate': '25 min',
+    'link': 'https://stevenpressfield.com/books/the-war-of-art/',
     'sections': [
       {
         'title': 'Section 1: Meet Resistance',
@@ -320,6 +324,7 @@ const interactiveSummaries = {
     'title': "Man's Search for Meaning",
     'author': 'Viktor Frankl',
     'timeEstimate': '40 min',
+    'link': 'https://www.amazon.com/Mans-Search-Meaning-Viktor-Frankl/dp/0807014273',
     'sections': [
       {
         'title': 'Section 1: Why Meaning Matters',
@@ -399,6 +404,7 @@ const interactiveSummaries = {
     'title': "Can't Hurt Me",
     'author': 'David Goggins',
     'timeEstimate': '35 min',
+    'link': 'https://davidgoggins.com/book/',
     'sections': [
       {
         'title': 'Section 1: Calloused Mind',
@@ -478,6 +484,7 @@ const interactiveSummaries = {
     'title': 'Good',
     'author': 'Jocko Willink',
     'timeEstimate': '5 min',
+    'link': 'https://www.youtube.com/watch?v=IdTMDpizis8',
     'sections': [
       {
         'title': 'Section 1: The Mindset',
@@ -535,6 +542,7 @@ const interactiveSummaries = {
     'title': 'Make Your Bed',
     'author': 'Admiral William H. McRaven',
     'timeEstimate': '7 min',
+    'link': 'https://www.youtube.com/watch?v=3sK3wJAxGfs',
     'sections': [
       {
         'title': 'Section 1: Start Small',
@@ -589,275 +597,280 @@ const interactiveSummaries = {
     'finalReflectionPrompt': 'What will your “make your bed” habit be—the simple, daily action you commit to first?',
     },
     "responsibility_gives_meaning": {
-    'title': 'Responsibility Gives Life Meaning',
-    'author': 'Jordan Peterson',
-    'timeEstimate': '8 min',
-    'sections': [
-      {
-        'title': 'Section 1: The Weight of Responsibility',
-        'content': 'Jordan Peterson argues that meaning in life doesn’t come from happiness or comfort—it comes from shouldering responsibility. When you pick up a meaningful burden, you create purpose.',
-        'reflectionPrompt': 'What’s one responsibility you’ve taken on that has given your life meaning?',
-      },
-      {
-        'title': 'Section 2: Responsibility vs. Rights',
-        'content': 'Peterson says we’ve become obsessed with rights but forgotten that meaning is found in responsibilities. When you choose to carry responsibility, you grow stronger.',
-        'reflectionPrompt': 'What responsibility are you avoiding that might actually make you stronger?',
-        'quiz': [
-          {
-            'question': 'What does Peterson say brings meaning?',
-            'options': ['Comfort', 'Responsibility', 'Happiness', 'Luck'],
-            'correctIndex': 1,
-          },
-          {
-            'question': 'What’s the difference between rights and responsibilities in this context?',
-            'options': ['Rights give comfort, responsibilities give meaning', 'Responsibilities are optional', 'Rights are meaningless', 'They are the same'],
-            'correctIndex': 0,
-          },
-          {
-            'question': 'What happens when you take on responsibility?',
-            'options': ['You weaken', 'You grow stronger', 'You avoid struggle', 'You find comfort'],
-            'correctIndex': 1,
-          },
-        ],
-      },
-      {
-        'title': 'Section 3: The Path Forward',
-        'content': 'The more responsibility you’re willing to take, the more meaning you will find. Meaning doesn’t come to you—you step into it by carrying something difficult and worthwhile.',
-        'reflectionPrompt': 'What’s one “meaningful burden” you could take on right now?',
-        'quiz': [
-          {
-            'question': 'How do you find meaning according to Peterson?',
-            'options': ['By seeking happiness', 'By avoiding pain', 'By taking responsibility', 'By rejecting all burdens'],
-            'correctIndex': 2,
-          },
-          {
-            'question': 'What does carrying responsibility do for you?',
-            'options': ['Adds stress', 'Builds purpose', 'Destroys happiness', 'Provides shortcuts'],
-            'correctIndex': 1,
-          },
-          {
-            'question': 'What’s the “path forward” Peterson describes?',
-            'options':['More comfort', 'Carrying something meaningful', 'Avoiding challenges', 'Finding easy solutions'],
-            'correctIndex': 1,
-          }
-        ],
-      },
-    ],
-    'finalReflectionPrompt': 'What responsibility will you take on that could give you more meaning?',
+      'title': 'Responsibility Gives Life Meaning',
+      'author': 'Jordan Peterson',
+      'timeEstimate': '8 min',
+      'link': 'https://www.youtube.com/watch?v=9g4gG0y2FzE',
+      'sections': [
+        {
+          'title': 'Section 1: The Weight of Responsibility',
+          'content': 'Jordan Peterson argues that meaning in life doesn’t come from happiness or comfort—it comes from shouldering responsibility. When you pick up a meaningful burden, you create purpose.',
+          'reflectionPrompt': 'What’s one responsibility you’ve taken on that has given your life meaning?',
+        },
+        {
+          'title': 'Section 2: Responsibility vs. Rights',
+          'content': 'Peterson says we’ve become obsessed with rights but forgotten that meaning is found in responsibilities. When you choose to carry responsibility, you grow stronger.',
+          'reflectionPrompt': 'What responsibility are you avoiding that might actually make you stronger?',
+          'quiz': [
+            {
+              'question': 'What does Peterson say brings meaning?',
+              'options': ['Comfort', 'Responsibility', 'Happiness', 'Luck'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s the difference between rights and responsibilities in this context?',
+              'options': ['Rights give comfort, responsibilities give meaning', 'Responsibilities are optional', 'Rights are meaningless', 'They are the same'],
+              'correctIndex': 0,
+            },
+            {
+              'question': 'What happens when you take on responsibility?',
+              'options': ['You weaken', 'You grow stronger', 'You avoid struggle', 'You find comfort'],
+              'correctIndex': 1,
+            },
+          ],
+        },
+        {
+          'title': 'Section 3: The Path Forward',
+          'content': 'The more responsibility you’re willing to take, the more meaning you will find. Meaning doesn’t come to you—you step into it by carrying something difficult and worthwhile.',
+          'reflectionPrompt': 'What’s one “meaningful burden” you could take on right now?',
+          'quiz': [
+            {
+              'question': 'How do you find meaning according to Peterson?',
+              'options': ['By seeking happiness', 'By avoiding pain', 'By taking responsibility', 'By rejecting all burdens'],
+              'correctIndex': 2,
+            },
+            {
+              'question': 'What does carrying responsibility do for you?',
+              'options': ['Adds stress', 'Builds purpose', 'Destroys happiness', 'Provides shortcuts'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s the “path forward” Peterson describes?',
+              'options':['More comfort', 'Carrying something meaningful', 'Avoiding challenges', 'Finding easy solutions'],
+              'correctIndex': 1,
+            }
+          ],
+        },
+      ],
+      'finalReflectionPrompt': 'What responsibility will you take on that could give you more meaning?',
     },
     "from_purpose_to_impact": {
-    'title': 'From Purpose to Impact',
-    'author': 'Nick Craig & Scott Snook (Harvard Business Review)',
-    'timeEstimate': '12 min',
-    'sections': [
-      {
-        'title': 'Section 1: Finding Your Purpose',
-        'content': 'This article explains that purpose isn’t just a lofty idea—it’s the foundation for meaningful work and life. Your purpose is the unique contribution only you can make. Knowing it fuels your actions and decisions.',
-        'reflectionPrompt': 'What moments in your life have felt the most meaningful and “on purpose”?',
-      },
-      {
-        'title': 'Section 2: Turning Purpose into Action',
-        'content': 'Purpose means little if it stays in your head. The article pushes you to translate purpose into impact—what you DO each day. It’s not about waiting for the perfect role; it’s about acting with intention now.',
-        'reflectionPrompt': 'What’s one small action today that would express your purpose?',
-        'quiz': [
-          {
-            'question': 'What is the difference between purpose and impact?',
-            'options': ['Purpose is action, impact is thought', 'Purpose is your “why,” impact is what you do with it', 'They are identical', 'Impact is optional'],
-            'correctIndex': 1,
-          },
-          {
-            'question': 'Why does the article stress acting on purpose?',
-            'options': ['Purpose is useless without action', 'Purpose is all you need', 'Only impact matters', 'Purpose and impact are unrelated'],
-            'correctIndex': 0,
-          },
-          {
-            'question': 'What should you NOT do with your purpose?',
-            'options':['Keep it abstract', 'Live it out', 'Translate it into daily choices', 'Use it to guide you'],
-            'correctIndex': 0,
-          },
-        ],
-      },
-      {
-        'title': 'Section 3: Aligning Purpose and Work',
-        'content': 'The article reminds us that even if you can’t change your entire job or life overnight, you can find ways to align your purpose with what you do—finding meaning in the details, not just the big picture.',
-        'reflectionPrompt': 'How can you bring a little more of your purpose into your daily work or studies?',
-        'quiz': [
-          {
-            'question': 'What does the article say about purpose in work?',
-            'options': ['It must match your job title', 'It can be lived in any role', 'It only matters in big careers', 'It’s impossible to align'],
-            'correctIndex': 1,
-          },
-          {
-            'question': 'What’s a way to express purpose immediately?',
-            'options': ['Wait for the perfect time', 'Bring purpose into small daily actions', 'Quit everything that doesn’t align', 'Ignore current responsibilities'],
-            'correctIndex': 1,
-          },
-          {
-            'question': 'What happens when purpose and work align?',
-            'options':['Work feels empty', 'You find more meaning', 'You lose motivation', 'You stop improving'],
-            'correctIndex': 1,
-          }
-        ],
-      },
-    ],
-    'finalReflectionPrompt': 'In one sentence, write your purpose as you see it now—and one way you’ll live it out this week.',
+      'title': 'From Purpose to Impact',
+      'author': 'Nick Craig & Scott Snook (Harvard Business Review)',
+      'timeEstimate': '12 min',
+      'link': 'https://hbr.org/2014/05/from-purpose-to-impact',
+      'sections': [
+        {
+          'title': 'Section 1: Finding Your Purpose',
+          'content': 'This article explains that purpose isn’t just a lofty idea—it’s the foundation for meaningful work and life. Your purpose is the unique contribution only you can make. Knowing it fuels your actions and decisions.',
+          'reflectionPrompt': 'What moments in your life have felt the most meaningful and “on purpose”?',
+        },
+        {
+          'title': 'Section 2: Turning Purpose into Action',
+          'content': 'Purpose means little if it stays in your head. The article pushes you to translate purpose into impact—what you DO each day. It’s not about waiting for the perfect role; it’s about acting with intention now.',
+          'reflectionPrompt': 'What’s one small action today that would express your purpose?',
+          'quiz': [
+            {
+              'question': 'What is the difference between purpose and impact?',
+              'options': ['Purpose is action, impact is thought', 'Purpose is your “why,” impact is what you do with it', 'They are identical', 'Impact is optional'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'Why does the article stress acting on purpose?',
+              'options': ['Purpose is useless without action', 'Purpose is all you need', 'Only impact matters', 'Purpose and impact are unrelated'],
+              'correctIndex': 0,
+            },
+            {
+              'question': 'What should you NOT do with your purpose?',
+              'options':['Keep it abstract', 'Live it out', 'Translate it into daily choices', 'Use it to guide you'],
+              'correctIndex': 0,
+            },
+          ],
+        },
+        {
+          'title': 'Section 3: Aligning Purpose and Work',
+          'content': 'The article reminds us that even if you can’t change your entire job or life overnight, you can find ways to align your purpose with what you do—finding meaning in the details, not just the big picture.',
+          'reflectionPrompt': 'How can you bring a little more of your purpose into your daily work or studies?',
+          'quiz': [
+            {
+              'question': 'What does the article say about purpose in work?',
+              'options': ['It must match your job title', 'It can be lived in any role', 'It only matters in big careers', 'It’s impossible to align'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s a way to express purpose immediately?',
+              'options': ['Wait for the perfect time', 'Bring purpose into small daily actions', 'Quit everything that doesn’t align', 'Ignore current responsibilities'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What happens when purpose and work align?',
+              'options':['Work feels empty', 'You find more meaning', 'You lose motivation', 'You stop improving'],
+              'correctIndex': 1,
+            }
+          ],
+        },
+      ],
+      'finalReflectionPrompt': 'In one sentence, write your purpose as you see it now—and one way you’ll live it out this week.',
+  },
   },
   'phase2': {
     'deep_work': {
-    'title': 'Deep Work',
-    'author': 'Cal Newport',
-   'timeEstimate': '40 min',
-    'sections': [
-    {
-      'title': 'Section 1: Shallow vs. Deep',
-      'content': 'Cal Newport argues that most of us spend our days doing “shallow work”—emails, quick tasks, constant switching—that feels productive but creates little value. “Deep work,” on the other hand, is focused, undistracted effort that produces real progress and mastery.',
-      'reflectionPrompt': 'When was the last time you did truly focused, undistracted work?',
-    },
-    {
-      'title': 'Section 2: The Value of Focus',
-      'content': 'Newport explains that deep work is like a superpower in our distracted world. Those who can concentrate without distraction will lead in learning, creating, and achieving. Focus isn’t just helpful—it’s the foundation of serious progress.',
-      'reflectionPrompt': 'What’s one area of your life where focus could produce a breakthrough?',
-      'quiz': [
+      'title': 'Deep Work',
+      'author': 'Cal Newport',
+      'timeEstimate': '40 min',
+      'link': 'https://calnewport.com/books/deep-work/',
+      'sections': [
         {
-          'question': 'What is “deep work”?',
-          'options': ['Answering emails', 'Focused, undistracted effort', 'Multitasking', 'Networking'],
-          'correctIndex': 1,
+          'title': 'Section 1: Shallow vs. Deep',
+          'content': 'Cal Newport argues that most of us spend our days doing “shallow work”—emails, quick tasks, constant switching—that feels productive but creates little value. “Deep work,” on the other hand, is focused, undistracted effort that produces real progress and mastery.',
+          'reflectionPrompt': 'When was the last time you did truly focused, undistracted work?',
         },
         {
-          'question': 'What is the danger of shallow work?',
-          'options': ['It keeps you busy but doesn’t build real value', 'It’s relaxing', 'It helps you multitask', 'It makes you more creative'],
-          'correctIndex': 0,
+          'title': 'Section 2: The Value of Focus',
+          'content': 'Newport explains that deep work is like a superpower in our distracted world. Those who can concentrate without distraction will lead in learning, creating, and achieving. Focus isn’t just helpful—it’s the foundation of serious progress.',
+          'reflectionPrompt': 'What’s one area of your life where focus could produce a breakthrough?',
+          'quiz': [
+            {
+              'question': 'What is “deep work”?',
+              'options': ['Answering emails', 'Focused, undistracted effort', 'Multitasking', 'Networking'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What is the danger of shallow work?',
+              'options': ['It keeps you busy but doesn’t build real value', 'It’s relaxing', 'It helps you multitask', 'It makes you more creative'],
+              'correctIndex': 0,
+            },
+            {
+              'question': 'Why is focus valuable today?',
+              'options': ['Because it’s rare and creates mastery', 'Because everyone is already focused', 'Because distraction is healthy', 'Because it saves energy'],
+              'correctIndex': 0,
+            },
+          ],
         },
         {
-          'question': 'Why is focus valuable today?',
-          'options': ['Because it’s rare and creates mastery', 'Because everyone is already focused', 'Because distraction is healthy', 'Because it saves energy'],
-          'correctIndex': 0,
+          'title': 'Section 3: Build Deep Work Rituals',
+          'content': 'Deep work doesn’t happen by accident—you have to create a system for it. Newport suggests setting clear rules for when, where, and how you’ll work deeply: dedicated spaces, time blocks, and clear boundaries.',
+          'reflectionPrompt': 'Where and when could you carve out one block of “deep work” this week?',
+          'quiz': [
+            {
+              'question': 'How do you make deep work happen?',
+              'options': ['Wait for inspiration', 'Set up rituals and boundaries', 'Work randomly', 'Multitask more'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What is a deep work ritual?',
+              'options': ['A checklist', 'A set routine for focus', 'A meditation practice', 'A creative exercise'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What is a good way to protect deep work time?',
+              'options': ['Say no to distractions', 'Check emails often', 'Take random breaks', 'Keep your phone nearby'],
+              'correctIndex': 0,
+            }
+          ],
+        },
+        {
+          'title': 'Section 4: The Discipline of Disconnection',
+          'content': 'Deep work requires downtime. Newport emphasizes scheduling breaks from deep work and from distractions like social media. Intentionally disconnecting recharges your focus for when it counts.',
+          'reflectionPrompt': 'What’s one distraction you could cut out during deep work hours?',
+          'quiz': [
+            {
+              'question': 'Why is downtime important for deep work?',
+              'options': ['It makes you lazy', 'It recharges focus', 'It wastes time', 'It doesn’t matter'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s one common deep work killer?',
+              'options': ['Multitasking and social media', 'Taking breaks', 'Scheduling focus time', 'Checking a to-do list'],
+              'correctIndex': 0,
+            },
+            {
+              'question': 'What’s the goal of deep work rituals?',
+              'options': ['To avoid hard work', 'To make deep focus automatic', 'To reduce results', 'To keep you busy'],
+              'correctIndex': 1,
+            }
+          ],
         },
       ],
-    },
-    {
-      'title': 'Section 3: Build Deep Work Rituals',
-      'content': 'Deep work doesn’t happen by accident—you have to create a system for it. Newport suggests setting clear rules for when, where, and how you’ll work deeply: dedicated spaces, time blocks, and clear boundaries.',
-      'reflectionPrompt': 'Where and when could you carve out one block of “deep work” this week?',
-      'quiz': [
-        {
-          'question': 'How do you make deep work happen?',
-          'options': ['Wait for inspiration', 'Set up rituals and boundaries', 'Work randomly', 'Multitask more'],
-          'correctIndex': 1,
-        },
-        {
-          'question': 'What is a deep work ritual?',
-          'options': ['A checklist', 'A set routine for focus', 'A meditation practice', 'A creative exercise'],
-          'correctIndex': 1,
-        },
-        {
-          'question': 'What is a good way to protect deep work time?',
-          'options':['Say no to distractions', 'Check emails often', 'Take random breaks', 'Keep your phone nearby'],
-          'correctIndex': 0,
-        }
-      ],
-    },
-    {
-      'title': 'Section 4: The Discipline of Disconnection',
-      'content': 'Deep work requires downtime. Newport emphasizes scheduling breaks from deep work and from distractions like social media. Intentionally disconnecting recharges your focus for when it counts.',
-      'reflectionPrompt': 'What’s one distraction you could cut out during deep work hours?',
-      'quiz': [
-        {
-          'question': 'Why is downtime important for deep work?',
-          'options': ['It makes you lazy', 'It recharges focus', 'It wastes time', 'It doesn’t matter'],
-          'correctIndex': 1,
-        },
-        {
-          'question': 'What’s one common deep work killer?',
-          'options': ['Multitasking and social media', 'Taking breaks', 'Scheduling focus time', 'Checking a to-do list'],
-          'correctIndex': 0,
-        },
-        {
-          'question': 'What’s the goal of deep work rituals?',
-          'options':['To avoid hard work', 'To make deep focus automatic', 'To reduce results', 'To keep you busy'],
-          'correctIndex': 1,
-        }
-      ],
-    },
-    ],
-    'finalReflectionPrompt': 'Write down your first deep work block: what task, what time, and where you’ll do it.',
+      'finalReflectionPrompt': 'Write down your first deep work block: what task, what time, and where you’ll do it.',
     },
     'slight_edge': {
-    'title': 'The Slight Edge',
-    'author': 'Jeff Olson',
-    'timeEstimate': '35 min',
-    'sections': [
-    {
-      'title': 'Section 1: The Curve of Success or Failure',
-      'content': 'Jeff Olson says every choice you make is a step up the success curve—or down the failure curve. Small daily actions, good or bad, compound over time. There’s no standing still: you’re always moving one way or the other.',
-      'reflectionPrompt': 'What is one daily choice that’s pulling you up—or dragging you down?',
-    },
-    {
-      'title': 'Section 2: The Power of Easy Things',
-      'content': 'The small habits that change your life are easy to do—but also easy not to do. Reading ten minutes a day, exercising, journaling—these things don’t feel urgent. The Slight Edge is choosing to do them anyway, every day.',
-      'reflectionPrompt': 'What’s one “easy to do” habit you’ve been skipping?',
-      'quiz': [
+      'title': 'The Slight Edge',
+      'author': 'Jeff Olson',
+      'timeEstimate': '35 min',
+      'link': 'https://www.amazon.com/Slight-Edge-Turning-Disciplines-Happiness/dp/1626340463',
+      'sections': [
         {
-          'question': 'What does Olson say about daily choices?',
-          'options': ['They don’t matter much', 'They add up massively over time', 'Only big decisions count', 'They can be skipped without effect'],
-          'correctIndex': 1,
+          'title': 'Section 1: The Curve of Success or Failure',
+          'content': 'Jeff Olson says every choice you make is a step up the success curve—or down the failure curve. Small daily actions, good or bad, compound over time. There’s no standing still: you’re always moving one way or the other.',
+          'reflectionPrompt': 'What is one daily choice that’s pulling you up—or dragging you down?',
         },
         {
-          'question': 'What makes “easy things” tricky?',
-          'options': ['They’re too hard', 'They’re also easy NOT to do', 'They take too long', 'They are unimportant'],
-          'correctIndex': 1,
+          'title': 'Section 2: The Power of Easy Things',
+          'content': 'The small habits that change your life are easy to do—but also easy not to do. Reading ten minutes a day, exercising, journaling—these things don’t feel urgent. The Slight Edge is choosing to do them anyway, every day.',
+          'reflectionPrompt': 'What’s one “easy to do” habit you’ve been skipping?',
+          'quiz': [
+            {
+              'question': 'What does Olson say about daily choices?',
+              'options': ['They don’t matter much', 'They add up massively over time', 'Only big decisions count', 'They can be skipped without effect'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What makes “easy things” tricky?',
+              'options': ['They’re too hard', 'They’re also easy NOT to do', 'They take too long', 'They are unimportant'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What does The Slight Edge teach?',
+              'options': ['Huge leaps make success', 'Tiny, consistent choices create transformation', 'Luck is everything', 'Only talent matters'],
+              'correctIndex': 1,
+            },
+          ],
         },
         {
-          'question': 'What does The Slight Edge teach?',
-          'options':['Huge leaps make success', 'Tiny, consistent choices create transformation', 'Luck is everything', 'Only talent matters'],
-          'correctIndex': 1,
-        },
-      ],
-    },
-    {
-      'title': 'Section 3: Consistency Over Time',
-      'content': 'Olson’s message: results lag behind effort. Good habits might not show results for weeks or months—but they will come. Bad habits also compound quietly until they show up painfully later.',
-      'reflectionPrompt': 'Where have you given up because you didn’t see results fast enough?',
-      'quiz': [
-        {
-          'question': 'What happens if you stick with small habits?',
-          'options': ['Nothing changes', 'Results compound over time', 'You waste energy', 'You fail fast'],
-          'correctIndex': 1,
-        },
-        {
-          'question': 'Why do people abandon good habits?',
-          'options': ['They get bored', 'They don’t see quick results', 'They’re too easy', 'They like failing'],
-          'correctIndex': 1,
-        },
-        {
-          'question': 'What’s the “edge” in The Slight Edge?',
-          'options':['Luck', 'A small daily advantage', 'A sudden breakthrough', 'Talent'],
-          'correctIndex': 1,
-        }
-      ],
-    },
-    {
-      'title': 'Section 4: Philosophy of Doing',
-      'content': 'The Slight Edge isn’t about knowing—it’s about DOING. A little effort every day is the difference between “trying” and “becoming.”',
-      'reflectionPrompt': 'What’s one thing you “know” you should do daily, but don’t? How can you start?',
-      'quiz': [
-        {
-          'question': 'What’s more important: knowing or doing?',
-          'options': ['Knowing', 'Doing', 'Thinking', 'Planning'],
-          'correctIndex': 1,
+          'title': 'Section 3: Consistency Over Time',
+          'content': 'Olson’s message: results lag behind effort. Good habits might not show results for weeks or months—but they will come. Bad habits also compound quietly until they show up painfully later.',
+          'reflectionPrompt': 'Where have you given up because you didn’t see results fast enough?',
+          'quiz': [
+            {
+              'question': 'What happens if you stick with small habits?',
+              'options': ['Nothing changes', 'Results compound over time', 'You waste energy', 'You fail fast'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'Why do people abandon good habits?',
+              'options': ['They get bored', 'They don’t see quick results', 'They’re too easy', 'They like failing'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s the “edge” in The Slight Edge?',
+              'options': ['Luck', 'A small daily advantage', 'A sudden breakthrough', 'Talent'],
+              'correctIndex': 1,
+            }
+          ],
         },
         {
-          'question': 'What separates success and failure?',
-          'options': ['Big breaks', 'Consistent small actions', 'Connections', 'Random luck'],
-          'correctIndex': 1,
+          'title': 'Section 4: Philosophy of Doing',
+          'content': 'The Slight Edge isn’t about knowing—it’s about DOING. A little effort every day is the difference between “trying” and “becoming.”',
+          'reflectionPrompt': 'What’s one thing you “know” you should do daily, but don’t? How can you start?',
+          'quiz': [
+            {
+              'question': 'What’s more important: knowing or doing?',
+              'options': ['Knowing', 'Doing', 'Thinking', 'Planning'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What separates success and failure?',
+              'options': ['Big breaks', 'Consistent small actions', 'Connections', 'Random luck'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s Olson’s ultimate point?',
+              'options': ['Do the small things every day', 'Do big things occasionally', 'Avoid discomfort', 'Wait for inspiration'],
+              'correctIndex': 0,
+            }
+          ],
         },
-        {
-          'question': 'What’s Olson’s ultimate point?',
-          'options':['Do the small things every day', 'Do big things occasionally', 'Avoid discomfort', 'Wait for inspiration'],
-          'correctIndex': 0,
-        }
-      ],
-    },
       ],
       'finalReflectionPrompt': 'What’s one small “slight edge” habit you’ll do daily starting today?',
     },
@@ -865,83 +878,84 @@ const interactiveSummaries = {
       'title': 'The Power of Habit',
       'author': 'Charles Duhigg',
       'timeEstimate': '40 min',
+      'link': 'https://charlesduhigg.com/the-power-of-habit/',
       'sections': [
-    {
-      'title': 'Section 1: The Habit Loop',
-      'content': 'Duhigg introduces the habit loop: cue → routine → reward. Every habit, good or bad, follows this loop. Once you see the loop, you can change the routine and rewire the habit.',
-      'reflectionPrompt': 'Think of a habit you want to change. What’s the cue that triggers it?',
-    },
-    {
-      'title': 'Section 2: Keystone Habits',
-      'content': 'Some habits have ripple effects—they shift everything else. Exercise, journaling, or making your bed can be keystone habits: change them, and many other changes follow naturally.',
-      'reflectionPrompt': 'What’s one keystone habit you could adopt to spark other changes?',
-      'quiz': [
         {
-          'question': 'What are the three parts of a habit loop?',
-          'options': ['Cue, Routine, Reward', 'Plan, Execute, Rest', 'Desire, Work, Rest', 'Think, Do, Reflect'],
-          'correctIndex': 0,
+          'title': 'Section 1: The Habit Loop',
+          'content': 'Duhigg introduces the habit loop: cue → routine → reward. Every habit, good or bad, follows this loop. Once you see the loop, you can change the routine and rewire the habit.',
+          'reflectionPrompt': 'Think of a habit you want to change. What’s the cue that triggers it?',
         },
         {
-          'question': 'What is a “keystone habit”?',
-          'options': ['A random habit', 'A habit that sparks other positive changes', 'A bad habit', 'A work routine'],
-          'correctIndex': 1,
+          'title': 'Section 2: Keystone Habits',
+          'content': 'Some habits have ripple effects—they shift everything else. Exercise, journaling, or making your bed can be keystone habits: change them, and many other changes follow naturally.',
+          'reflectionPrompt': 'What’s one keystone habit you could adopt to spark other changes?',
+          'quiz': [
+            {
+              'question': 'What are the three parts of a habit loop?',
+              'options': ['Cue, Routine, Reward', 'Plan, Execute, Rest', 'Desire, Work, Rest', 'Think, Do, Reflect'],
+              'correctIndex': 0,
+            },
+            {
+              'question': 'What is a “keystone habit”?',
+              'options': ['A random habit', 'A habit that sparks other positive changes', 'A bad habit', 'A work routine'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'Why are keystone habits powerful?',
+              'options': ['They create chain reactions of change', 'They are hard to break', 'They don’t require effort', 'They replace all other habits'],
+              'correctIndex': 0,
+            },
+          ],
         },
         {
-          'question': 'Why are keystone habits powerful?',
-          'options': ['They create chain reactions of change', 'They are hard to break', 'They don’t require effort', 'They replace all other habits'],
-          'correctIndex': 0,
+          'title': 'Section 3: Changing Habits',
+          'content': 'Duhigg’s key takeaway: you can’t erase a habit, but you can reprogram it. Keep the same cue and reward, but swap the routine. That’s how you turn bad habits into good ones.',
+          'reflectionPrompt': 'What habit in your life could you “reprogram” instead of trying to erase?',
+          'quiz': [
+            {
+              'question': 'Can you erase a habit completely?',
+              'options': ['Yes', 'No, but you can reprogram it', 'Only if you ignore it', 'Only with willpower'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What should you keep when changing a habit?',
+              'options': ['The cue and reward', 'Nothing', 'Only the routine', 'The cue but not the reward'],
+              'correctIndex': 0,
+            },
+            {
+              'question': 'What do you swap out in a bad habit?',
+              'options': ['Cue', 'Reward', 'Routine', 'Everything'],
+              'correctIndex': 2,
+            }
+          ],
+        },
+        {
+          'title': 'Section 4: Small Wins Build Big Change',
+          'content': 'Habits don’t change overnight. Each small win makes the next one easier. Over time, the system you build from these wins becomes your life.',
+          'reflectionPrompt': 'What’s one “small win” habit you can celebrate this week?',
+          'quiz': [
+            {
+              'question': 'What makes habit change stick?',
+              'options': ['All-or-nothing efforts', 'Small wins that add up', 'Ignoring the cue', 'Pretending bad habits don’t exist'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'Why are small wins important?',
+              'options': ['They build momentum', 'They don’t matter', 'They distract you', 'They only work for some people'],
+              'correctIndex': 0,
+            },
+            {
+              'question': 'What does The Power of Habit ultimately teach?',
+              'options': ['Habits are fixed forever', 'Habits can be reshaped into systems for change', 'Habits don’t matter', 'Habits are only for work'],
+              'correctIndex': 1,
+            }
+          ],
         },
       ],
+      'finalReflectionPrompt': 'What’s one habit loop you will start reshaping this month?',
     },
-    {
-      'title': 'Section 3: Changing Habits',
-      'content': 'Duhigg’s key takeaway: you can’t erase a habit, but you can reprogram it. Keep the same cue and reward, but swap the routine. That’s how you turn bad habits into good ones.',
-      'reflectionPrompt': 'What habit in your life could you “reprogram” instead of trying to erase?',
-      'quiz': [
-        {
-          'question': 'Can you erase a habit completely?',
-          'options': ['Yes', 'No, but you can reprogram it', 'Only if you ignore it', 'Only with willpower'],
-          'correctIndex': 1,
-        },
-        {
-          'question': 'What should you keep when changing a habit?',
-          'options': ['The cue and reward', 'Nothing', 'Only the routine', 'The cue but not the reward'],
-          'correctIndex': 0,
-        },
-        {
-          'question': 'What do you swap out in a bad habit?',
-          'options':['Cue', 'Reward', 'Routine', 'Everything'],
-          'correctIndex': 2,
-        }
-      ],
-    },
-    {
-      'title': 'Section 4: Small Wins Build Big Change',
-      'content': 'Habits don’t change overnight. Each small win makes the next one easier. Over time, the system you build from these wins becomes your life.',
-      'reflectionPrompt': 'What’s one “small win” habit you can celebrate this week?',
-      'quiz': [
-        {
-          'question': 'What makes habit change stick?',
-          'options': ['All-or-nothing efforts', 'Small wins that add up', 'Ignoring the cue', 'Pretending bad habits don’t exist'],
-          'correctIndex': 1,
-        },
-        {
-          'question': 'Why are small wins important?',
-          'options': ['They build momentum', 'They don’t matter', 'They distract you', 'They only work for some people'],
-          'correctIndex': 0,
-        },
-        {
-          'question': 'What does The Power of Habit ultimately teach?',
-          'options':['Habits are fixed forever', 'Habits can be reshaped into systems for change', 'Habits don’t matter', 'Habits are only for work'],
-          'correctIndex': 1,
-        }
-      ],
-    },
-  ],
-  'finalReflectionPrompt': 'What’s one habit loop you will start reshaping this month?',
-},
+  },
 
-  },
   // Add more phases as needed
-  },
+
 };

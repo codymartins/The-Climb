@@ -105,7 +105,7 @@ class _JournalHistoryScreenState extends State<JournalHistoryScreen> {
               top: 12,
               left: 12,
               child: Material(
-                color: Theme.of(context).appBarTheme.backgroundColor ?? Theme.of(context).primaryColor, // Match AppBar
+                color: Colors.blueGrey[900], // Match AppBar
                 shape: const CircleBorder(),
                 elevation: 6,
                 child: InkWell(
@@ -219,6 +219,38 @@ class _JournalHistoryScreenState extends State<JournalHistoryScreen> {
                       color: Colors.white, // White icon
                     ),
                   ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 450,
+              left: 24,
+              right: 24,
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 800),
+                curve: Curves.easeInOut,
+                padding: const EdgeInsets.all(18),
+                decoration: BoxDecoration(
+                  color: Colors.blueGrey[900],
+                  borderRadius: BorderRadius.circular(18),
+                  boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 8)],
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.self_improvement, color: const Color.fromARGB(255, 138, 39, 250), size: 32),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Text(
+                        "Reflect on what you've written to learn more about yourself.",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

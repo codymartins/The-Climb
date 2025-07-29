@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
+import 'package:url_launcher/url_launcher.dart';
 import '../../data/resource_library.dart';
 
 class InteractiveSummaryScreen extends StatefulWidget {
+  final String phaseKey;
   final String summaryId;
-  const InteractiveSummaryScreen({super.key, required this.summaryId});
+
+  const InteractiveSummaryScreen({
+    super.key,
+    required this.phaseKey,
+    required this.summaryId,
+  });
 
   @override
   State<InteractiveSummaryScreen> createState() => _InteractiveSummaryScreenState();
@@ -25,7 +32,7 @@ class _InteractiveSummaryScreenState extends State<InteractiveSummaryScreen> {
     super.initState();
     _loadResponses();
     // Initialize controllers after loading responses
-    final summary = interactiveSummaries[widget.summaryId];
+    final summary = interactiveSummaries[widget.phaseKey]?[widget.summaryId];
     final sections = summary?['sections'] as List<dynamic>? ?? [];
     reflectionControllers = List.generate(
       sections.length,
@@ -89,7 +96,7 @@ class _InteractiveSummaryScreenState extends State<InteractiveSummaryScreen> {
     // Prepare entries for each reflection
     List<Map<String, dynamic>> newEntries = [];
 
-    final summary = interactiveSummaries[widget.summaryId];
+    final summary = interactiveSummaries[widget.phaseKey]?[widget.summaryId];
     final String summaryTitle = summary?['title'] as String? ?? 'Packet';
 
     final List<dynamic> sections = summary?['sections'] as List<dynamic>? ?? [];
@@ -135,7 +142,7 @@ class _InteractiveSummaryScreenState extends State<InteractiveSummaryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final summary = interactiveSummaries[widget.summaryId];
+    final summary = interactiveSummaries[widget.phaseKey]?[widget.summaryId];
     if (summary == null) {
       return Scaffold(
         appBar: AppBar(title: const Text('Error')),
@@ -375,6 +382,21 @@ class _InteractiveSummaryScreenState extends State<InteractiveSummaryScreen> {
                     ),
                   ),
                 ),
+                // Link Button
+                if (summary['link'] != null && summary['link'].toString().isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: ElevatedButton.icon(
+                      icon: const Icon(Icons.link),
+                      label: const Text('Open Resource'),
+                      onPressed: () async {
+                        final url = summary['link'] as String;
+                        if (await canLaunchUrl(Uri.parse(url))) {
+                          await launchUrl(Uri.parse(url));
+                        }
+                      },
+                    ),
+                  ),
               ],
             );
           },

@@ -344,5 +344,203 @@ final Map<int, Map<String, List<Map<String, dynamic>>>> checkInContentByPhase = 
       },
     ],
   },
-  // ...other phases
+  2: {
+    'challenge': [
+      {
+        'text': 'Wake up and make your bed within 5 minutes of getting out of it.',
+        'inputType': 'checkbox',
+        'description': 'Start the day by claiming your first win.',
+        'period': 'AM',
+      },
+      {
+        'text': 'Track how many intentional pauses you take before acting today.',
+        'inputType': 'number',
+        'description': 'Each pause is a moment you override autopilot.',
+        'period': 'PM',
+      },
+      {
+        'text': 'Write out a one-hour “focus block” for tomorrow. Commit to it.',
+        'inputType': 'text',
+        'description': 'Choose one task and eliminate distractions for that block.',
+        'period': 'AM',
+      },
+      {
+        'text': 'Plan your meals for the next 24 hours. Stick to the plan.',
+        'inputType': 'text',
+        'description': 'Discipline often begins with food structure.',
+        'period': 'AM',
+      },
+      {
+        'text': 'Do one thing you’ve been putting off for at least a week.',
+        'inputType': 'text',
+        'period': 'PM',
+      },
+      {
+        'text': 'Choose 3 “keystone habits” to practice this week (e.g., workout, journal, tidy room). Mark today’s completion.',
+        'inputType': 'checkbox',
+        'description': 'Habits that anchor all others. Log if you hit all three today.',
+        'period': 'PM',
+      },
+      {
+        'text': 'Create a “friction barrier” for one bad habit today.',
+        'inputType': 'text',
+        'description': 'Example: Move your phone charger across the room or delete one distracting app.',
+        'period': 'AM',
+      },
+      {
+        'text': 'Go through your day with time-blocked structure — then write what worked and what didn’t.',
+        'inputType': 'text',
+        'period': 'PM',
+      },
+      {
+        'text': 'Start one task immediately after setting a timer. No delay.',
+        'inputType': 'checkbox',
+        'description': 'Prove to yourself you don’t need “motivation” to act.',
+        'period': 'AM',
+      },
+      {
+        'text': 'Reflect: What system failed you today? How can you improve it tomorrow?',
+        'inputType': 'text',
+        'period': 'PM',
+      },
+    ],
+    'action': [
+      {
+        'text': 'Create tomorrow’s to-do list the night before.',
+        'inputType': 'text',
+        'description': 'List 3 non-negotiables and 1 bonus if you finish early.',
+        'period': 'PM',
+      },
+      {
+        'text': 'Do a “hard reset” on your space. Clean and reset one area fully.',
+        'inputType': 'text',
+        'description': 'Desk, room, kitchen — clear space means clear mind.',
+        'period': 'PM',
+      },
+      {
+        'text': 'Drink only water for 24 hours. Log what urges you feel.',
+        'inputType': 'text',
+        'description': 'Test your ability to commit to small boundaries.',
+        'period': 'AM',
+      },
+      {
+        'text': 'Pick a 15-minute “deep work” window. Record exactly what you did.',
+        'inputType': 'text',
+        'description': 'No distractions. Build the muscle of focus.',
+        'period': 'AM',
+      },
+      {
+        'text': 'Introduce a “preparation ritual” before one habit (e.g., laying out gym clothes).',
+        'inputType': 'text',
+        'period': 'AM',
+      },
+      {
+        'text': 'List every decision you made on autopilot today. Choose one to intercept tomorrow.',
+        'inputType': 'text',
+        'period': 'PM',
+      },
+      {
+        'text': 'Do a mini “life systems audit”: Write down which routines feel weak.',
+        'inputType': 'text',
+        'period': 'AM',
+      },
+      {
+        'text': 'Execute one “no excuses” workout or walk — regardless of weather or mood.',
+        'inputType': 'checkbox',
+        'description': 'Action despite resistance is the heart of Phase 2.',
+        'period': 'PM',
+      },
+      {
+        'text': 'Prepare tomorrow’s clothes and workspace tonight.',
+        'inputType': 'checkbox',
+        'description': 'Reduce morning friction. Stack the deck for success.',
+        'period': 'PM',
+      },
+      {
+        'text': 'List 3 habits you performed today and rank them: helpful, neutral, harmful.',
+        'inputType': 'text',
+        'period': 'PM',
+      },
+    ],
+    'reflection': [
+      {
+        'text': 'What system worked for you today — and why?',
+        'inputType': 'text',
+        'period': 'PM',
+      },
+      {
+        'text': 'Where did you waste the most time today? How can you design against it?',
+        'inputType': 'text',
+        'period': 'PM',
+      },
+      {
+        'text': 'What’s one habit you perform daily without thought? Does it help or hurt?',
+        'inputType': 'text',
+        'period': 'AM',
+      },
+      {
+        'text': 'Are your mornings setting the tone you want?',
+        'inputType': 'text',
+        'period': 'AM',
+      },
+      {
+        'text': 'When did you feel the most disciplined today? What triggered that state?',
+        'inputType': 'text',
+        'period': 'PM',
+      },
+      {
+        'text': 'Where do you keep breaking promises to yourself?',
+        'inputType': 'text',
+        'period': 'PM',
+      },
+      {
+        'text': 'What part of your day felt most structured? What felt chaotic?',
+        'inputType': 'text',
+        'period': 'AM',
+      },
+      {
+        'text': 'What are you actively building right now?',
+        'inputType': 'text',
+        'period': 'PM',
+      },
+      {
+        'text': 'If you repeated today’s habits for the next year — what kind of life would it build?',
+        'inputType': 'text',
+        'period': 'PM',
+      },
+      {
+        'text': 'Are you creating systems that rely on motivation — or discipline?',
+        'inputType': 'text',
+        'period': 'AM',
+      },
+    ],
+    'longform': [
+      {
+        'text': 'Write out a full “system map” of your current routines. Which ones hold you up — which ones break you down?',
+        'inputType': 'longText',
+        'period': 'PM',
+      },
+      {
+        'text': 'Take 20 minutes to write: “What would my life look like if I became the type of person who did what he said every time?”',
+        'inputType': 'longText',
+        'period': 'PM',
+      },
+      {
+        'text': 'Describe your perfect *weekday system* in vivid detail. How close is your current routine?',
+        'inputType': 'longText',
+        'period': 'AM',
+      },
+      {
+        'text': 'Write about the hardest habit you’ve ever tried to keep. Why did it fail or succeed?',
+        'inputType': 'longText',
+        'period': 'PM',
+      },
+      {
+        'text': 'Spend 20 minutes writing about “friction” in your life. Where could you add or remove it to shape behavior?',
+        'inputType': 'longText',
+        'period': 'PM',
+      },
+    ],
+  },
+
 };

@@ -47,9 +47,7 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) async {
-          if (index == 3) { // Progress Page tab index
-            await loadPhase(); // Reload phase from SharedPreferences
-          }
+          await loadPhase();
           setState(() => _currentIndex = index);
         },
         selectedItemColor: const Color.fromARGB(255, 42, 46, 51),
