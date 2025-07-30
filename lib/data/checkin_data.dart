@@ -20,9 +20,9 @@ final Map<int, Map<String, List<Map<String, dynamic>>>> checkInContentByPhase = 
         'period': 'PM',
       },
       {
-        'text': 'Interview someone you respect. Ask: What wakes you up in the morning? What have you had to overcome to stay on track with your purpose?',
-        'inputType': 'text',
-        'description': 'Interview can be by text or in person.',
+        'text': 'Chat with someone you respect. What wakes them up in the morning? What have they had to overcome to stay on track with their purpose?',
+        'inputType': 'checkbox',
+        'description': 'Chat can be by text or in person.',
         'period': 'AM',
       },
       {
@@ -51,7 +51,7 @@ final Map<int, Map<String, List<Map<String, dynamic>>>> checkInContentByPhase = 
         'period': 'AM',
       },
       {
-        'text': 'Sit in silence for 15 minutes before bed. Write down 1 thing that surprised you.',
+        'text': 'Sit in silence for 15 minutes before bed. Write down 1 thing that came to mind.',
         'inputType': 'text',
         'period': 'PM',
       },
@@ -75,11 +75,11 @@ final Map<int, Map<String, List<Map<String, dynamic>>>> checkInContentByPhase = 
       },
       {
         'text': 'Take a "Self-Control Snapshot": Set a timer for every 2 hours today. When it goes off, ask: "Was I intentional or reactive during the last block of time?"',
-        'inputType': 'text',
+        'inputType': 'checkbox',
         'period': 'PM',
       },
       {
-        'text': 'Design an “ideal day” schedule. Compare it to today. What’s misaligned?',
+        'text': 'Design an “ideal day” schedule. Compare it to yesterday. What was misaligned?',
         'inputType': 'text',
         'description': 'Not your dream life — your best realistic self-discipline day.',
         'period': 'AM',
@@ -95,8 +95,8 @@ final Map<int, Map<String, List<Map<String, dynamic>>>> checkInContentByPhase = 
         'period': 'PM',
       },
       {
-        'text': 'Eliminate 1 “numbing” behavior for 24 hours. Replace it with any act of growth.',
-        'inputType': 'text',
+        'text': 'Eliminate 1 “numbing” behavior for 24 hours. Replace it with any act of growth. Write it down somewhere you’ll be reminded.',
+        'inputType': 'checkbox',
         'period': 'AM',
       },
       {
@@ -113,31 +113,31 @@ final Map<int, Map<String, List<Map<String, dynamic>>>> checkInContentByPhase = 
     'action': [
       {
         'text': 'Delete 3 apps or digital distractions you habitually open.',
-        'inputType': 'text',
+        'inputType': 'checkbox',
         'description': 'Example: TikTok, Twitter, YouTube, Reddit. Log which ones and how much time they typically consumed.',
         'period': 'AM',
       },
       {
-        'text': 'Write your personal “No List”: Identify 3 habits or influences that don’t serve your future self.',
+        'text': 'Create a personal “No List”: Identify 3 habits or influences that don’t serve your future self.',
         'inputType': 'text',
-        'description': 'Write: “I say no to ___ because I want to become ___.”',
+        'description': 'Write: “I will say no to ___ because I want to become ___.”',
         'period': 'AM',
       },
       {
-        'text': 'Wake up 30 minutes earlier than normal tomorrow.',
+        'text': 'Wake up 30 minutes earlier than normal tomorrow. Write down here how you will use that time.',
         'inputType': 'text',
         'description': 'Use the extra time for stillness, journaling, stretching, or reading something meaningful. Reflect on how it impacted your mindset.',
         'period': 'AM',
       },
       {
         'text': 'Introduce one friction-based habit. Log your choice.',
-        'inputType': 'text',
-        'description': 'Choose a positive behavior and place it in your way. Example: Put a book on your pillow, running shoes by your bed, etc.',
+        'inputType': 'multipleChoice',
+        'description': ['Put a book on your pillow', 'Running shoes by your bed', 'Journal on your desk', 'Keep phone off nightstand'],
         'period': 'AM',
       },
       {
-        'text': 'Complete a 24-hour dopamine reset. Note what withdrawals you feel.',
-        'inputType': 'text',
+        'text': 'Starting now, complete a 24-hour dopamine reset. Take notes of what withdrawals you feel.',
+        'inputType': 'checkbox',
         'description': 'No junk food, no mindless scrolling, no entertainment. Just: walk, write, read, think, move.',
         'period': 'PM',
       },

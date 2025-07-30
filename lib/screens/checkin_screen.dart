@@ -257,6 +257,28 @@ class _CheckInScreenState extends State<CheckInScreen> {
               onChanged: (val) => responses[type] = val,
             );
             break;
+          case 'multipleChoice':
+            input = StatefulBuilder(
+              builder: (context, setModalState) {
+                final options = item['options'] as List<dynamic>? ?? [];
+                final selected = responses[type]?.toString();
+                return Column(
+                  children: [
+                    for (final option in options)
+                      RadioListTile<String>(
+                        title: Text(option.toString()),
+                        value: option.toString(),
+                        groupValue: selected,
+                        onChanged: (val) {
+                          setModalState(() => responses[type] = val);
+                          setState(() => responses[type] = val);
+                        },
+                      ),
+                  ],
+                );
+              },
+            );
+            break;
           case 'text':
           default:
             input = TextField(

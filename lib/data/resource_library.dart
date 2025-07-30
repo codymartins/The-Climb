@@ -954,6 +954,567 @@ const interactiveSummaries = {
       ],
       'finalReflectionPrompt': 'What’s one habit loop you will start reshaping this month?',
     },
+    'compound_effect': {
+      'title': 'The Compound Effect',
+      'author': 'Darren Hardy',
+      'timeEstimate': '30 min',
+      'link': 'https://darrenhardy.com/the-compound-effect/',
+      'sections': [
+        {
+          'title': 'Section 1: Small Choices Matter',
+          'content': 'Darren Hardy explains that every small choice you make—good or bad—compounds over time. A soda today doesn’t seem like much. But one every day for years has massive effects. The same is true for good choices.',
+          'reflectionPrompt': 'What is one small choice you make often that you know will compound over time?',
+        },
+        {
+          'title': 'Section 2: The Magic of Consistency',
+          'content': 'Consistency is the secret ingredient. Doing the right thing occasionally won’t change much. Doing it daily—even when it feels invisible—creates unstoppable momentum.',
+          'reflectionPrompt': 'What habit could you commit to every single day, even when you don’t feel like it?',
+          'quiz': [
+            {
+              'question': 'What makes the compound effect work?',
+              'options': ['Luck', 'Consistency over time', 'Big leaps', 'Perfect planning'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What happens when you repeat small bad habits?',
+              'options': ['They don’t matter', 'They compound into big problems', 'They cancel out', 'They make you more resilient'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s better for change: doing one huge thing or small things daily?',
+              'options': ['One huge thing', 'Small things daily', 'Neither matters', 'Luck instead'],
+              'correctIndex': 1,
+            },
+          ],
+        },
+        {
+          'title': 'Section 3: Momentum and the “Big Mo”',
+          'content': 'Hardy calls momentum the “Big Mo.” Once you get started and keep going, habits begin to drive themselves. The hardest part is starting—but the reward is unstoppable progress.',
+          'reflectionPrompt': 'What’s one area of your life where you’ve felt momentum build before?',
+          'quiz': [
+            {
+              'question': 'What is the “Big Mo”?',
+              'options': ['A nickname', 'Momentum', 'A shortcut to success', 'A type of motivation'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s the hardest part of momentum?',
+              'options': ['Maintaining it', 'Starting it', 'Ending it', 'Feeling it'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What happens once momentum takes over?',
+              'options': ['Habits push you forward', 'You stop improving', 'It becomes harder to keep going', 'You lose control'],
+              'correctIndex': 0,
+            }
+          ],
+        },
+        {
+          'title': 'Section 4: Tracking & Measuring',
+          'content': 'Hardy says you can’t improve what you don’t measure. Tracking habits and progress keeps you accountable and shows how the compound effect is working—even when it feels slow.',
+          'reflectionPrompt': 'What’s one habit you could start tracking this week?',
+          'quiz': [
+            {
+              'question': 'Why is tracking important?',
+              'options': ['It wastes time', 'It shows progress and keeps you accountable', 'It doesn’t matter', 'It slows you down'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What happens when you track a habit?',
+              'options': ['You see how it compounds', 'You lose motivation', 'It becomes harder', 'It stops mattering'],
+              'correctIndex': 0,
+            },
+            {
+              'question': 'What’s Hardy’s ultimate message?',
+              'options':['Massive success is built from small, consistent choices', 'Big wins come from big moments', 'Luck is key', 'You don’t need to track anything'],
+              'correctIndex': 0,
+            }
+          ],
+        },
+      ],
+      'finalReflectionPrompt': 'What small choice will you make today that your future self will thank you for?',
+    },
+    'discipline_equals_freedom': {
+      'title': 'Discipline Equals Freedom',
+      'author': 'Jocko Willink',
+      'timeEstimate': '10 min',
+      'link': 'https://www.youtube.com/watch?v=8nZy0d2g1aY',
+      'sections': [
+        {
+          'title': 'Section 1: The Paradox',
+          'content': 'Jocko’s core message: Discipline equals freedom. It sounds contradictory—but the more disciplined you are, the freer you become. Wake up early, train, eat clean, work hard—and you gain freedom from weakness, chaos, and regret.',
+          'reflectionPrompt': 'What’s one area where more discipline would actually make your life freer?',
+        },
+        {
+          'title': 'Section 2: Small Disciplines, Big Results',
+          'content': 'Discipline doesn’t start with huge changes. It starts small: making the bed, going to the gym, saying no to the donut. Each small discipline strengthens the muscle of self-control.',
+          'reflectionPrompt': 'What’s one “small discipline” you can practice every day?',
+          'quiz': [
+            {
+              'question': 'Why does Jocko say discipline equals freedom?',
+              'options': ['Discipline feels restrictive', 'Discipline creates the freedom to live how you want', 'Freedom means doing whatever you want', 'Freedom makes discipline easy'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'How does discipline grow?',
+              'options': ['Only with big acts', 'By practicing small disciplines daily', 'By waiting for motivation', 'By ignoring rules'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What is the “muscle” Jocko talks about?',
+              'options':['Discipline', 'Strength', 'Motivation', 'Confidence'],
+              'correctIndex': 0,
+            },
+          ],
+        },
+        {
+          'title': 'Section 3: Excuses vs. Ownership',
+          'content': 'Jocko warns that excuses kill discipline. If you want freedom, stop making excuses and own your actions. No one else can do the work for you.',
+          'reflectionPrompt': 'What’s an excuse you’ve been using that you could drop today?',
+          'quiz': [
+            {
+              'question': 'What kills discipline?',
+              'options': ['Excuses', 'Planning', 'Routine', 'Effort'],
+              'correctIndex': 0,
+            },
+            {
+              'question': 'What must you take for your actions?',
+              'options': ['Credit', 'Ownership', 'A break', 'Nothing'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What happens when you own your actions?',
+              'options':['You gain control and freedom', 'You lose motivation', 'You become lazy', 'You avoid responsibility'],
+              'correctIndex': 0,
+            }
+          ],
+        },
+        {
+          'title': 'Section 4: The Discipline Lifestyle',
+          'content': 'Discipline isn’t a one-time push—it’s a way of living. Jocko’s life shows that choosing discipline every day leads to strength, progress, and freedom that most people never find.',
+          'reflectionPrompt': 'What’s one habit you could fully “own” as part of a disciplined lifestyle?',
+          'quiz': [
+            {
+              'question': 'What is discipline according to Jocko?',
+              'options': ['A temporary push', 'A permanent lifestyle', 'A punishment', 'A set of rules to follow sometimes'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What does daily discipline lead to?',
+              'options': ['More stress', 'Freedom and control', 'Burnout', 'Perfectionism'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s the core takeaway of this talk?',
+              'options':['Excuses are fine', 'Discipline = Freedom', 'Discipline = Restriction', 'Freedom requires no work'],
+              'correctIndex': 1,
+            }
+          ],
+        },
+      ],
+      'finalReflectionPrompt': 'What’s one excuse you’ll stop using and one discipline you’ll commit to starting today?',
+    },
+    'focus_on_systems': {
+      'title': 'Forget About Goals, Focus on Systems',
+      'author': 'James Clear',
+      'timeEstimate': '8 min',
+      'link': 'https://www.youtube.com/watch?v=2t6d8a1b9gk',
+      'sections': [
+        {
+          'title': 'Section 1: Goals Aren’t Enough',
+          'content': 'James Clear explains that goals don’t create results—systems do. Everyone has goals. The winners and losers often have the same goals. What separates them is the system they follow every day.',
+          'reflectionPrompt': 'Have you ever set a goal and failed because you didn’t have a system?',
+        },
+        {
+          'title': 'Section 2: Systems Create Consistency',
+          'content': 'A system is the routine, schedule, or structure that keeps you moving forward. Systems make progress automatic—even when motivation fades.',
+          'reflectionPrompt': 'What’s one system you could create for something you want to achieve?',
+          'quiz': [
+            {
+              'question': 'What’s the difference between goals and systems?',
+              'options': ['Goals are the plan, systems are the process', 'Goals create results, systems don’t', 'Systems are optional', 'They’re the same'],
+              'correctIndex': 0,
+            },
+            {
+              'question': 'Why do systems work better than goals?',
+              'options': ['They rely on motivation', 'They create daily consistency', 'They happen randomly', 'They focus only on outcomes'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What happens when you rely only on goals?',
+              'options':['You may stall out', 'You succeed faster', 'You always succeed', 'You avoid systems'],
+              'correctIndex': 0,
+            },
+          ],
+        },
+        {
+          'title': 'Section 3: Identity and Systems',
+          'content': 'Clear ties systems to identity: systems aren’t just about what you do—they’re about who you become. A system of writing daily makes you a writer. A system of exercise makes you an athlete.',
+          'reflectionPrompt': 'What identity could you build by designing a system around it?',
+          'quiz': [
+            {
+              'question': 'What does James Clear connect systems to?',
+              'options': ['Outcomes only', 'Identity', 'Luck', 'Short-term thinking'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What does a system do for your identity?',
+              'options': ['Nothing', 'Turns actions into who you are', 'Replaces habits', 'Distracts you'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What does a system of writing daily make you?',
+              'options':['An athlete', 'A writer', 'A thinker', 'A talker'],
+              'correctIndex': 1,
+            }
+          ],
+        },
+        {
+          'title': 'Section 4: Build a System, Not Just a Dream',
+          'content': 'Dreaming doesn’t create change—building a system does. Instead of saying, “I want to lose weight,” say, “I will create a system for movement and healthy eating.” Systems bring goals to life.',
+          'reflectionPrompt': 'What goal could you turn into a system today?',
+          'quiz': [
+            {
+              'question': 'What does James Clear say about dreaming?',
+              'options': ['It’s enough', 'It’s useless', 'It won’t work without systems', 'It replaces systems'],
+              'correctIndex': 2,
+            },
+            {
+              'question': 'What’s the main point of this talk?',
+              'options': ['Goals are better than systems', 'Systems make success inevitable', 'Systems aren’t important', 'Goals create automatic success'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What should you do with your goals?',
+              'options':['Forget them entirely', 'Turn them into systems', 'Keep them vague', 'Only think about them'],
+              'correctIndex': 1,
+            }
+          ],
+        },
+      ],
+      'finalReflectionPrompt': 'Write one sentence turning a current goal into a system you’ll follow daily.',
+    },
+    'essentialism': {
+      'title': 'Essentialism',
+      'author': 'Greg McKeown',
+      'timeEstimate': '35 min',
+      'link': 'https://gregmckeown.com/books/essentialism/',
+      'sections': [
+        {
+          'title': 'Section 1: The Way of the Essentialist',
+          'content': 'Greg McKeown teaches that Essentialism is about doing less—but better. Most people spread their effort thin across too many things. Essentialism means focusing only on what truly matters and cutting the rest.',
+          'reflectionPrompt': 'What’s one activity in your life that feels important—but might actually be non-essential?',
+        },
+        {
+          'title': 'Section 2: Saying No',
+          'content': 'Essentialists protect their focus by saying “no” more often. Every “yes” is really a “no” to something else. Saying no is not selfish—it’s how you create space for what’s essential.',
+          'reflectionPrompt': 'What’s something you should start saying “no” to in order to protect your focus?',
+          'quiz': [
+            {
+              'question': 'What’s the core idea of Essentialism?',
+              'options': ['Do everything', 'Do less, but better', 'Say yes to all opportunities', 'Work until you burn out'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What does saying “no” create?',
+              'options': ['Missed chances', 'Space for what matters', 'Conflict', 'More problems'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What is the danger of saying “yes” too much?',
+              'options': ['You stay focused', 'You spread yourself too thin', 'You become more productive', 'You create systems'],
+              'correctIndex': 1,
+            },
+          ],
+        },
+        {
+          'title': 'Section 3: Focus on the Vital Few',
+          'content': 'Essentialists focus on the “vital few” rather than the “trivial many.” Most things aren’t truly important. Find the few things that create the most impact and pour your energy there.',
+          'reflectionPrompt': 'What are the “vital few” things in your life that deserve your best energy?',
+          'quiz': [
+            {
+              'question': 'What does “vital few” mean?',
+              'options': ['The biggest distractions', 'The few things that really matter', 'Trivial hobbies', 'Urgent but unimportant tasks'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s the risk of focusing on the “trivial many”?',
+              'options': ['You become more creative', 'You waste time and energy', 'You gain clarity', 'You simplify your life'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'How do Essentialists decide what to do?',
+              'options':['By chasing everything', 'By filtering for what truly matters', 'By saying yes to all requests', 'By avoiding big decisions'],
+              'correctIndex': 1,
+            }
+          ],
+        },
+        {
+          'title': 'Section 4: Design Your Life Intentionally',
+          'content': 'Essentialism isn’t just about work—it’s about life design. You choose what to focus on, what to ignore, and how to build a life around what really matters.',
+          'reflectionPrompt': 'If you lived as an “Essentialist,” what would your days look like?',
+          'quiz': [
+            {
+              'question': 'What is the ultimate goal of Essentialism?',
+              'options': ['To do less mindlessly', 'To design a life around what matters', 'To avoid responsibility', 'To avoid all stress'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s the danger of letting others dictate your priorities?',
+              'options': ['You gain freedom', 'You lose control of your time', 'You focus better', 'You simplify your life'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What mindset do Essentialists embrace?',
+              'options':['Random busyness', 'Intentional focus', 'Saying yes to everything', 'Letting life happen to them'],
+              'correctIndex': 1,
+            }
+          ],
+        },
+      ],
+      'finalReflectionPrompt': 'What’s one thing you’ll say “no” to this week to protect your focus?',
+    },
+    'mindset': {
+      'title': 'Mindset',
+      'author': 'Carol Dweck',
+      'timeEstimate': '35 min',
+      'link': 'https://www.mindsetworks.com/science/',
+      'sections': [
+        {
+          'title': 'Section 1: Fixed vs. Growth Mindset',
+          'content': 'Carol Dweck explains that people with a fixed mindset believe their abilities are set in stone. People with a growth mindset believe they can improve through effort and learning. Growth mindset is the foundation of long-term progress.',
+          'reflectionPrompt': 'Where in your life have you been thinking with a fixed mindset?',
+        },
+        {
+          'title': 'Section 2: Embracing Challenges',
+          'content': 'A growth mindset sees challenges as opportunities to learn. A fixed mindset avoids them to protect the ego. Growth comes from leaning into challenges, not running away.',
+          'reflectionPrompt': 'What’s one challenge you’ve been avoiding because it might expose weakness?',
+          'quiz': [
+            {
+              'question': 'What’s the core difference between fixed and growth mindset?',
+              'options': ['Fixed sees abilities as permanent, growth sees them as improvable', 'Fixed means trying harder, growth means being lazy', 'They’re basically the same', 'Growth means perfection'],
+              'correctIndex': 0,
+            },
+            {
+              'question': 'How does a growth mindset view challenges?',
+              'options': ['As threats', 'As opportunities to learn', 'As failures', 'As distractions'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What does a fixed mindset protect?',
+              'options':['The ego', 'New skills', 'Confidence through failure', 'Perseverance'],
+              'correctIndex': 0,
+            },
+          ],
+        },
+        {
+          'title': 'Section 3: The Power of “Yet”',
+          'content': 'Dweck teaches the power of saying “I can’t do this… yet.” Adding “yet” shifts failure into growth. It reminds you that your abilities aren’t fixed—they’re developing.',
+          'reflectionPrompt': 'What’s one thing you “can’t do yet” that you want to learn?',
+          'quiz': [
+            {
+              'question': 'What word does Dweck say can transform your mindset?',
+              'options': ['No', 'Yet', 'Never', 'Later'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What does “yet” imply?',
+              'options': ['Hopelessness', 'Future potential', 'Giving up', 'Fixed ability'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'Why is “yet” powerful?',
+              'options':['It excuses failure', 'It reframes failure as temporary', 'It lowers effort', 'It hides weakness'],
+              'correctIndex': 1,
+            }
+          ],
+        },
+        {
+          'title': 'Section 4: Building a Growth Mindset Life',
+          'content': 'A growth mindset isn’t just for school or work—it’s for life. It’s how you approach relationships, fitness, learning, and setbacks. Every “failure” is data for growth.',
+          'reflectionPrompt': 'How would your life change if you treated every failure as feedback?',
+          'quiz': [
+            {
+              'question': 'What does growth mindset turn failure into?',
+              'options': ['Shame', 'Feedback', 'Hopelessness', 'Regret'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s the ultimate goal of growth mindset?',
+              'options': ['Perfection', 'Continuous improvement', 'Avoiding failure', 'Looking smart'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What mindset fuels Phase Two habits?',
+              'options':['Fixed mindset', 'Growth mindset', 'Random mindset', 'No mindset at all'],
+              'correctIndex': 1,
+            }
+          ],
+        },
+      ],
+      'finalReflectionPrompt': 'What’s one “fixed mindset” belief you’ll replace with “I can’t do this… yet”?',
+    },
+    'seven_habits': {
+      'title': 'The 7 Habits of Highly Effective People',
+      'author': 'Stephen Covey',
+      'timeEstimate': '45 min',
+      'link': 'https://www.franklincovey.com/the-7-habits/',
+      'sections': [
+        {
+          'title': 'Section 1: Be Proactive',
+          'content': 'Covey’s first habit: Be Proactive. Don’t wait for life to happen to you—take responsibility and act on what you can control.',
+          'reflectionPrompt': 'What’s one thing you’ve been waiting on that you could take action on today?',
+        },
+        {
+          'title': 'Section 2: Begin with the End in Mind',
+          'content': 'Habit two: Start with a clear vision of where you want to go. Systems and habits work best when they serve a bigger purpose.',
+          'reflectionPrompt': 'If you imagined your ideal life in 10 years, what’s one system you’d need to get there?',
+          'quiz': [
+            {
+              'question': 'What does “Be Proactive” mean?',
+              'options': ['Waiting for instructions', 'Taking responsibility for your actions', 'Blaming circumstances', 'Avoiding decisions'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s the key to “Begin with the End in Mind”?',
+              'options': ['Dreaming big only', 'Having a clear vision and aligning actions to it', 'Avoiding planning', 'Letting life guide you'],
+              'correctIndex':  1,
+            },
+            {
+              'question': 'Why is vision important?',
+              'options':['It keeps habits random', 'It gives habits direction', 'It makes goals unnecessary', 'It’s only for careers'],
+              'correctIndex': 1,
+            },
+          ],
+        },
+        {
+          'title': 'Section 3: Put First Things First',
+          'content': 'Habit three: Prioritize what matters most. Don’t let urgent but unimportant tasks crowd out what’s essential for growth.',
+          'reflectionPrompt': 'What “urgent but not important” thing has been eating your time lately?',
+          'quiz': [
+            {
+              'question': 'What does “First Things First” mean?',
+              'options': ['Do urgent things first', 'Do important things first', 'Do easy things first', 'Do everything at once'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s the danger of urgent tasks?',
+              'options': ['They often crowd out important ones', 'They always matter most', 'They improve focus', 'They keep you organized'],
+              'correctIndex': 0,
+            },
+            {
+              'question': 'What does Covey want you to focus on?',
+              'options':['What’s easy', 'What’s most important', 'What’s most urgent', 'What others demand'],
+              'correctIndex': 1,
+            }
+          ],
+        },
+        {
+          'title': 'Section 4: Habits Build Effectiveness',
+          'content': 'Covey’s habits (4–7) focus on working well with others, sharpening your mind, and constantly improving. The big message: effectiveness is a habit itself—built daily.',
+          'reflectionPrompt': 'Which of the 7 Habits do you most need to practice right now?',
+          'quiz': [
+            {
+              'question': 'What do Covey’s habits ultimately create?',
+              'options': ['Luck', 'Lasting effectiveness', 'More stress', 'Less responsibility'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'How do you “sharpen the saw”?',
+              'options': ['Work harder nonstop', 'Renew yourself regularly', 'Do random tasks', 'Take no breaks'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s the theme of all 7 Habits?',
+              'options':['Quick hacks', 'Daily disciplines for growth', 'Fixed talent', 'Chasing trends'],
+              'correctIndex': 1,
+            }
+          ],
+        },
+      ],
+      'finalReflectionPrompt': 'Which of Covey’s habits will you focus on building into your daily routine first?',
+    },
+    'checklist_manifesto': {
+      'title': 'The Checklist Manifesto',
+      'author': 'Atul Gawande',
+      'timeEstimate': '20 min',
+      'link': 'https://atulgawande.com/book/the-checklist-manifesto/',
+      'sections': [
+        {
+          'title': 'Section 1: Why Checklists Matter',
+          'content': 'Atul Gawande explains that in complex environments, even experts forget steps. Checklists turn chaos into order—they make sure the critical things always get done.',
+          'reflectionPrompt': 'Where in your life could a simple checklist prevent mistakes or missed steps?',
+        },
+        {
+          'title': 'Section 2: Simple Systems for Complex Problems',
+          'content': 'A checklist isn’t just a list—it’s a system. It frees your brain for thinking and creativity by handling the routine and the obvious.',
+          'reflectionPrompt': 'What routine task could you “systemize” with a checklist?',
+          'quiz': [
+            {
+              'question': 'What problem do checklists solve?',
+              'options': ['Forgetfulness and missed steps', 'Motivation issues', 'Creativity blocks', 'Habit building'],
+              'correctIndex': 0,
+            },
+            {
+              'question': 'What does a checklist really create?',
+              'options': ['More stress', 'A simple system', 'Bureaucracy', 'Confusion'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s the hidden benefit of a checklist?',
+              'options':['It frees mental energy for harder thinking', 'It wastes time', 'It slows progress', 'It replaces planning'],
+              'correctIndex': 0,
+            },
+          ],
+        },
+        {
+          'title': 'Section 3: Consistency Beats Memory',
+          'content': 'Checklists make sure things happen the same way, every time. Consistency builds reliability, which builds progress.',
+          'reflectionPrompt': 'What’s one area where more consistency would change your results?',
+          'quiz': [
+            {
+              'question': 'What does consistency build?',
+              'options': ['Reliability and results', 'Boredom', 'Chaos', 'Motivation'],
+              'correctIndex': 0,
+            },
+            {
+              'question': 'Why not just rely on memory?',
+              'options': ['Memory is perfect', 'Memory is flawed and fails under stress', 'It’s faster', 'It’s more fun'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What does using a checklist say about you?',
+              'options':['You’re weak', 'You value systems and reliability', 'You can’t remember anything', 'You love paperwork'],
+              'correctIndex': 1,
+            }
+          ],
+        },
+        {
+          'title': 'Section 4: Checklists in Daily Life',
+          'content': 'You don’t have to be a pilot or surgeon to use checklists. Grocery lists, morning routines, weekly planning—checklists create systems that keep you moving forward.',
+          'reflectionPrompt': 'What’s one personal “checklist” you could write today?',
+          'quiz': [
+            {
+              'question': 'Who can benefit from checklists?',
+              'options': ['Only experts', 'Everyone', 'Only disorganized people', 'Only managers'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s the key takeaway of The Checklist Manifesto?',
+              'options': ['Checklists limit creativity', 'Checklists are simple systems that improve everything', 'Checklists are unnecessary', 'Checklists only belong at work'],
+              'correctIndex': 1,
+            },
+            {
+              'question': 'What’s a simple checklist you could start with?',
+              'options':['A morning routine', 'A massive spreadsheet', 'Nothing', 'A legal contract'],
+              'correctIndex': 0,
+            }
+          ],
+        },
+      ],
+      'finalReflectionPrompt': 'What checklist will you create this week to simplify part of your life?',
+    },
+
   },
 
   // Add more phases as needed
