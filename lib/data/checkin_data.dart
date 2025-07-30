@@ -366,7 +366,7 @@ final Map<int, Map<String, List<Map<String, dynamic>>>> checkInContentByPhase = 
       },
       {
         'text': 'Plan your meals for the next 24 hours. Stick to the plan.',
-        'inputType': 'text',
+        'inputType': 'checkbox',
         'description': 'Discipline often begins with food structure.',
         'period': 'AM',
       },

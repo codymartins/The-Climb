@@ -269,7 +269,7 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
         onPressed: () async {
           final prefs = await SharedPreferences.getInstance();
           // Change to any phase you want to test, e.g. phase 2
-          await prefs.setInt('currentPhase', 2);
+          await prefs.setInt('currentPhase', 5);
           setState(() {});
         },
       ),
