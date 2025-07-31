@@ -45,8 +45,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_native_splash: ^2.3.9
   flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.4.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -76,8 +76,6 @@ flutter:
     - assets\your_weaving_path.png
     - assets\closed_book.png
     - assets\marcus_bust.png
-    - assets\splash.png
-    - assets\icon.png
     - assets\legacy_bg.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -104,14 +102,16 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-flutter_native_splash:
-  color: "#ffffff" # background color
-  image: assets/splash.png # your logo/image
-  android: true
-  ios: true
+
 
 flutter_launcher_icons:
   android: true
   ios: true
   image_path: "assets/icon.png"
-  min_sdk_android: 21
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/splash.png # <-- Replace with your splash image
+  android: true
+  ios: true
+
