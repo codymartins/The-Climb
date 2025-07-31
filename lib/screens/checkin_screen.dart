@@ -31,8 +31,8 @@ class _CheckInScreenState extends State<CheckInScreen> {
     final filtered = list.where((item) => item['period'] == widget.period).toList();
     if (filtered.isEmpty) return {};
     if (type == 'longform') {
-      // Show every 3rd day (day 2, 5, 8, ...)
-      if (day % 3 != 2) return {};
+      // Only show longform every 3rd day AND only for PM check-ins
+      if (day % 3 != 2 || widget.period != 'PM') return {};
       return filtered[(day ~/ 3) % filtered.length];
     }
     return filtered[day % filtered.length];
@@ -136,23 +136,26 @@ class _CheckInScreenState extends State<CheckInScreen> {
   }
 
   final List<String> quotes = [
-    "Keep climbing. Your future self is cheering for you.",
-    "Small steps every day lead to big change.",
-    "Discipline is destiny.",
-    "You are stronger than you think.",
+    "Keep climbing. Your future self needs this.",
+    "Small steps compound. Consistency is paramount.",
+    "Discipline will grant you freedom.",
+    "You are elevating yourself.",
     "Consistency beats intensity.",
-    "Every check-in is a win.",
+    "Every check-in gets you closer.",
     "Progress, not perfection.",
     "Embrace the climb, not just the summit.",
     "The journey is the reward.",
     "Your effort today shapes your tomorrow.",
-    "Every day is a new chance to grow.",
-    "Believe in the process.",
+    "Each day you improve through failure or success.",
+    "Believe in the process. Trust your ability to grow.",
     "Discipline is the bridge between goals and accomplishment.",
     "Success is the sum of small efforts repeated day in and day out.",
-    "You are building a better you, one day at a time.",
-    "Your climb is unique. Embrace it.",
-    "Every step counts, no matter how small.",
+    "You are building yourself through this effort.",
+    "Be who you intend to be.",
+    "True failure is ignoring your potential.",
+    "Be vigilant. Stay focused.",
+    "Life is yours to shape. Make it count.",
+    "You are the architect of your own growth.",
   ];
 
   Future<void> showMotivationDialog() async {
@@ -174,19 +177,19 @@ class _CheckInScreenState extends State<CheckInScreen> {
               confettiController: controller,
               blastDirectionality: BlastDirectionality.explosive,
               shouldLoop: false,
-              colors: const [Colors.green, Colors.blue, Colors.purple, Colors.orange, Colors.pink],
+              colors: const [Color.fromARGB(255, 86, 130, 87), Color.fromARGB(255, 78, 110, 135), Color.fromARGB(255, 165, 132, 171), Color.fromARGB(255, 191, 165, 126), Color.fromARGB(255, 148, 102, 118)],
             ),
             Container(
               width: 320,
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 160, 160, 160),
+                color: const Color.fromARGB(255, 250, 248, 248),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.fitness_center, color: Color.fromARGB(255, 15, 15, 15), size: 72),
+                  const Icon(Icons.fitness_center, color: Color.fromARGB(255, 15, 15, 15), size: 50),
                   const SizedBox(height: 16),
                   Text(
                     quote,
