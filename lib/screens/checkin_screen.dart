@@ -7,8 +7,9 @@ import 'dart:convert';
 class CheckInScreen extends StatefulWidget {
   final int phase;
   final String period; // 'AM' or 'PM'
+  final bool legacyMode; // New parameter
 
-  const CheckInScreen({super.key, required this.phase, required this.period});
+  const CheckInScreen({super.key, required this.phase, required this.period, this.legacyMode = false});
 
   @override
   State<CheckInScreen> createState() => _CheckInScreenState();
