@@ -12,6 +12,7 @@ class ReferenceLibraryScreen extends StatefulWidget {
 
 class _ReferenceLibraryScreenState extends State<ReferenceLibraryScreen> {
   int? currentPhase;
+  bool legacyMode = false;
 
   @override
   void initState() {
@@ -23,6 +24,7 @@ class _ReferenceLibraryScreenState extends State<ReferenceLibraryScreen> {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       currentPhase = prefs.getInt('currentPhase') ?? 1;
+      legacyMode = prefs.getBool('legacyMode') ?? false;
     });
   }
 
@@ -35,7 +37,15 @@ class _ReferenceLibraryScreenState extends State<ReferenceLibraryScreen> {
     }
 
     final phaseKey = 'phase${currentPhase ?? 1}';
-    final phaseSummaries = interactiveSummaries[phaseKey] ?? {};
+    final phaseSummaries = legacyMode
+        ? interactiveSummaries.values.expand((phase) => phase.entries).fold<Map<String, dynamic>>(
+            {},
+            (acc, entry) {
+              acc[entry.key] = entry.value;
+              return acc;
+            },
+          )
+        : interactiveSummaries[phaseKey] ?? {};
 
 
     return Scaffold(
@@ -98,11 +108,13 @@ class _ReferenceLibraryScreenState extends State<ReferenceLibraryScreen> {
               ),
               child: Row(
                 children: [
-                  Icon(Icons.read_more, color: Colors.green, size: 32),
+                  Icon(Icons.auto_awesome, color: Colors.green, size: 32),
                   const SizedBox(width: 16),
                   Expanded(
                     child: Text(
-                      "These packets will introduce you to valuable media resources.\nComplete seven to continue to the next phase, and explore them further to continue improving.",
+                      legacyMode
+                        ? "Legacy Mode: All resources unlocked. Explore and keep climbing!"
+                        : "These packets will introduce you to valuable media resources.\nComplete seven to continue to the next phase, and explore them further to continue improving.",
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,

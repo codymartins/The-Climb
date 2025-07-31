@@ -209,16 +209,16 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
                     ],
                   ),
                 ),
-                // Optional: Legacy mode banner
+                // Legacy mode banner (add this block!)
                 Positioned(
                   top: 16,
-                  left: 0,
-                  right: 0,
+                  left: 20,
+                  right: 20,
                   child: Center(
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
                       decoration: BoxDecoration(
-                        color: Colors.amber[800],
+                        color: Colors.blueGrey[900],
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 8)],
                       ),
@@ -408,40 +408,30 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
                     ],
                   ),
                 ),
-                // Legacy mode banner
-                if (legacyMode)
-                  Positioned(
-                    top: 16,
-                    left: 0,
-                    right: 0,
-                    child: Center(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
-                        decoration: BoxDecoration(
-                          color: Colors.amber[800],
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 8)],
-                        ),
-                        child: const Text(
-                          "LEGACY MODE: Continue your climb with all resources unlocked!",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            letterSpacing: 1.1,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+
               ],
             ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: legacyMode
+    ? FloatingActionButton.extended(
+        icon: const Icon(Icons.exit_to_app),
+        label: const Text("Exit Legacy Mode"),
+        backgroundColor: Colors.red[700],
+        onPressed: () async {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setBool('legacyMode', false);
+          await prefs.setInt('currentPhase', 1);
+          setState(() {
+            legacyMode = false;
+            currentPhase = 1;
+          });
+        },
+      )
+    : FloatingActionButton(
         child: const Icon(Icons.fast_forward),
         onPressed: () async {
           final prefs = await SharedPreferences.getInstance();
           // Change to any phase you want to test, e.g. phase 2
-          await prefs.setInt('currentPhase', 5);
+          await prefs.setInt('currentPhase', 1);
           setState(() {});
         },
       ),

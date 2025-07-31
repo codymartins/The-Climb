@@ -12,6 +12,7 @@ class JournalHistoryScreen extends StatefulWidget {
 
 class _JournalHistoryScreenState extends State<JournalHistoryScreen> {
   List<Map<String, dynamic>> journalEntries = [];
+  bool legacyMode = false; // <-- Add this line
 
     Map<String, dynamic> calculateJournalStats(List<Map<String, dynamic>> entries) {
       final stopWords = {
@@ -63,6 +64,7 @@ class _JournalHistoryScreenState extends State<JournalHistoryScreen> {
     final parsed = raw.map((e) => jsonDecode(e) as Map<String, dynamic>).toList();
     setState(() {
       journalEntries = parsed.reversed.toList(); // show most recent first
+      legacyMode = prefs.getBool('legacyMode') ?? false; // <-- Add this line
     });
   }
   @override
@@ -84,7 +86,12 @@ class _JournalHistoryScreenState extends State<JournalHistoryScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (_) => OpenJournalView(journalEntries: journalEntries)),
+                        MaterialPageRoute(
+                          builder: (_) => OpenJournalView(
+                            journalEntries: journalEntries,
+                            legacyMode: legacyMode, // Pass this flag
+                          ),
+                        ),
                       );
                     },
                     child: Image.asset(
@@ -263,8 +270,9 @@ class _JournalHistoryScreenState extends State<JournalHistoryScreen> {
 
 class OpenJournalView extends StatelessWidget {
   final List<Map<String, dynamic>> journalEntries;
+  final bool legacyMode;
 
-  const OpenJournalView({super.key, required this.journalEntries});
+  const OpenJournalView({super.key, required this.journalEntries, this.legacyMode = false});
 
   Map<int, List<Map<String, dynamic>>> groupEntriesByPhase() {
     final Map<int, List<Map<String, dynamic>>> grouped = {};
@@ -279,18 +287,89 @@ class OpenJournalView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final grouped = groupEntriesByPhase();
-
-    return Scaffold(
-      appBar: AppBar(title: const Text("Your Journal")),
-      body: PageView.builder(
-        itemCount: 5,
-        controller: PageController(viewportFraction: 0.88),
-        itemBuilder: (context, index) {
-          return PhaseJournalCard(phase: index + 1, entries: grouped[index + 1] ?? []);
-        },
-      ),
-    );
+    if (legacyMode) {
+      // Show all entries in one card
+      return Scaffold(
+        appBar: AppBar(title: const Text("Your Journal — Legacy Mode")),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 20),
+          child: Material(
+            elevation: 6,
+            borderRadius: BorderRadius.circular(16),
+            color: Colors.brown[50],
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text("Legacy Mode", style: Theme.of(context).textTheme.titleLarge),
+                ),
+                const Divider(),
+                Expanded(
+                  child: journalEntries.isEmpty
+                      ? const Center(child: Text("No journal entries yet."))
+                      : ListView.builder(
+                          itemCount: journalEntries.length,
+                          itemBuilder: (context, idx) {
+                            final entry = journalEntries[idx];
+                            final date = DateTime.parse(entry['date']).toLocal();
+                            final items = entry['items'] as List<dynamic>? ?? [];
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
+                              child: Card(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(DateFormat('EEEE, MMM d').format(date),
+                                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                                      if (entry['label'] != null)
+                                        Text(
+                                          entry['label'],
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.blueGrey,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ...items.map((item) => Padding(
+                                            padding: const EdgeInsets.only(top: 6.0),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(item['prompt'] ?? '',
+                                                    style: const TextStyle(fontWeight: FontWeight.w600)),
+                                                Text(item['response'] ?? ''),
+                                              ],
+                                            ),
+                                          )),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    } else {
+      // Existing PageView by phase
+      final grouped = groupEntriesByPhase();
+      return Scaffold(
+        appBar: AppBar(title: const Text("Your Journal")),
+        body: PageView.builder(
+          itemCount: 5,
+          controller: PageController(viewportFraction: 0.88),
+          itemBuilder: (context, index) {
+            return PhaseJournalCard(phase: index + 1, entries: grouped[index + 1] ?? []);
+          },
+        ),
+      );
+    }
   }
 }
 

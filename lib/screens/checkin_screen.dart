@@ -27,16 +27,36 @@ class _CheckInScreenState extends State<CheckInScreen> {
 
   // Filter items by period
   Map<String, dynamic> getTodayItem(String type) {
-    final list = phaseData[type] ?? [];
-    if (list.isEmpty) return {};
-    final filtered = list.where((item) => item['period'] == widget.period).toList();
-    if (filtered.isEmpty) return {};
-    if (type == 'longform') {
-      // Only show longform every 3rd day AND only for PM check-ins
-      if (day % 3 != 2 || widget.period != 'PM') return {};
-      return filtered[(day ~/ 3) % filtered.length];
+    if (widget.legacyMode) {
+      // Combine prompts from all phases
+      List<Map<String, dynamic>> allPrompts = [];
+      for (var phase in checkInContentByPhase.values) {
+        allPrompts.addAll(phase[type] ?? []);
+      }
+      // Filter by period
+      final filtered = allPrompts.where((item) => item['period'] == widget.period).toList();
+      if (filtered.isEmpty) return {};
+      // For longform, only show every 3rd day and only for PM
+      if (type == 'longform') {
+        if (day % 3 != 2 || widget.period != 'PM') return {};
+        filtered.shuffle();
+        return filtered.first;
+      }
+      filtered.shuffle();
+      return filtered.first;
+    } else {
+      // Normal mode
+      final list = phaseData[type] ?? [];
+      if (list.isEmpty) return {};
+      final filtered = list.where((item) => item['period'] == widget.period).toList();
+      if (filtered.isEmpty) return {};
+      if (type == 'longform') {
+        // Only show longform every 3rd day AND only for PM check-ins
+        if (day % 3 != 2 || widget.period != 'PM') return {};
+        return filtered[(day ~/ 3) % filtered.length];
+      }
+      return filtered[day % filtered.length];
     }
-    return filtered[day % filtered.length];
   }
 
   @override
@@ -367,7 +387,9 @@ class _CheckInScreenState extends State<CheckInScreen> {
         child: ListView(
           children: [
             Text(
-              "Phase ${widget.phase} — Day ${day + 1}",
+              widget.legacyMode
+                  ? "Legacy Mode — Day ${day + 1}"
+                  : "Phase ${widget.phase} — Day ${day + 1}",
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 16),
@@ -377,11 +399,13 @@ class _CheckInScreenState extends State<CheckInScreen> {
             if (showLongform && longform != null && longform.isNotEmpty)
               buildCheckInButton('longform', longform, const Color.fromARGB(255, 95, 155, 149), Icons.edit_note),
             const SizedBox(height: 24),
-            Text(
-              "Current Streak: $streak / 14",
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 12),
+            if (!widget.legacyMode) ...[
+              Text(
+                "Current Streak: $streak / 14",
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+            ],
             ElevatedButton(
               onPressed: submitCheckIn,
               child: const Text("Submit Check-In"),
