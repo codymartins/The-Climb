@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'screens/main_screen.dart';
 
 void main() {
-  runApp(const StartTheClimbApp());
+  runApp(const TheClimbApp());
 }
 
-class StartTheClimbApp extends StatelessWidget {
-  const StartTheClimbApp({super.key});
+class TheClimbApp extends StatelessWidget {
+  const TheClimbApp({super.key});
 
   @override
   Widget build(BuildContext context) {
