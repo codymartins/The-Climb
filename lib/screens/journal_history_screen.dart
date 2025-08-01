@@ -230,7 +230,7 @@ class _JournalHistoryScreenState extends State<JournalHistoryScreen> {
               ),
             ),
             Positioned(
-              top: 450,
+              top: 475,
               left: 24,
               right: 24,
               child: AnimatedContainer(
