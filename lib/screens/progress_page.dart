@@ -411,30 +411,6 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
 
               ],
             ),
-      floatingActionButton: legacyMode
-    ? FloatingActionButton.extended(
-        icon: const Icon(Icons.exit_to_app),
-        label: const Text("Exit Legacy Mode"),
-        backgroundColor: Colors.red[700],
-        onPressed: () async {
-          final prefs = await SharedPreferences.getInstance();
-          await prefs.setBool('legacyMode', false);
-          await prefs.setInt('currentPhase', 1);
-          setState(() {
-            legacyMode = false;
-            currentPhase = 1;
-          });
-        },
-      )
-    : FloatingActionButton(
-        child: const Icon(Icons.fast_forward),
-        onPressed: () async {
-          final prefs = await SharedPreferences.getInstance();
-          // Change to any phase you want to test, e.g. phase 2
-          await prefs.setInt('currentPhase', 1);
-          setState(() {});
-        },
-      ),
     );
   }
 }
