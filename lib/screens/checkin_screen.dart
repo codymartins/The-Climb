@@ -331,10 +331,23 @@ class _CheckInScreenState extends State<CheckInScreen> {
               if (item['description'] != null)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text(
-                    item['description'],
-                    style: TextStyle(color: Colors.grey[700]),
-                  ),
+                  child: item['description'] is String
+                      ? Text(
+                          item['description'],
+                          style: TextStyle(color: Colors.grey[700]),
+                        )
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: (item['description'] as List)
+                              .map<Widget>((desc) => Padding(
+                                    padding: const EdgeInsets.only(bottom: 4.0),
+                                    child: Text(
+                                      desc.toString(),
+                                      style: TextStyle(color: Colors.grey[700]),
+                                    ),
+                                  ))
+                              .toList(),
+                        ),
                 ),
               const SizedBox(height: 12),
               input,

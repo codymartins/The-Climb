@@ -64,6 +64,7 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
         streak = 0;
         mediaCount = 0;
       });
+       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text("Advanced to Phase $newPhase!"),
@@ -99,6 +100,7 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
                     onPressed: () async {
                       final prefs = await SharedPreferences.getInstance();
                       await prefs.setBool('legacyMode', true);
+                       if (!mounted) return;
                       Navigator.of(context).pop();
                       setState(() {});
                     },
@@ -116,6 +118,7 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
                       final prefs = await SharedPreferences.getInstance();
                       await prefs.clear();
                       await prefs.setInt('currentPhase', 1);
+                       if (!mounted) return;
                       Navigator.of(context).pop();
                       setState(() {});
                     },
@@ -146,6 +149,17 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
       4: const Offset(170, 313),
       5: const Offset(180, 190),
     };
+
+    DateTime today = DateTime.now();
+    int day = today.difference(DateTime(today.year, 1, 1)).inDays + 1;
+    String todayString = "${today.year}-${today.month}-${today.day}";
+
+    Future<bool> isCheckedIn(String period) async {
+      final prefs = await SharedPreferences.getInstance();
+      final key = "phase${currentPhase}Day${day}_${period}_date";
+      final lastCheckIn = prefs.getString(key);
+      return lastCheckIn == todayString;
+    }
 
     return Scaffold(
       appBar: AppBar(title: const Text('Your Climb')),
@@ -376,34 +390,60 @@ class _ProgressPageState extends State<ProgressPage> with WidgetsBindingObserver
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CheckInScreen(phase: currentPhase, period: 'AM'),
-                            ),
-                          ).then((_) async {
-                            await _loadAllProgress();
-                            await _checkAndAdvancePhase();
-                          });
+                      FutureBuilder<bool>(
+                        future: isCheckedIn('AM'),
+                        builder: (context, snapshot) {
+                          final checkedIn = snapshot.data ?? false;
+                          return ElevatedButton(
+                            onPressed: checkedIn
+                                ? null
+                                : () async {
+                                    // Save today's date for AM check-in
+                                    final prefs = await SharedPreferences.getInstance();
+                                    final key = "phase${currentPhase}Day${day}_AM_date";
+                                    await prefs.setString(key, todayString);
+
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => CheckInScreen(phase: currentPhase, period: 'AM'),
+                                      ),
+                                    ).then((_) async {
+                                      await _loadAllProgress();
+                                      await _checkAndAdvancePhase();
+                                    });
+                                  },
+                            child: const Text("AM Check-In"),
+                          );
                         },
-                        child: const Text("AM Check-In"),
                       ),
                       const SizedBox(width: 16),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CheckInScreen(phase: currentPhase, period: 'PM'),
-                            ),
-                          ).then((_) {
-                            // Reload progress when returning from check-in
-                            _loadAllProgress();
-                          });
+                      FutureBuilder<bool>(
+                        future: isCheckedIn('PM'),
+                        builder: (context, snapshot) {
+                          final checkedIn = snapshot.data ?? false;
+                          return ElevatedButton(
+                            onPressed: checkedIn
+                                ? null
+                                : () async {
+                                    // When user checks in, save today's date
+                                    final prefs = await SharedPreferences.getInstance();
+                                    final key = "phase${currentPhase}Day${day}_PM_date";
+                                    await prefs.setString(key, todayString);
+
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => CheckInScreen(phase: currentPhase, period: 'PM'),
+                                      ),
+                                    ).then((_) async {
+                                      await _loadAllProgress();
+                                      await _checkAndAdvancePhase();
+                                    });
+                                  },
+                            child: const Text("PM Check-In"),
+                          );
                         },
-                        child: const Text("PM Check-In"),
                       ),
                     ],
                   ),

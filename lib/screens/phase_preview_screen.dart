@@ -11,7 +11,7 @@ class PhasePreviewScreen extends StatelessWidget {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt('currentPhase', phaseNumber);
     await prefs.setInt('phase${phaseNumber}Day', 0); // start at day 1
-    await prefs.setInt('phase${phaseNumber}Streak', 0); // optional reset 
+    await prefs.setInt('phase${phaseNumber}Streak', 0);
     Navigator.pop(context);
   }
 
